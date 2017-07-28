@@ -14,12 +14,14 @@ class ViewController: UIViewController {
     //MARK: Properties
     
     @IBOutlet weak var authenticateLabel: UILabel!
-    @IBOutlet weak var keyCreationLabel: UILabel!
+    @IBOutlet weak var infoTextLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    var step = 1
+    let tag = "com.ms.touchid.keys.testkey".data(using: .ascii)!
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -29,64 +31,69 @@ class ViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func authenticateButton(_ sender: UIButton) {
+        step = 1
         
 //        // Create public - private key pair
 //        let keyPair = try? self.generateKeyPair()
 //        if keyPair?.publicKey != nil {
-//            self.authenticateLabel.text = "Key created successfully"
+//            self.authenticateLabel.text = (self.authenticateLabel.text ?? "") + "\nKey created successfully"
 //        }
         
-        //Get the public key
-        let tag = "com.ms.touchid.keys.testkey".data(using: .ascii)!
-        let privateKey = retrievePrivateKey(tag: tag)
-        guard let publicKey = SecKeyCopyPublicKey(privateKey!) else {
-            self.authenticateLabel.text = "Public key could not be retrieved"
-            return
-        }
-
         // Generate random number to use as a challenge
         let uuid = UUID().uuidString.data(using: .ascii)
-        
-        // Sign number with private key
-        let algorithm: SecKeyAlgorithm = .ecdsaSignatureDigestX962SHA256
-        let signature = signChallenge(key: privateKey!, message: uuid! as CFData, algorithm: algorithm)
-        self.authenticateLabel.text = "Challenge signed"
+        addText(field: self.infoTextLabel, text: "Challenge created ✔")
 
-        // Verify signature
-        verifySignature(key:publicKey, signature: signature!, algorithm: algorithm, data: uuid! as CFData)
-
+        //Get the public key
+        authenticateUsingTouchID(uuid: uuid!)
+//        addText(field: self.infoTextView, text:"Private key reference retrieved")
     }
     
-    func authenticateUsingTouchID() {
+    func authenticateUsingTouchID(uuid: Data) {
+        
         //Create authentication context
         let authenticationContext = LAContext()
 
         //Reason for biometrics authentication
-        let reasonString = "I need to steal your fingerprint"
+        let reasonString = "Use TouchID to authorise signing"
 
         var authError: NSError? = nil
 
         guard #available(iOS 8.0, OSX 10.12, *) else {
-            DispatchQueue.main.async() { self.authenticateLabel.text = "Too old operating system, please update" }
+            addText(field: self.infoTextLabel, text: "Too old operating system, please update ❌")
             return
         }
 
         guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) else {
-            DispatchQueue.main.async() { self.authenticateLabel.text = "This device does not support TouchID" }
+            addText(field: self.infoTextLabel, text: "This device does not support TouchID")
             return
         }
 
         authenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: {(success, error) -> Void in
             if (success) {
-                DispatchQueue.main.async() { self.authenticateLabel.text = "Authenticated" }
+                self.addText(field: self.infoTextLabel, text: "Signing authorised ✔")
+                let privateKey = self.retrievePrivateKey(tag: self.tag)
+                guard let publicKey = SecKeyCopyPublicKey(privateKey!) else {
+                    self.addText(field: self.infoTextLabel, text: "Public key could not be retrieved ✔")
+                    return
+                }
+                self.addText(field: self.infoTextLabel, text: "Public key retrieved ✔")
+                
+                // Sign number with private key
+                let algorithm: SecKeyAlgorithm = .ecdsaSignatureDigestX962SHA256
+                let signature = self.signChallenge(key: privateKey!, message: uuid as CFData, algorithm: algorithm)
+                self.addText(field: self.infoTextLabel, text: "Challenge signed ✔")
+                
+                // Verify signature
+                self.verifySignature(key: publicKey, signature: signature!, algorithm: algorithm, data: uuid as CFData)
+                self.addText(field: self.infoTextLabel, text: "Signature verified ✔")
+
             }
             else {
                 if error != nil {
-                    DispatchQueue.main.async() { self.authenticateLabel.text = "Sorry, I do not recognize you" }
+                    self.addText(field: self.infoTextLabel, text: "Sorry, I do not recognize you ❌")
                 }
             }
         })
-
     }
 
     
@@ -104,7 +111,7 @@ class ViewController: UIViewController {
         var keyCreationError: Unmanaged<CFError>?
         guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &keyCreationError)
             else {
-                self.authenticateLabel.text = "Error generating the key pair"
+                self.authenticateLabel.text = (self.authenticateLabel.text ?? "") + "Error generating the key pair ❌"
                 throw keyCreationError!.takeRetainedValue() as Error
         }
         
@@ -121,7 +128,7 @@ class ViewController: UIViewController {
         var item: CFTypeRef?
         let status = SecItemCopyMatching(getquery as CFDictionary, &item)
         guard status == errSecSuccess else {
-            self.authenticateLabel.text = "Could not retrieve private key"
+            self.authenticateLabel.text = (self.authenticateLabel.text ?? "") + "Could not retrieve private key ❌"
             return nil
         }
         let privateKey = item as! SecKey
@@ -130,13 +137,13 @@ class ViewController: UIViewController {
     
     func signChallenge(key: SecKey, message: CFData, algorithm: SecKeyAlgorithm) -> CFData? {
         guard SecKeyIsAlgorithmSupported(key, .sign, algorithm) else {
-            self.authenticateLabel.text = "Algorithm not supported by signing key"
+            self.authenticateLabel.text = (self.authenticateLabel.text ?? "") + "Algorithm not supported by signing key ❌"
             return nil
         }
         
         var signingError: Unmanaged<CFError>?
         guard let signature = SecKeyCreateSignature(key, algorithm, message, &signingError) else {
-            self.authenticateLabel.text = "Challenge could not be signed"
+            self.authenticateLabel.text = (self.authenticateLabel.text ?? "") + "Challenge could not be signed ❌"
             return nil
         }
         return signature
@@ -144,17 +151,20 @@ class ViewController: UIViewController {
     
     func verifySignature(key: SecKey, signature: CFData, algorithm: SecKeyAlgorithm, data: CFData) {
         guard SecKeyIsAlgorithmSupported(key, .verify, algorithm) else {
-            self.authenticateLabel.text = "Algorithm not supported by verifying key"
+            self.authenticateLabel.text = (self.authenticateLabel.text ?? "") + "Algorithm not supported by verifying key ❌"
             return
         }
         var error: Unmanaged<CFError>?
         guard SecKeyVerifySignature(key, algorithm, data, signature, &error) else {
-            self.authenticateLabel.text = "Signature corrupted"
+            self.authenticateLabel.text = (self.authenticateLabel.text ?? "") + "Signature corrupted ❌"
             return
         }
-        
-        self.authenticateLabel.text = "Signature verified!"
-        
+    }
+    
+    func addText(field: UILabel, text: String) {
+        let string = "Step " + "\(step)" + ": " + text + "\n"
+        DispatchQueue.main.async() { field.text?.append(string) }
+        step += 1
     }
 }
 
