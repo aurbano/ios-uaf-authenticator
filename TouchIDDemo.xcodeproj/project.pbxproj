@@ -13,7 +13,30 @@
 		AA4CEA971F26361000245921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA961F26361000245921 /* Assets.xcassets */; };
 		AA4CEA9A1F26361000245921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA981F26361000245921 /* LaunchScreen.storyboard */; };
 		AA4CEAA31F26384D00245921 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */; };
+		AAA6D8CA1F34B15100E014A5 /* RegResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8C91F34B15100E014A5 /* RegResponse.swift */; };
+		AAA6D8D41F34B81D00E014A5 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; };
+		AAA6D8D61F34CB2000E014A5 /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */; };
+		AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
+		AAA6D8DC1F38FD2100E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
+		AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAA6D8DF1F390A4800E014A5 /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AAA6D8D91F34D2B900E014A5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */,
+				AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AA4CEA8C1F26361000245921 /* Violet Anteater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Violet Anteater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +47,11 @@
 		AA4CEA991F26361000245921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA4CEA9B1F26361000245921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		AAA6D8C91F34B15100E014A5 /* RegResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegResponse.swift; sourceTree = "<group>"; };
+		AAA6D8D31F34B81D00E014A5 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
+		AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegRequest.swift; sourceTree = "<group>"; };
+		AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegOutcome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,7 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */,
+				AAA6D8D41F34B81D00E014A5 /* Gloss.framework in Frameworks */,
 				AA4CEAA31F26384D00245921 /* LocalAuthentication.framework in Frameworks */,
+				AAA6D8DC1F38FD2100E014A5 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +95,9 @@
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
 				AA4CEA981F26361000245921 /* LaunchScreen.storyboard */,
 				AA4CEA9B1F26361000245921 /* Info.plist */,
+				AAA6D8C91F34B15100E014A5 /* RegResponse.swift */,
+				AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */,
+				AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */,
 			);
 			path = TouchIDDemo;
 			sourceTree = "<group>";
@@ -71,6 +105,8 @@
 		AA4CEAA11F26384D00245921 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */,
+				AAA6D8D31F34B81D00E014A5 /* Gloss.framework */,
 				AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */,
 			);
 			name = Frameworks;
@@ -86,6 +122,7 @@
 				AA4CEA881F26361000245921 /* Sources */,
 				AA4CEA891F26361000245921 /* Frameworks */,
 				AA4CEA8A1F26361000245921 /* Resources */,
+				AAA6D8D91F34D2B900E014A5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,7 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA6D8DF1F390A4800E014A5 /* RegOutcome.swift in Sources */,
+				AAA6D8CA1F34B15100E014A5 /* RegResponse.swift in Sources */,
 				AA4CEA921F26361000245921 /* ViewController.swift in Sources */,
+				AAA6D8D61F34CB2000E014A5 /* RegRequest.swift in Sources */,
 				AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +314,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PN5TA7JVQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TouchIDDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iva.TouchIDDemo;
@@ -287,6 +331,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PN5TA7JVQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TouchIDDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iva.TouchIDDemo;
