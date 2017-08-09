@@ -174,14 +174,16 @@ The `hashToSign` is then signed using [`ECDSASigner.generateSignature`](https://
 
 ```java
 public static byte[] getEncoded(BigInteger[] sigs) throws IOException {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream(72);
-		DERSequenceGenerator seq = new DERSequenceGenerator(bos); // from the asn1 library
-		seq.addObject(new ASN1Integer(sigs[0])); // from the asn1 library
-		seq.addObject(new ASN1Integer(sigs[1])); // from the asn1 library
-		seq.close();
-		return bos.toByteArray();
-	}
+	ByteArrayOutputStream bos = new ByteArrayOutputStream(72);
+	DERSequenceGenerator seq = new DERSequenceGenerator(bos); // from the asn1 library
+	seq.addObject(new ASN1Integer(sigs[0])); // from the asn1 library
+	seq.addObject(new ASN1Integer(sigs[1])); // from the asn1 library
+	seq.close();
+	return bos.toByteArray();
+}
 ```
+
+On an iOS application this encoding should be possible using the built in [ASN1 library](https://developer.apple.com/documentation/security/asn.1).
 
 #### Response
 
