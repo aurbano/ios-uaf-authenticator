@@ -33,8 +33,32 @@ class Policy: Decodable {
 
 class AcceptedPolicies: Decodable {
     var aaid: [String]?
+    var vendorID: [String]?
+    var keyIDs: [String]?
+    var userVerification: UInt64?
+    var keyProtection: Int?
+    var matcherProtection: Int?
+    var attachmentHint: UInt64?
+    var tcDisplay: Int?
+    var authenticationAlgorithms: [Int]?
+    var assertionSchemes: [String]?
+    var attestationTypes: [Int]?
+    var authenticatorVersion: Int?
+    var exts: [String]?
     
     required init?(json: JSON) {
         self.aaid = "aaid" <~~ json
+        self.vendorID = "vendorID" <~~ json
+        self.keyIDs = "keyIDs" <~~ json
+        self.userVerification = "userVerification" <~~ json
+        self.keyProtection = "keyProtection" <~~ json
+        self.matcherProtection = "matcherProtection" <~~ json
+        self.attachmentHint = "attachmentHint" <~~ json
+        self.tcDisplay = "tcDisplay" <~~ json
+        self.authenticatorVersion = "authenticatorVersion" <~~ json
+        self.authenticationAlgorithms = "authenticationAlgorithms" <~~ json
+        self.assertionSchemes = "assertionSchemes" <~~ json
+        self.attestationTypes = "attestationTypes" <~~ json
+        self.exts = "exts" <~~ json
     }
 }

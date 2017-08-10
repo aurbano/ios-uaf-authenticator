@@ -119,8 +119,10 @@ class ViewController: UIViewController {
                     self.addText(field: self.infoTextLabel, text: "Post request unsuccessful")
                     return
                 }
-                self.addText(field: self.infoTextLabel, text: "Registration successful")
-//                print(regOutcome.status)
+                if (regOutcome.status == Status.SUCCESS) {
+                    self.addText(field: self.infoTextLabel, text: "Registration successful")
+                }
+                print(regOutcome.status?.rawValue)
             }
         }
     }

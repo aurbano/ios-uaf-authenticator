@@ -8,6 +8,7 @@
 
 import Foundation
 import Gloss
+import CryptoSwift
 
 class RegOutcome: Decodable {
     var authenticatorVersion: String?
@@ -32,10 +33,10 @@ class RegOutcome: Decodable {
         self.attestCert = "attestCert" <~~ json
         self.attestDataToSign = "attestDataToSign" <~~ json
         self.attestSignature = "attestSignature" <~~ json
-//        self.attestVerifiedStatus = "attestVerifiedStatus" <~~ json
+        self.attestVerifiedStatus = "attestVerifiedStatus" <~~ json
         self.authenticator = "authenticator" <~~ json
         self.deviceID = "deviceId" <~~ json
-//        self.status = "status" <~~ json
+        self.status = "status" <~~ json
         self.tcDisplayPNGCharacteristics = "tcDisplayPNGCharacteristics" <~~ json
 //        self.timestamp = "timeStamp" <~~ json
         self.userID = "userId" <~~ json
@@ -43,14 +44,15 @@ class RegOutcome: Decodable {
     }
 }
 
-enum AttestationStatus {
-    case VALID
-    case NOT_VALID
+enum AttestationStatus: String {
+    case VALID = "VALID"
+    case FAILED_VALIDATION_ATTEMPT = "FAILED_VALIDATION_ATTEMPT"
+    case NOT_VERIFIED = "NOT_VERIFIED"
 }
 
-enum Status {
-    case SUCCESS
-    case FAIL
+enum Status: String {
+    case SUCCESS = "SUCCESS"
+    case ASSERTIONS_CHECK_FAILED = "ASSERTIONS_CHECK_FAILED"
 }
 
 class Authenticator: Decodable {

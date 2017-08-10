@@ -18,10 +18,27 @@
 		AAA6D8D61F34CB2000E014A5 /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */; };
 		AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
-		AAA6D8DC1F38FD2100E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
 		AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAA6D8DF1F390A4800E014A5 /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */; };
+		AAE787CB1F3BA8F500CE446D /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */; };
+		AAE787CC1F3BA8F500CE446D /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAE787D81F3C8C8A00CE446D /* Violet_AnteaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */; };
+		AAE787E21F3C8D1600CE446D /* AssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787E11F3C8D1600CE446D /* AssertionTests.swift */; };
+		AAE787E41F3C966200CE446D /* RegResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8C91F34B15100E014A5 /* RegResponse.swift */; };
+		AAE787E51F3C966500CE446D /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */; };
+		AAE787E61F3C966800CE446D /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */; };
+		AAE787E71F3C99C600CE446D /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AAE787DA1F3C8C8A00CE446D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA4CEA841F26361000245921 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA4CEA8B1F26361000245921;
+			remoteInfo = TouchIDDemo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		AAA6D8D91F34D2B900E014A5 /* Embed Frameworks */ = {
@@ -30,6 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AAE787CC1F3BA8F500CE446D /* CryptoSwift.framework in Embed Frameworks */,
 				AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */,
 				AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -52,6 +70,11 @@
 		AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegRequest.swift; sourceTree = "<group>"; };
 		AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegOutcome.swift; sourceTree = "<group>"; };
+		AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		AAE787D51F3C8C8A00CE446D /* Violet AnteaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Violet AnteaterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Violet_AnteaterTests.swift; sourceTree = "<group>"; };
+		AAE787D91F3C8C8A00CE446D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAE787E11F3C8D1600CE446D /* AssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +85,15 @@
 				AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */,
 				AAA6D8D41F34B81D00E014A5 /* Gloss.framework in Frameworks */,
 				AA4CEAA31F26384D00245921 /* LocalAuthentication.framework in Frameworks */,
-				AAA6D8DC1F38FD2100E014A5 /* Alamofire.framework in Frameworks */,
+				AAE787CB1F3BA8F500CE446D /* CryptoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAE787D21F3C8C8A00CE446D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAE787E71F3C99C600CE446D /* Gloss.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				AA4CEA8E1F26361000245921 /* TouchIDDemo */,
+				AAE787D61F3C8C8A00CE446D /* Violet AnteaterTests */,
 				AA4CEA8D1F26361000245921 /* Products */,
 				AA4CEAA11F26384D00245921 /* Frameworks */,
 			);
@@ -82,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				AA4CEA8C1F26361000245921 /* Violet Anteater.app */,
+				AAE787D51F3C8C8A00CE446D /* Violet AnteaterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,11 +138,22 @@
 		AA4CEAA11F26384D00245921 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */,
 				AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */,
 				AAA6D8D31F34B81D00E014A5 /* Gloss.framework */,
 				AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAE787D61F3C8C8A00CE446D /* Violet AnteaterTests */ = {
+			isa = PBXGroup;
+			children = (
+				AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */,
+				AAE787D91F3C8C8A00CE446D /* Info.plist */,
+				AAE787E11F3C8D1600CE446D /* AssertionTests.swift */,
+			);
+			path = "Violet AnteaterTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +177,24 @@
 			productReference = AA4CEA8C1F26361000245921 /* Violet Anteater.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AAE787D41F3C8C8A00CE446D /* Violet AnteaterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAE787DC1F3C8C8A00CE446D /* Build configuration list for PBXNativeTarget "Violet AnteaterTests" */;
+			buildPhases = (
+				AAE787D11F3C8C8A00CE446D /* Sources */,
+				AAE787D21F3C8C8A00CE446D /* Frameworks */,
+				AAE787D31F3C8C8A00CE446D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AAE787DB1F3C8C8A00CE446D /* PBXTargetDependency */,
+			);
+			name = "Violet AnteaterTests";
+			productName = "Violet AnteaterTests";
+			productReference = AAE787D51F3C8C8A00CE446D /* Violet AnteaterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -147,6 +209,12 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = PN5TA7JVQ2;
 						ProvisioningStyle = Automatic;
+					};
+					AAE787D41F3C8C8A00CE446D = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = PN5TA7JVQ2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AA4CEA8B1F26361000245921;
 					};
 				};
 			};
@@ -164,6 +232,7 @@
 			projectRoot = "";
 			targets = (
 				AA4CEA8B1F26361000245921 /* TouchIDDemo */,
+				AAE787D41F3C8C8A00CE446D /* Violet AnteaterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -176,6 +245,13 @@
 				AA4CEA9A1F26361000245921 /* LaunchScreen.storyboard in Resources */,
 				AA4CEA971F26361000245921 /* Assets.xcassets in Resources */,
 				AA4CEA951F26361000245921 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAE787D31F3C8C8A00CE446D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +270,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AAE787D11F3C8C8A00CE446D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAE787E61F3C966800CE446D /* RegOutcome.swift in Sources */,
+				AAE787E51F3C966500CE446D /* RegRequest.swift in Sources */,
+				AAE787E41F3C966200CE446D /* RegResponse.swift in Sources */,
+				AAE787E21F3C8D1600CE446D /* AssertionTests.swift in Sources */,
+				AAE787D81F3C8C8A00CE446D /* Violet_AnteaterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AAE787DB1F3C8C8A00CE446D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA4CEA8B1F26361000245921 /* TouchIDDemo */;
+			targetProxy = AAE787DA1F3C8C8A00CE446D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AA4CEA931F26361000245921 /* Main.storyboard */ = {
@@ -343,6 +439,42 @@
 			};
 			name = Release;
 		};
+		AAE787DD1F3C8C8A00CE446D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = PN5TA7JVQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Violet AnteaterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iva.Violet-AnteaterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Violet Anteater.app/Violet Anteater";
+			};
+			name = Debug;
+		};
+		AAE787DE1F3C8C8A00CE446D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = PN5TA7JVQ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Violet AnteaterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iva.Violet-AnteaterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Violet Anteater.app/Violet Anteater";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -363,6 +495,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		AAE787DC1F3C8C8A00CE446D /* Build configuration list for PBXNativeTarget "Violet AnteaterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAE787DD1F3C8C8A00CE446D /* Debug */,
+				AAE787DE1F3C8C8A00CE446D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
