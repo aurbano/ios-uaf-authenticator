@@ -28,6 +28,17 @@
 		AAE787E51F3C966500CE446D /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */; };
 		AAE787E61F3C966800CE446D /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */; };
 		AAE787E71F3C99C600CE446D /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; };
+		AAE787E91F3DB13A00CE446D /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787E81F3DB13A00CE446D /* Assertions.swift */; };
+		AAE787EA1F3DB13A00CE446D /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787E81F3DB13A00CE446D /* Assertions.swift */; };
+		AAE787EE1F41E0A200CE446D /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787ED1F41E0A200CE446D /* Registration.swift */; };
+		AAE787F01F41E22F00CE446D /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787EF1F41E22F00CE446D /* Tags.swift */; };
+		AAE787F21F41F19900CE446D /* AssertionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F11F41F19900CE446D /* AssertionsBuilder.swift */; };
+		AAE787F51F41F7AC00CE446D /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F41F41F7AC00CE446D /* Header.swift */; };
+		AAE787F71F41F80900CE446D /* old.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F61F41F80900CE446D /* old.swift */; };
+		AAE787F91F42F52800CE446D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F81F42F52800CE446D /* RequestBuilder.swift */; };
+		AAE787FA1F42F52800CE446D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F81F42F52800CE446D /* RequestBuilder.swift */; };
+		AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */; };
+		AAE787FD1F42FC9100CE446D /* RegisterDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +86,14 @@
 		AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Violet_AnteaterTests.swift; sourceTree = "<group>"; };
 		AAE787D91F3C8C8A00CE446D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAE787E11F3C8D1600CE446D /* AssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertionTests.swift; sourceTree = "<group>"; };
+		AAE787E81F3DB13A00CE446D /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
+		AAE787ED1F41E0A200CE446D /* Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		AAE787EF1F41E22F00CE446D /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		AAE787F11F41F19900CE446D /* AssertionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertionsBuilder.swift; sourceTree = "<group>"; };
+		AAE787F41F41F7AC00CE446D /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		AAE787F61F41F80900CE446D /* old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = old.swift; sourceTree = "<group>"; };
+		AAE787F81F42F52800CE446D /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterDevice.swift; path = ../RegisterDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,15 +141,14 @@
 		AA4CEA8E1F26361000245921 /* TouchIDDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AAE787FE1F4300E300CE446D /* requests */,
 				AA4CEA8F1F26361000245921 /* AppDelegate.swift */,
 				AA4CEA911F26361000245921 /* ViewController.swift */,
+				AAE787F61F41F80900CE446D /* old.swift */,
 				AA4CEA931F26361000245921 /* Main.storyboard */,
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
 				AA4CEA981F26361000245921 /* LaunchScreen.storyboard */,
 				AA4CEA9B1F26361000245921 /* Info.plist */,
-				AAA6D8C91F34B15100E014A5 /* RegResponse.swift */,
-				AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */,
-				AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */,
 			);
 			path = TouchIDDemo;
 			sourceTree = "<group>";
@@ -154,6 +172,23 @@
 				AAE787E11F3C8D1600CE446D /* AssertionTests.swift */,
 			);
 			path = "Violet AnteaterTests";
+			sourceTree = "<group>";
+		};
+		AAE787FE1F4300E300CE446D /* requests */ = {
+			isa = PBXGroup;
+			children = (
+				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
+				AAE787F81F42F52800CE446D /* RequestBuilder.swift */,
+				AAE787E81F3DB13A00CE446D /* Assertions.swift */,
+				AAE787F11F41F19900CE446D /* AssertionsBuilder.swift */,
+				AAE787EF1F41E22F00CE446D /* Tags.swift */,
+				AAE787ED1F41E0A200CE446D /* Registration.swift */,
+				AAA6D8C91F34B15100E014A5 /* RegResponse.swift */,
+				AAE787F41F41F7AC00CE446D /* Header.swift */,
+				AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */,
+				AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */,
+			);
+			name = requests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +297,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE787F51F41F7AC00CE446D /* Header.swift in Sources */,
+				AAE787F71F41F80900CE446D /* old.swift in Sources */,
+				AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
+				AAE787E91F3DB13A00CE446D /* Assertions.swift in Sources */,
+				AAE787F91F42F52800CE446D /* RequestBuilder.swift in Sources */,
+				AAE787F21F41F19900CE446D /* AssertionsBuilder.swift in Sources */,
 				AAA6D8DF1F390A4800E014A5 /* RegOutcome.swift in Sources */,
 				AAA6D8CA1F34B15100E014A5 /* RegResponse.swift in Sources */,
 				AA4CEA921F26361000245921 /* ViewController.swift in Sources */,
+				AAE787F01F41E22F00CE446D /* Tags.swift in Sources */,
+				AAE787EE1F41E0A200CE446D /* Registration.swift in Sources */,
 				AAA6D8D61F34CB2000E014A5 /* RegRequest.swift in Sources */,
 				AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */,
 			);
@@ -274,8 +317,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE787FA1F42F52800CE446D /* RequestBuilder.swift in Sources */,
+				AAE787EA1F3DB13A00CE446D /* Assertions.swift in Sources */,
 				AAE787E61F3C966800CE446D /* RegOutcome.swift in Sources */,
 				AAE787E51F3C966500CE446D /* RegRequest.swift in Sources */,
+				AAE787FD1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
 				AAE787E41F3C966200CE446D /* RegResponse.swift in Sources */,
 				AAE787E21F3C8D1600CE446D /* AssertionTests.swift in Sources */,
 				AAE787D81F3C8C8A00CE446D /* Violet_AnteaterTests.swift in Sources */,
@@ -503,6 +549,7 @@
 				AAE787DE1F3C8C8A00CE446D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

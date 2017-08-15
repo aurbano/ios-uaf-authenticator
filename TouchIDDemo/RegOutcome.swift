@@ -22,7 +22,7 @@ class RegOutcome: Decodable {
     var deviceID: String?
     var status: Status?
     var tcDisplayPNGCharacteristics: String?
-    var timestamp: Int?
+    var timestamp: UInt64?
     var userID: String?
     var username: String?
     
@@ -38,7 +38,7 @@ class RegOutcome: Decodable {
         self.deviceID = "deviceId" <~~ json
         self.status = "status" <~~ json
         self.tcDisplayPNGCharacteristics = "tcDisplayPNGCharacteristics" <~~ json
-//        self.timestamp = "timeStamp" <~~ json
+        self.timestamp = "timeStamp" <~~ json
         self.userID = "userId" <~~ json
         self.username = "username" <~~ json
     }
