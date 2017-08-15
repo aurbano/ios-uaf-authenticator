@@ -11,9 +11,10 @@ import Alamofire
 
 class RegisterDevice {
     static let sharedInstance = RegisterDevice()
+    private let domain = "http://localhost:8080"
     
     func register() {
-        getRegRequest() { (getSuccessful, regRequest) in
+        getRegRequest(domain: self.domain) { (getSuccessful, regRequest) in
             guard (getSuccessful) else {
                 print("Get request unsuccessful")
                 return
@@ -31,21 +32,22 @@ class RegisterDevice {
             regResponse.assertions = [Assertions(fcParams: fcParams)]
             let jsonResponse = regResponse.toJSONArray()
             
-            self.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
+            self.postRegRequest(domain: self.domain, json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
                 guard (postSuccessful) else {
                     print("Post request unsuccessful")
                     return
                 }
                 if (regOutcome.status == Status.SUCCESS) {
                     print("Registration successful")
+                    
+                    self.saveRegistration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].assertion!)!, url: self.domain)
                 }
-                print(regOutcome.status?.rawValue ?? "nil")
             }
         }
     }
     
-    func getRegRequest(taskCallback: @escaping (Bool, RegRequest?) -> ()) {
-        let requestBuilder = RequestBuilder(url: "http://localhost:8080/v1/public/regRequest", method: "GET")
+    func getRegRequest(domain: String, taskCallback: @escaping (Bool, RegRequest?) -> ()) {
+        let requestBuilder = RequestBuilder(url: domain + "/v1/public/regRequest", method: "GET")
         var regRequest: RegRequest?
         
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
@@ -65,8 +67,8 @@ class RegisterDevice {
         }
     }
     
-    func postRegRequest(json: [[String : AnyObject]], taskCallback: @escaping (Bool, RegOutcome) -> ()) {
-        let requestBuilder = RequestBuilder(url: "http://localhost:8080/v1/public/regResponse", method: "POST")
+    func postRegRequest(domain: String, json: [[String : AnyObject]], taskCallback: @escaping (Bool, RegOutcome) -> ()) {
+        let requestBuilder = RequestBuilder(url: domain + "/v1/public/regResponse", method: "POST")
         
         let header = ["application/json" : "Content-Type"]
         requestBuilder.addHeaders(headers: header)
@@ -89,5 +91,16 @@ class RegisterDevice {
             }
         }
     }
-
+    
+    private func saveRegistration(appID: String, keyTag: String, url: String) {
+        let registration = Registration(appID: appID, keyTag: keyTag, url: url, env: "uat")
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(registration, toFile: Registration.ArchiveURL.path)
+        if (isSuccessfulSave) {
+            print("Registration data saved successfully")
+        }
+        else {
+            print("failed to save registration data")
+        }
+    }
+    
 }

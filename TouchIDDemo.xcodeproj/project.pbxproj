@@ -13,32 +13,43 @@
 		AA4CEA971F26361000245921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA961F26361000245921 /* Assets.xcassets */; };
 		AA4CEA9A1F26361000245921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA981F26361000245921 /* LaunchScreen.storyboard */; };
 		AA4CEAA31F26384D00245921 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */; };
-		AAA6D8CA1F34B15100E014A5 /* RegResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8C91F34B15100E014A5 /* RegResponse.swift */; };
 		AAA6D8D41F34B81D00E014A5 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; };
-		AAA6D8D61F34CB2000E014A5 /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */; };
 		AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
 		AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AAA6D8DF1F390A4800E014A5 /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */; };
 		AAE787CB1F3BA8F500CE446D /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */; };
 		AAE787CC1F3BA8F500CE446D /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAE787D81F3C8C8A00CE446D /* Violet_AnteaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */; };
 		AAE787E21F3C8D1600CE446D /* AssertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787E11F3C8D1600CE446D /* AssertionTests.swift */; };
-		AAE787E41F3C966200CE446D /* RegResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8C91F34B15100E014A5 /* RegResponse.swift */; };
-		AAE787E51F3C966500CE446D /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */; };
-		AAE787E61F3C966800CE446D /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */; };
 		AAE787E71F3C99C600CE446D /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; };
-		AAE787E91F3DB13A00CE446D /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787E81F3DB13A00CE446D /* Assertions.swift */; };
-		AAE787EA1F3DB13A00CE446D /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787E81F3DB13A00CE446D /* Assertions.swift */; };
-		AAE787EE1F41E0A200CE446D /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787ED1F41E0A200CE446D /* Registration.swift */; };
-		AAE787F01F41E22F00CE446D /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787EF1F41E22F00CE446D /* Tags.swift */; };
-		AAE787F21F41F19900CE446D /* AssertionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F11F41F19900CE446D /* AssertionsBuilder.swift */; };
-		AAE787F51F41F7AC00CE446D /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F41F41F7AC00CE446D /* Header.swift */; };
 		AAE787F71F41F80900CE446D /* old.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F61F41F80900CE446D /* old.swift */; };
-		AAE787F91F42F52800CE446D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F81F42F52800CE446D /* RequestBuilder.swift */; };
-		AAE787FA1F42F52800CE446D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787F81F42F52800CE446D /* RequestBuilder.swift */; };
 		AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */; };
 		AAE787FD1F42FC9100CE446D /* RegisterDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */; };
+		AAE788171F4306BE00CE446D /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880C1F4306BE00CE446D /* Assertions.swift */; };
+		AAE788181F4306BE00CE446D /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880C1F4306BE00CE446D /* Assertions.swift */; };
+		AAE788191F4306BE00CE446D /* AssertionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880D1F4306BE00CE446D /* AssertionsBuilder.swift */; };
+		AAE7881A1F4306BE00CE446D /* AssertionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880D1F4306BE00CE446D /* AssertionsBuilder.swift */; };
+		AAE7881B1F4306BE00CE446D /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880E1F4306BE00CE446D /* Header.swift */; };
+		AAE7881C1F4306BE00CE446D /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880E1F4306BE00CE446D /* Header.swift */; };
+		AAE7881D1F4306BE00CE446D /* KeysManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */; };
+		AAE7881E1F4306BE00CE446D /* KeysManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */; };
+		AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788101F4306BE00CE446D /* PropertyKeys.swift */; };
+		AAE788201F4306BE00CE446D /* PropertyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788101F4306BE00CE446D /* PropertyKeys.swift */; };
+		AAE788211F4306BE00CE446D /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788111F4306BE00CE446D /* Registration.swift */; };
+		AAE788221F4306BE00CE446D /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788111F4306BE00CE446D /* Registration.swift */; };
+		AAE788231F4306BE00CE446D /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788121F4306BE00CE446D /* RegOutcome.swift */; };
+		AAE788241F4306BE00CE446D /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788121F4306BE00CE446D /* RegOutcome.swift */; };
+		AAE788251F4306BE00CE446D /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788131F4306BE00CE446D /* RegRequest.swift */; };
+		AAE788261F4306BE00CE446D /* RegRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788131F4306BE00CE446D /* RegRequest.swift */; };
+		AAE788271F4306BE00CE446D /* RegResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788141F4306BE00CE446D /* RegResponse.swift */; };
+		AAE788281F4306BE00CE446D /* RegResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788141F4306BE00CE446D /* RegResponse.swift */; };
+		AAE788291F4306BE00CE446D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788151F4306BE00CE446D /* RequestBuilder.swift */; };
+		AAE7882A1F4306BE00CE446D /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788151F4306BE00CE446D /* RequestBuilder.swift */; };
+		AAE7882B1F4306BE00CE446D /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788161F4306BE00CE446D /* Tags.swift */; };
+		AAE7882C1F4306BE00CE446D /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788161F4306BE00CE446D /* Tags.swift */; };
+		AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */; };
+		AAE788301F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */; };
+		AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,24 +87,28 @@
 		AA4CEA991F26361000245921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA4CEA9B1F26361000245921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		AAA6D8C91F34B15100E014A5 /* RegResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegResponse.swift; sourceTree = "<group>"; };
 		AAA6D8D31F34B81D00E014A5 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
-		AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegRequest.swift; sourceTree = "<group>"; };
 		AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegOutcome.swift; sourceTree = "<group>"; };
 		AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
 		AAE787D51F3C8C8A00CE446D /* Violet AnteaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Violet AnteaterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Violet_AnteaterTests.swift; sourceTree = "<group>"; };
 		AAE787D91F3C8C8A00CE446D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAE787E11F3C8D1600CE446D /* AssertionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertionTests.swift; sourceTree = "<group>"; };
-		AAE787E81F3DB13A00CE446D /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
-		AAE787ED1F41E0A200CE446D /* Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
-		AAE787EF1F41E22F00CE446D /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
-		AAE787F11F41F19900CE446D /* AssertionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertionsBuilder.swift; sourceTree = "<group>"; };
-		AAE787F41F41F7AC00CE446D /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		AAE787F61F41F80900CE446D /* old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = old.swift; sourceTree = "<group>"; };
-		AAE787F81F42F52800CE446D /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterDevice.swift; path = ../RegisterDevice.swift; sourceTree = "<group>"; };
+		AAE7880C1F4306BE00CE446D /* Assertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assertions.swift; path = Requests/Assertions.swift; sourceTree = "<group>"; };
+		AAE7880D1F4306BE00CE446D /* AssertionsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssertionsBuilder.swift; path = Requests/AssertionsBuilder.swift; sourceTree = "<group>"; };
+		AAE7880E1F4306BE00CE446D /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Header.swift; path = Requests/Header.swift; sourceTree = "<group>"; };
+		AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeysManipulation.swift; path = Requests/KeysManipulation.swift; sourceTree = "<group>"; };
+		AAE788101F4306BE00CE446D /* PropertyKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PropertyKeys.swift; path = Requests/PropertyKeys.swift; sourceTree = "<group>"; };
+		AAE788111F4306BE00CE446D /* Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Registration.swift; path = Requests/Registration.swift; sourceTree = "<group>"; };
+		AAE788121F4306BE00CE446D /* RegOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegOutcome.swift; path = Requests/RegOutcome.swift; sourceTree = "<group>"; };
+		AAE788131F4306BE00CE446D /* RegRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegRequest.swift; path = Requests/RegRequest.swift; sourceTree = "<group>"; };
+		AAE788141F4306BE00CE446D /* RegResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegResponse.swift; path = Requests/RegResponse.swift; sourceTree = "<group>"; };
+		AAE788151F4306BE00CE446D /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestBuilder.swift; path = Requests/RequestBuilder.swift; sourceTree = "<group>"; };
+		AAE788161F4306BE00CE446D /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tags.swift; path = Requests/Tags.swift; sourceTree = "<group>"; };
+		AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewCell.swift; sourceTree = "<group>"; };
+		AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +156,11 @@
 		AA4CEA8E1F26361000245921 /* TouchIDDemo */ = {
 			isa = PBXGroup;
 			children = (
-				AAE787FE1F4300E300CE446D /* requests */,
+				AAE7882D1F4306F300CE446D /* requests */,
 				AA4CEA8F1F26361000245921 /* AppDelegate.swift */,
 				AA4CEA911F26361000245921 /* ViewController.swift */,
+				AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */,
+				AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */,
 				AAE787F61F41F80900CE446D /* old.swift */,
 				AA4CEA931F26361000245921 /* Main.storyboard */,
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
@@ -174,19 +191,21 @@
 			path = "Violet AnteaterTests";
 			sourceTree = "<group>";
 		};
-		AAE787FE1F4300E300CE446D /* requests */ = {
+		AAE7882D1F4306F300CE446D /* requests */ = {
 			isa = PBXGroup;
 			children = (
+				AAE7880C1F4306BE00CE446D /* Assertions.swift */,
+				AAE7880D1F4306BE00CE446D /* AssertionsBuilder.swift */,
+				AAE7880E1F4306BE00CE446D /* Header.swift */,
+				AAE788101F4306BE00CE446D /* PropertyKeys.swift */,
+				AAE788111F4306BE00CE446D /* Registration.swift */,
+				AAE788121F4306BE00CE446D /* RegOutcome.swift */,
+				AAE788131F4306BE00CE446D /* RegRequest.swift */,
+				AAE788141F4306BE00CE446D /* RegResponse.swift */,
+				AAE788151F4306BE00CE446D /* RequestBuilder.swift */,
+				AAE788161F4306BE00CE446D /* Tags.swift */,
 				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
-				AAE787F81F42F52800CE446D /* RequestBuilder.swift */,
-				AAE787E81F3DB13A00CE446D /* Assertions.swift */,
-				AAE787F11F41F19900CE446D /* AssertionsBuilder.swift */,
-				AAE787EF1F41E22F00CE446D /* Tags.swift */,
-				AAE787ED1F41E0A200CE446D /* Registration.swift */,
-				AAA6D8C91F34B15100E014A5 /* RegResponse.swift */,
-				AAE787F41F41F7AC00CE446D /* Header.swift */,
-				AAA6D8D51F34CB2000E014A5 /* RegRequest.swift */,
-				AAA6D8DE1F390A4800E014A5 /* RegOutcome.swift */,
+				AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */,
 			);
 			name = requests;
 			sourceTree = "<group>";
@@ -297,19 +316,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE787F51F41F7AC00CE446D /* Header.swift in Sources */,
+				AAE788231F4306BE00CE446D /* RegOutcome.swift in Sources */,
 				AAE787F71F41F80900CE446D /* old.swift in Sources */,
 				AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
-				AAE787E91F3DB13A00CE446D /* Assertions.swift in Sources */,
-				AAE787F91F42F52800CE446D /* RequestBuilder.swift in Sources */,
-				AAE787F21F41F19900CE446D /* AssertionsBuilder.swift in Sources */,
-				AAA6D8DF1F390A4800E014A5 /* RegOutcome.swift in Sources */,
-				AAA6D8CA1F34B15100E014A5 /* RegResponse.swift in Sources */,
 				AA4CEA921F26361000245921 /* ViewController.swift in Sources */,
-				AAE787F01F41E22F00CE446D /* Tags.swift in Sources */,
-				AAE787EE1F41E0A200CE446D /* Registration.swift in Sources */,
-				AAA6D8D61F34CB2000E014A5 /* RegRequest.swift in Sources */,
+				AAE7881B1F4306BE00CE446D /* Header.swift in Sources */,
+				AAE788171F4306BE00CE446D /* Assertions.swift in Sources */,
+				AAE788251F4306BE00CE446D /* RegRequest.swift in Sources */,
+				AAE788291F4306BE00CE446D /* RequestBuilder.swift in Sources */,
+				AAE7882B1F4306BE00CE446D /* Tags.swift in Sources */,
+				AAE788271F4306BE00CE446D /* RegResponse.swift in Sources */,
+				AAE788191F4306BE00CE446D /* AssertionsBuilder.swift in Sources */,
+				AAE7881D1F4306BE00CE446D /* KeysManipulation.swift in Sources */,
 				AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */,
+				AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */,
+				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
+				AAE788211F4306BE00CE446D /* Registration.swift in Sources */,
+				AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,14 +340,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE787FA1F42F52800CE446D /* RequestBuilder.swift in Sources */,
-				AAE787EA1F3DB13A00CE446D /* Assertions.swift in Sources */,
-				AAE787E61F3C966800CE446D /* RegOutcome.swift in Sources */,
-				AAE787E51F3C966500CE446D /* RegRequest.swift in Sources */,
 				AAE787FD1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
-				AAE787E41F3C966200CE446D /* RegResponse.swift in Sources */,
 				AAE787E21F3C8D1600CE446D /* AssertionTests.swift in Sources */,
+				AAE788301F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */,
+				AAE7882C1F4306BE00CE446D /* Tags.swift in Sources */,
+				AAE788181F4306BE00CE446D /* Assertions.swift in Sources */,
+				AAE7882A1F4306BE00CE446D /* RequestBuilder.swift in Sources */,
 				AAE787D81F3C8C8A00CE446D /* Violet_AnteaterTests.swift in Sources */,
+				AAE788221F4306BE00CE446D /* Registration.swift in Sources */,
+				AAE788261F4306BE00CE446D /* RegRequest.swift in Sources */,
+				AAE788241F4306BE00CE446D /* RegOutcome.swift in Sources */,
+				AAE7881C1F4306BE00CE446D /* Header.swift in Sources */,
+				AAE7881E1F4306BE00CE446D /* KeysManipulation.swift in Sources */,
+				AAE788281F4306BE00CE446D /* RegResponse.swift in Sources */,
+				AAE788201F4306BE00CE446D /* PropertyKeys.swift in Sources */,
+				AAE7881A1F4306BE00CE446D /* AssertionsBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

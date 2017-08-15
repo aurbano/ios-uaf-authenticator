@@ -10,16 +10,17 @@ import UIKit
 import LocalAuthentication
 import Foundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate {
+    
     
     //MARK: Properties
     
-    @IBOutlet weak var authenticateLabel: UILabel!
     @IBOutlet weak var infoTextLabel: UILabel!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -28,10 +29,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func authenticate(_ sender: UIButton) {
-        
-    }
     
+    @IBAction func showRegistrations(_ sender: UIButton) {
+//        performSegue(withIdentifier: "registrations", sender: self)
+    }
     @IBAction func register(_ sender: UIButton) {
         
         RegisterDevice.sharedInstance.register()

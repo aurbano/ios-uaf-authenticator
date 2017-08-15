@@ -219,3 +219,16 @@ import Foundation
 //    }
 //
 
+//    func getPublicKey(tag: String) -> Array<UInt8>? {
+//        let pair = try? generateKeyPair(t)()
+//        var pubKeyArray = Array<UInt8>()
+//        var error:Unmanaged<CFError>?
+//        if let cfdata = SecKeyCopyExternalRepresentation((pair?.publicKey!)!, &error) {
+//            let data:Data = cfdata as Data
+//            pubKeyArray = Array<UInt8>(data)
+//        }
+//
+//        return pubKeyArray
+//    }
+
+
