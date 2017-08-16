@@ -11,12 +11,13 @@ import Alamofire
 
 class RegisterDevice {
     static let sharedInstance = RegisterDevice()
-    private let domain = "http://localhost:8080"
     
-    func register() {
-        getRegRequest(domain: self.domain) { (getSuccessful, regRequest) in
+    
+    func register(username: String) {
+        
+        getRegRequest(username: username) { (getSuccessful, regRequest) in
             guard (getSuccessful) else {
-                print("Get request unsuccessful")
+                print(ErrorString.Requests.getUnsuccessful)
                 return
             }
             
@@ -32,22 +33,23 @@ class RegisterDevice {
             regResponse.assertions = [Assertions(fcParams: fcParams)]
             let jsonResponse = regResponse.toJSONArray()
             
-            self.postRegRequest(domain: self.domain, json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
-                guard (postSuccessful) else {
-                    print("Post request unsuccessful")
+            self.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
+               guard (postSuccessful) else {
+                    print(ErrorString.Requests.postUnsuccessful)
                     return
                 }
                 if (regOutcome.status == Status.SUCCESS) {
-                    print("Registration successful")
+                    print(ErrorString.Info.regSuccess)
                     
-                    self.saveRegistration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].assertion!)!, url: self.domain)
                 }
             }
         }
+//        let registration = Registration(appID: (regReq.header?.appId)!, keyTag: (regResp.assertions?[0].assertion!)!, url: self.domain, env: "uat")
+//        print(registration.appID)
     }
     
-    func getRegRequest(domain: String, taskCallback: @escaping (Bool, RegRequest?) -> ()) {
-        let requestBuilder = RequestBuilder(url: domain + "/v1/public/regRequest", method: "GET")
+    func getRegRequest(username: String, taskCallback: @escaping (Bool, RegRequest?) -> ()) {
+        let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regRequest/" + username, method: "GET")
         var regRequest: RegRequest?
         
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
@@ -67,8 +69,8 @@ class RegisterDevice {
         }
     }
     
-    func postRegRequest(domain: String, json: [[String : AnyObject]], taskCallback: @escaping (Bool, RegOutcome) -> ()) {
-        let requestBuilder = RequestBuilder(url: domain + "/v1/public/regResponse", method: "POST")
+    func postRegRequest(json: [[String : AnyObject]], taskCallback: @escaping (Bool, RegOutcome) -> ()) {
+        let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regResponse", method: "POST")
         
         let header = ["application/json" : "Content-Type"]
         requestBuilder.addHeaders(headers: header)
@@ -91,16 +93,5 @@ class RegisterDevice {
             }
         }
     }
-    
-    private func saveRegistration(appID: String, keyTag: String, url: String) {
-        let registration = Registration(appID: appID, keyTag: keyTag, url: url, env: "uat")
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(registration, toFile: Registration.ArchiveURL.path)
-        if (isSuccessfulSave) {
-            print("Registration data saved successfully")
-        }
-        else {
-            print("failed to save registration data")
-        }
-    }
-    
+        
 }

@@ -22,7 +22,8 @@ class RegisteredAccountTableViewCell: UITableViewCell {
     }
     
     //MARK: Properties
-    @IBOutlet weak var envLabel: UILabel!
     
+    @IBOutlet weak var envLabel: UILabel!
+    @IBOutlet weak var username: UILabel!
 
 }

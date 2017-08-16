@@ -12,4 +12,5 @@ struct PropertyKey {
     static let appID = "appId"
     static let url = "url"
     static let env = "environment"
+    static let username = "username"
 }

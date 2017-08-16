@@ -18,7 +18,7 @@ class Assertions: Glossy {
     init(fcParams: String) {
         let assertObj = Assertion()
         self.assertion = assertObj.buildAssertions(fcParams: fcParams)
-        self.assertionScheme = "UAFV1TLV"
+        self.assertionScheme = Constants.assertionScheme
         
         self.privKeyTag = assertObj.getKeyTag()
     }
@@ -43,13 +43,11 @@ class Assertions: Glossy {
 }
 
 class Assertion {
-    var aaid: String?
     var assertionInfo: String?
     var finalChallenge: String?
     var keyID: String?
     var counter: Bool?
     var pubKey: String?
-    static let AAID = "EBA0#0001"
     private let assertionBuilder: AssertionBuilder
     
     init() {

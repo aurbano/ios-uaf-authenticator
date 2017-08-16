@@ -16,16 +16,34 @@ class RegisteredAccountTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSample()
+        if let savedRegistrations = loadRegistrations() {
+            registrations += savedRegistrations
+        }
+        else {
+            loadSample()
+        }
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    @IBAction func unwindToRegistrationList(sender: UIStoryboardSegue) {
+        
+        if let sourceViewController = sender.source as? ViewController, let registration = sourceViewController.registration {
+
+        let newIndexPath = IndexPath(row: registrations.count, section: 0)
+        
+        registrations.append(registration)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+
 
     func loadSample() {
-        let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "dev")
+        let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "uat", username: "iva nikolaeva")
         
         registrations += [reg1]
     }
@@ -57,7 +75,8 @@ class RegisteredAccountTableViewController: UITableViewController {
         
         let registration = registrations[indexPath.row]
 
-        cell.envLabel.text = registration.environment
+        cell.envLabel.text = (cell.envLabel.text! + registration.environment)
+        cell.username.text = (cell.username.text! + registration.username)
 
         return cell
     }
@@ -71,17 +90,18 @@ class RegisteredAccountTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
+            saveRegistration()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -107,5 +127,19 @@ class RegisteredAccountTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
+    func saveRegistration() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(registrations, toFile: Registration.ArchiveURL.path)
+        if (isSuccessfulSave) {
+            print("Registration data saved successfully")
+        }
+        else {
+            print("failed to save registration data")
+        }
+    }
+    
+    private func loadRegistrations() -> [Registration]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path) as? [Registration]
+    }
 }

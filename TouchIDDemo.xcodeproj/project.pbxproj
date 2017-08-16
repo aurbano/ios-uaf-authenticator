@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4CEA8F1F26361000245921 /* AppDelegate.swift */; };
-		AA4CEA921F26361000245921 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4CEA911F26361000245921 /* ViewController.swift */; };
 		AA4CEA951F26361000245921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA931F26361000245921 /* Main.storyboard */; };
 		AA4CEA971F26361000245921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA961F26361000245921 /* Assets.xcassets */; };
 		AA4CEA9A1F26361000245921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA981F26361000245921 /* LaunchScreen.storyboard */; };
@@ -17,6 +16,9 @@
 		AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
 		AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAD61B481F4486C1007A2D12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD61B471F4486C1007A2D12 /* ViewController.swift */; };
+		AAE21EAA1F44605C00C8DBE8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE21EA91F44605C00C8DBE8 /* Constants.swift */; };
+		AAE21EAC1F4463C900C8DBE8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE21EAB1F4463C900C8DBE8 /* Errors.swift */; };
 		AAE787CB1F3BA8F500CE446D /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */; };
 		AAE787CC1F3BA8F500CE446D /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAE787D81F3C8C8A00CE446D /* Violet_AnteaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */; };
@@ -81,7 +83,6 @@
 /* Begin PBXFileReference section */
 		AA4CEA8C1F26361000245921 /* Violet Anteater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Violet Anteater.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA4CEA8F1F26361000245921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA4CEA911F26361000245921 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA4CEA941F26361000245921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA4CEA961F26361000245921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA4CEA991F26361000245921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,6 +90,9 @@
 		AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		AAA6D8D31F34B81D00E014A5 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
 		AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		AAD61B471F4486C1007A2D12 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AAE21EA91F44605C00C8DBE8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AAE21EAB1F4463C900C8DBE8 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = ../Errors.swift; sourceTree = "<group>"; };
 		AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
 		AAE787D51F3C8C8A00CE446D /* Violet AnteaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Violet AnteaterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE787D71F3C8C8A00CE446D /* Violet_AnteaterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Violet_AnteaterTests.swift; sourceTree = "<group>"; };
@@ -158,7 +162,8 @@
 			children = (
 				AAE7882D1F4306F300CE446D /* requests */,
 				AA4CEA8F1F26361000245921 /* AppDelegate.swift */,
-				AA4CEA911F26361000245921 /* ViewController.swift */,
+				AAE21EAB1F4463C900C8DBE8 /* Errors.swift */,
+				AAD61B471F4486C1007A2D12 /* ViewController.swift */,
 				AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */,
 				AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */,
 				AAE787F61F41F80900CE446D /* old.swift */,
@@ -196,16 +201,17 @@
 			children = (
 				AAE7880C1F4306BE00CE446D /* Assertions.swift */,
 				AAE7880D1F4306BE00CE446D /* AssertionsBuilder.swift */,
+				AAE21EA91F44605C00C8DBE8 /* Constants.swift */,
 				AAE7880E1F4306BE00CE446D /* Header.swift */,
+				AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */,
 				AAE788101F4306BE00CE446D /* PropertyKeys.swift */,
 				AAE788111F4306BE00CE446D /* Registration.swift */,
 				AAE788121F4306BE00CE446D /* RegOutcome.swift */,
 				AAE788131F4306BE00CE446D /* RegRequest.swift */,
 				AAE788141F4306BE00CE446D /* RegResponse.swift */,
+				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
 				AAE788151F4306BE00CE446D /* RequestBuilder.swift */,
 				AAE788161F4306BE00CE446D /* Tags.swift */,
-				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
-				AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */,
 			);
 			name = requests;
 			sourceTree = "<group>";
@@ -317,9 +323,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE788231F4306BE00CE446D /* RegOutcome.swift in Sources */,
+				AAD61B481F4486C1007A2D12 /* ViewController.swift in Sources */,
 				AAE787F71F41F80900CE446D /* old.swift in Sources */,
 				AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
-				AA4CEA921F26361000245921 /* ViewController.swift in Sources */,
 				AAE7881B1F4306BE00CE446D /* Header.swift in Sources */,
 				AAE788171F4306BE00CE446D /* Assertions.swift in Sources */,
 				AAE788251F4306BE00CE446D /* RegRequest.swift in Sources */,
@@ -333,6 +339,8 @@
 				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
 				AAE788211F4306BE00CE446D /* Registration.swift in Sources */,
 				AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */,
+				AAE21EAC1F4463C900C8DBE8 /* Errors.swift in Sources */,
+				AAE21EAA1F44605C00C8DBE8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

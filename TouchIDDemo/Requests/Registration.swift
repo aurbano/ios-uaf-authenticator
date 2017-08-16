@@ -17,12 +17,14 @@ class Registration: NSObject, NSCoding {
     let keyTag: String
     let url: String
     let environment: String
+    let username: String
     
-    init(appID: String, keyTag: String, url: String, env: String) {
+    init(appID: String, keyTag: String, url: String, env: String, username: String) {
         self.appID = appID
         self.keyTag = keyTag
         self.url = url
-        self.environment = "dev"
+        self.environment = env
+        self.username = username
     }
     
     func encode(with aCoder: NSCoder) {
@@ -30,29 +32,27 @@ class Registration: NSObject, NSCoding {
         aCoder.encode(keyTag, forKey: PropertyKey.keyTag)
         aCoder.encode(url, forKey: PropertyKey.url)
         aCoder.encode(environment, forKey: PropertyKey.env)
+        aCoder.encode(username, forKey: PropertyKey.username)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         
-        guard let appID = aDecoder.decodeObject(forKey: PropertyKey.appID) as? String else {
-            print("Unable to decode app id")
-            return nil
-        }
-        guard let keyTag = aDecoder.decodeObject(forKey: PropertyKey.keyTag) as? String else {
-            print("Unable to decode key tag")
-            return nil
+        func decodeObject(key: String, aDecoder: NSCoder) -> String {
+            guard let property = aDecoder.decodeObject(forKey: key) as? String else {
+                print(ErrorString.Encoding.unableToDecode + key)
+                return String()
+            }
+            return property
         }
 
-        guard let url = aDecoder.decodeObject(forKey: PropertyKey.url) as? String else {
-            print("Unable to decode url")
-            return nil
-        }
         
-        guard let environment = aDecoder.decodeObject(forKey: PropertyKey.env) as? String else {
-            print("Unable to decode environment")
-            return nil
-        }
-
-        self.init(appID: appID, keyTag: keyTag, url: url, env: environment)
+        let appID = decodeObject(key: PropertyKey.appID, aDecoder: aDecoder)
+        let keyTag = decodeObject(key: PropertyKey.keyTag, aDecoder: aDecoder)
+        let url = decodeObject(key: PropertyKey.url, aDecoder: aDecoder)
+        let environment = decodeObject(key: PropertyKey.env, aDecoder: aDecoder)
+        let username = decodeObject(key: PropertyKey.username, aDecoder: aDecoder)
+        
+        self.init(appID: appID, keyTag: keyTag, url: url, env: environment, username: username)
     }
+    
 }

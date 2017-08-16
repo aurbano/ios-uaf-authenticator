@@ -16,6 +16,8 @@ class RegResponse: Glossy {
     var fcparams: String? = nil
     var assertions: [Assertions]? = nil
     
+    init() {}
+    
     init(header: Header, fcparams: String) {
         self.header = header
         self.fcparams = fcparams

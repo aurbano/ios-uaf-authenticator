@@ -12,7 +12,7 @@ import Gloss
 class Header: Glossy {
     var upv: Upv? = nil
     var op: String? = nil
-    var appId: String? = "http://localhost:8080/v1/public/uaf/facets"
+    var appId: String? = Constants.appID
     var serverData: String? = nil
     
     required init?(json: JSON) {

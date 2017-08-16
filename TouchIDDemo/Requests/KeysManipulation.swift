@@ -9,9 +9,7 @@
 import Foundation
 import LocalAuthentication
 
-class KeysManipulation {
-    private let DER_CERT = "MIIB-TCCAZ-gAwIBAgIEVTFM0zAJBgcqhkjOPQQBMIGEMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExETAPBgNVBAcMCFNhbiBKb3NlMRMwEQYDVQQKDAplQmF5LCBJbmMuMQwwCgYDVQQLDANUTlMxEjAQBgNVBAMMCWVCYXksIEluYzEeMBwGCSqGSIb3DQEJARYPbnBlc2ljQGViYXkuY29tMB4XDTE1MDQxNzE4MTEzMVoXDTE1MDQyNzE4MTEzMVowgYQxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIU2FuIEpvc2UxEzARBgNVBAoMCmVCYXksIEluYy4xDDAKBgNVBAsMA1ROUzESMBAGA1UEAwwJZUJheSwgSW5jMR4wHAYJKoZIhvcNAQkBFg9ucGVzaWNAZWJheS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQ8hw5lHTUXvZ3SzY9argbOOBD2pn5zAM4mbShwQyCL5bRskTL3HVPWPQxqYVM-3pJtJILYqOWsIMd5Rb_h8D-EMAkGByqGSM49BAEDSQAwRgIhAIpkop_L3fOtm79Q2lKrKxea-KcvA1g6qkzaj42VD2hgAiEArtPpTEADIWz2yrl5XGfJVcfcFmvpMAuMKvuE1J73jp4"
-    
+class KeysManipulation {    
     func generateKeyPair(tag: String) throws -> (privateKey: SecKey?, publicKey: SecKey?) {
         let access =
             SecAccessControlCreateWithFlags(kCFAllocatorDefault,
@@ -34,13 +32,13 @@ class KeysManipulation {
         var error: Unmanaged<CFError>?
         guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
             print(error)
-            print("Key pair not generated")
+            print(ErrorString.Keys.KeyPairNotGenerated)
             throw error!.takeRetainedValue() as Error
         }
         
         guard
             let publicKey = SecKeyCopyPublicKey(privateKey) else {
-                print("ECC Pub KeyGen Error")
+                print(ErrorString.Keys.pubKeyNotCopied)
                 return (nil, nil)
         }
         return (privateKey, publicKey)

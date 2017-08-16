@@ -9,12 +9,11 @@
 import Foundation
 
 class AssertionBuilder {
-    private let DER_CERT = "MIIB-TCCAZ-gAwIBAgIEVTFM0zAJBgcqhkjOPQQBMIGEMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExETAPBgNVBAcMCFNhbiBKb3NlMRMwEQYDVQQKDAplQmF5LCBJbmMuMQwwCgYDVQQLDANUTlMxEjAQBgNVBAMMCWVCYXksIEluYzEeMBwGCSqGSIb3DQEJARYPbnBlc2ljQGViYXkuY29tMB4XDTE1MDQxNzE4MTEzMVoXDTE1MDQyNzE4MTEzMVowgYQxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIU2FuIEpvc2UxEzARBgNVBAoMCmVCYXksIEluYy4xDDAKBgNVBAsMA1ROUzESMBAGA1UEAwwJZUJheSwgSW5jMR4wHAYJKoZIhvcNAQkBFg9ucGVzaWNAZWJheS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQ8hw5lHTUXvZ3SzY9argbOOBD2pn5zAM4mbShwQyCL5bRskTL3HVPWPQxqYVM-3pJtJILYqOWsIMd5Rb_h8D-EMAkGByqGSM49BAEDSQAwRgIhAIpkop_L3fOtm79Q2lKrKxea-KcvA1g6qkzaj42VD2hgAiEArtPpTEADIWz2yrl5XGfJVcfcFmvpMAuMKvuE1J73jp4"
     private let privKeyTag: String
     private let keys = KeysManipulation()
     
     init() {
-        privKeyTag = "com.ms.auth.ebay.testkey"
+        privKeyTag = Constants.privateKeyTestTag
     }
     
     func getPrivKeyTag() -> String {
@@ -72,7 +71,7 @@ class AssertionBuilder {
         byteout.append(contentsOf: value)
         
         byteout.append(contentsOf: encodeInt(id: Tags.TAG_ATTESTATION_CERT.rawValue))
-        value = base64ToByteArray(base64String: DER_CERT)!
+        value = base64ToByteArray(base64String: Constants.derCert)!
         length = value.count
         byteout.append(contentsOf: encodeInt(id: length))
         byteout.append(contentsOf: value)
@@ -86,13 +85,13 @@ class AssertionBuilder {
         var length: Int = 0
         
         byteout.append(contentsOf: encodeInt(id: Tags.TAG_AAID.rawValue))
-        value = Array<UInt8>(Assertion.AAID.utf8)
+        value = Array<UInt8>(Constants.aaid.utf8)
         length = value.count
         byteout.append(contentsOf: encodeInt(id: length))
         byteout.append(contentsOf: value)
         
         byteout.append(contentsOf: encodeInt(id: Tags.TAG_ASSERTION_INFO.rawValue))
-        value = [0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01]
+        value = Constants.assertionInfo
         length = value.count
         byteout.append(contentsOf: encodeInt(id: length))
         byteout.append(contentsOf: value)
@@ -127,12 +126,12 @@ class AssertionBuilder {
     private func getSignature(signedDataValue: Array<UInt8>) -> Array<UInt8>? {
         let algorithm: SecKeyAlgorithm = .ecdsaSignatureMessageX962SHA256
         guard let privateKey = getPrivateKey(tag: self.privKeyTag) else {
-            print("Private key not retreieved")
+            print(ErrorString.Keys.privKeyNotRetrieved)
             return nil
         }
         
         guard SecKeyIsAlgorithmSupported(privateKey, .sign, algorithm) else {
-            print("Signing algorithm not supported")
+            print(ErrorString.Keys.algoNotSupported)
             return nil
         }
         
@@ -140,7 +139,7 @@ class AssertionBuilder {
         let signedDataValueAsData = CFDataCreate(nil, signedDataValue, signedDataValue.count)
         guard let signature = SecKeyCreateSignature(privateKey, algorithm, signedDataValueAsData!, &signingError) else {
             print(signingError)
-            print("Signing unsuccessful")
+            print(ErrorString.Keys.usuccessfulSign)
             return nil
         }
         
@@ -159,7 +158,7 @@ class AssertionBuilder {
     }
     
     private func getKeyId() -> Array<UInt8>? {
-        let keyId = "ebay-test-key-" + (UUID().uuidString) as String
+        let keyId = (UUID().uuidString) as String
         
         let data = Array<UInt8>(keyId.utf8)
         let encoded = data.toBase64()
@@ -200,11 +199,11 @@ class AssertionBuilder {
     
     private func base64ToByteArray(base64String: String) -> Array<UInt8>? {
         guard let data = base64String.data(using: .utf8) else {
-            print("Data not readable")
+            print(ErrorString.Encoding.dataNotReadable)
             return nil
         }
         guard let decodedData = NSData(base64Encoded: data, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) else {
-            print("Data cannot be decoded")
+            print(ErrorString.Encoding.dataNotEncoded)
             return nil
         }
         

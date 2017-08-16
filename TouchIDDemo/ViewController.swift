@@ -12,10 +12,10 @@ import Foundation
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
-    
+    var registration: Registration?
     //MARK: Properties
     
-    @IBOutlet weak var infoTextLabel: UILabel!
+    @IBOutlet weak var username: UITextField!
 
 
     override func viewDidLoad() {
@@ -31,15 +31,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func showRegistrations(_ sender: UIButton) {
-//        performSegue(withIdentifier: "registrations", sender: self)
     }
+    
     @IBAction func register(_ sender: UIButton) {
-        
-        RegisterDevice.sharedInstance.register()
-        
-//        if (RegisterDevice.sharedInstance.register()) {
-//            addText(field: infoTextLabel, text: "Successful registration")
-//        }
+        if (username.text != nil) {
+            RegisterDevice.sharedInstance.register(username: username.text!)
+        }
     }
     
     //MARK: Helper methods

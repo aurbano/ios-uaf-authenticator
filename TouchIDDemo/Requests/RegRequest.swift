@@ -15,6 +15,9 @@ class RegRequest: Decodable {
     var username: String?
     var policy: Policy?
     
+    init() { }
+
+    
     required init?(json: JSON) {
         self.header = "header" <~~ json
         self.challenge = "challenge" <~~ json
