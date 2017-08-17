@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="abT-Ui-bOe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n1w-eR-Kpv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MS Auth-->
+        <!--Ragister Device-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,8 +49,7 @@
                                         <rect key="frame" x="110" y="80" width="123" height="30"/>
                                         <state key="normal" title="View registrations"/>
                                         <connections>
-                                            <action selector="showRegistrations:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bcb-O0-mEN"/>
-                                            <segue destination="n1w-eR-Kpv" kind="presentation" identifier="registrations" id="6C2-l3-wux"/>
+                                            <segue destination="n1w-eR-Kpv" kind="show" id="b3h-Qc-h2N"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -66,16 +65,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="W6A-lI-EWb" secondAttribute="trailing" id="Kdc-AS-kGY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MS Auth" id="cz9-w4-hVK"/>
+                    <navigationItem key="navigationItem" title="Ragister Device" id="cz9-w4-hVK"/>
                     <connections>
                         <outlet property="username" destination="TfF-aS-LxV" id="xzr-U9-ca7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="133.5832083958021"/>
+            <point key="canvasLocation" x="3023.1999999999998" y="133.5832083958021"/>
         </scene>
-        <!--Registrations-->
+        <!--MS Auth Registrations-->
         <scene sceneID="JEk-Qx-9LP">
             <objects>
                 <tableViewController id="v2k-Th-xmM" customClass="RegisteredAccountTableViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,8 +90,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ocX-wt-Avb">
-                                            <rect key="frame" x="10" y="0.0" width="355" height="47"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ocX-wt-Avb">
+                                            <rect key="frame" x="10" y="0.0" width="355" height="46"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="k0B-iy-CYb">
                                                     <rect key="frame" x="133.5" y="0.0" width="88" height="21"/>
@@ -104,7 +103,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Environment: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="0w3-eP-TlP">
-                                                    <rect key="frame" x="125" y="26" width="105" height="21"/>
+                                                    <rect key="frame" x="125" y="25" width="105" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20.5" id="1iO-K2-eDY"/>
                                                     </constraints>
@@ -132,29 +131,17 @@
                             <outlet property="delegate" destination="v2k-Th-xmM" id="0gb-et-z1j"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Registrations" id="Ocb-Fp-9JR"/>
+                    <navigationItem key="navigationItem" title="MS Auth Registrations" id="Ocb-Fp-9JR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1Vn-dw-6GO">
+                            <connections>
+                                <segue destination="bJ4-LD-0On" kind="presentation" identifier="AddRegistration" id="ts1-jQ-3xP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ny2-F6-NHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2704.8000000000002" y="133.5832083958021"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Lt0-YB-FIk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="abT-Ui-bOe" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gQp-HL-mqH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Okb-gT-vz1"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ey1-Vw-xIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="133.5832083958021"/>
+            <point key="canvasLocation" x="618" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C7U-qc-QCP">
@@ -172,7 +159,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JBS-ym-MTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1765.5999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-206" y="134"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tTg-2q-4g8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bJ4-LD-0On" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5N7-kl-2sy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="s8I-l7-L9f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="poE-3s-YUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2084" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

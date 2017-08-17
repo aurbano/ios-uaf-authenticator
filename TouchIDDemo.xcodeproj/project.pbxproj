@@ -17,6 +17,7 @@
 		AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
 		AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAD61B481F4486C1007A2D12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD61B471F4486C1007A2D12 /* ViewController.swift */; };
+		AAD61B4A1F44A1D1007A2D12 /* ValidRegistrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD61B491F44A1D1007A2D12 /* ValidRegistrations.swift */; };
 		AAE21EAA1F44605C00C8DBE8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE21EA91F44605C00C8DBE8 /* Constants.swift */; };
 		AAE21EAC1F4463C900C8DBE8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE21EAB1F4463C900C8DBE8 /* Errors.swift */; };
 		AAE787CB1F3BA8F500CE446D /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */; };
@@ -91,6 +92,7 @@
 		AAA6D8D31F34B81D00E014A5 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
 		AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AAD61B471F4486C1007A2D12 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AAD61B491F44A1D1007A2D12 /* ValidRegistrations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidRegistrations.swift; sourceTree = "<group>"; };
 		AAE21EA91F44605C00C8DBE8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AAE21EAB1F4463C900C8DBE8 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = ../Errors.swift; sourceTree = "<group>"; };
 		AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */,
 				AAE788101F4306BE00CE446D /* PropertyKeys.swift */,
 				AAE788111F4306BE00CE446D /* Registration.swift */,
+				AAD61B491F44A1D1007A2D12 /* ValidRegistrations.swift */,
 				AAE788121F4306BE00CE446D /* RegOutcome.swift */,
 				AAE788131F4306BE00CE446D /* RegRequest.swift */,
 				AAE788141F4306BE00CE446D /* RegResponse.swift */,
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE788231F4306BE00CE446D /* RegOutcome.swift in Sources */,
+				AAD61B4A1F44A1D1007A2D12 /* ValidRegistrations.swift in Sources */,
 				AAD61B481F4486C1007A2D12 /* ViewController.swift in Sources */,
 				AAE787F71F41F80900CE446D /* old.swift in Sources */,
 				AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */,

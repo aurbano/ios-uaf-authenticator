@@ -26,12 +26,15 @@ struct ErrorString {
     }
     
     struct Requests {
-        static let postUnsuccessful = "Post request unsuccessful"
-        static let getUnsuccessful = "Get request unsuccessful"
+        static let postFail = "Post request unsuccessful"
+        static let getFail = "Get request unsuccessful"
 
     }
     
     struct Info {
         static let regSuccess = "Registration successful!"
+        static let regSavedSuccess = "Registration data saved successfully"
+        static let regSavedFail = "Failed to save registration data"
+        static let regLoadFail = "Registrations not loaded correctly"
     }
 }

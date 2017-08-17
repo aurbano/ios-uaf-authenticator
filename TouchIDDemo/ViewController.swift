@@ -17,7 +17,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var username: UITextField!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 //
@@ -29,13 +28,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    @IBAction func showRegistrations(_ sender: UIButton) {
-    }
-    
+        
     @IBAction func register(_ sender: UIButton) {
         if (username.text != nil) {
             RegisterDevice.sharedInstance.register(username: username.text!)
+            
         }
     }
     
