@@ -10,6 +10,7 @@ import UIKit
 
 class RegisteredAccountTableViewCell: UITableViewCell {
 
+    var index: Int = -1
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,4 +27,7 @@ class RegisteredAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var envLabel: UILabel!
     @IBOutlet weak var username: UILabel!
 
+    @IBAction func loginButtonClicked(_ sender: UIButton) {
+        AuthenticateDevice.sharedInstance.authenticate(registration: ValidRegistrations.registrations[index])
+    }
 }

@@ -36,5 +36,7 @@ struct ErrorString {
         static let regSavedSuccess = "Registration data saved successfully"
         static let regSavedFail = "Failed to save registration data"
         static let regLoadFail = "Registrations not loaded correctly"
+        static let regFail = "Unable to register."
+        static let authSuccess = "Logged in"
     }
 }

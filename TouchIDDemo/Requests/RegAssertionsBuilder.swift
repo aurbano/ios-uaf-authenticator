@@ -7,13 +7,19 @@
 //
 
 import Foundation
+import CryptoSwift
 
-class AssertionBuilder {
+class RegAssertionBuilder {
     private let privKeyTag: String
-    private let keys = KeysManipulation()
+    private let keys: KeysManipulation
+    var keyID: Array<UInt8>
+    private let pair: (privateKey: SecKey?, publicKey: SecKey?)
     
     init() {
         privKeyTag = Constants.privateKeyTestTag
+        keys = KeysManipulation()
+        keyID = Array<UInt8>()
+        self.pair = try! keys.generateKeyPair(tag: privKeyTag)
     }
     
     func getPrivKeyTag() -> String {
@@ -71,7 +77,7 @@ class AssertionBuilder {
         byteout.append(contentsOf: value)
         
         byteout.append(contentsOf: encodeInt(id: Tags.TAG_ATTESTATION_CERT.rawValue))
-        value = base64ToByteArray(base64String: Constants.derCert)!
+        value = Utils.base64ToByteArray(fromString: Constants.derCert)!
         length = value.count
         byteout.append(contentsOf: encodeInt(id: length))
         byteout.append(contentsOf: value)
@@ -115,7 +121,7 @@ class AssertionBuilder {
         byteout.append(contentsOf: value)
         
         byteout.append(contentsOf: encodeInt(id: Tags.TAG_PUB_KEY.rawValue))
-        value = getPubKey()!
+        value = getPubKeyAsArray()!
         length = value.count
         byteout.append(contentsOf: encodeInt(id: length))
         byteout.append(contentsOf: value)
@@ -125,31 +131,10 @@ class AssertionBuilder {
     
     private func getSignature(signedDataValue: Array<UInt8>) -> Array<UInt8>? {
         let algorithm: SecKeyAlgorithm = .ecdsaSignatureMessageX962SHA256
-        guard let privateKey = getPrivateKey(tag: self.privKeyTag) else {
-            print(ErrorString.Keys.privKeyNotRetrieved)
-            return nil
-        }
         
-        guard SecKeyIsAlgorithmSupported(privateKey, .sign, algorithm) else {
-            print(ErrorString.Keys.algoNotSupported)
-            return nil
-        }
+        let signatute = keys.signData(dataForSigning: signedDataValue, key: self.pair.privateKey!, algorithm: algorithm)
+        return signatute
         
-        var signingError: Unmanaged<CFError>?
-        let signedDataValueAsData = CFDataCreate(nil, signedDataValue, signedDataValue.count)
-        guard let signature = SecKeyCreateSignature(privateKey, algorithm, signedDataValueAsData!, &signingError) else {
-            print(signingError)
-            print(ErrorString.Keys.usuccessfulSign)
-            return nil
-        }
-        
-        let range = CFRangeMake(0, CFDataGetLength(signature))
-        let byteptr = UnsafeMutablePointer<UInt8>.allocate(capacity: range.length)
-        CFDataGetBytes(signature, range, byteptr)
-        
-        let byteout = Array(UnsafeBufferPointer(start: byteptr, count: range.length))
-        
-        return byteout
     }
     
     private func getFC(fc: String) -> Array<UInt8> {
@@ -164,6 +149,8 @@ class AssertionBuilder {
         let encoded = data.toBase64()
         let byteout = Array<UInt8>(encoded!.utf8)
         
+        self.keyID = byteout
+        
         return byteout
     }
     
@@ -176,44 +163,20 @@ class AssertionBuilder {
         return byteout
     }
     
-    private func getPubKey() -> Array<UInt8>? {
-        let pair = try! self.generateKeyPair()
+    private func getPubKeyAsArray() -> Array<UInt8>? {
+        let pubKey = self.pair.publicKey
 
         var pubKeyArray = Array<UInt8>()
         var error:Unmanaged<CFError>?
-        if let cfdata = SecKeyCopyExternalRepresentation((pair.publicKey!), &error) {
+        var s = String()
+        
+        if let cfdata = SecKeyCopyExternalRepresentation((pubKey!), &error) {
             let data:Data = cfdata as Data
             pubKeyArray = Array<UInt8>(data)
         }
-        
         return pubKeyArray
     }
-    
-    private func generateKeyPair() throws -> (privateKey: SecKey?, publicKey: SecKey?) {
-        return try! keys.generateKeyPair(tag: self.privKeyTag)
-    }
-    
-    func getPrivateKey(tag: String) -> SecKey? {
-        return keys.getPrivateKeyRef(tag: tag)
-    }
-    
-    private func base64ToByteArray(base64String: String) -> Array<UInt8>? {
-        guard let data = base64String.data(using: .utf8) else {
-            print(ErrorString.Encoding.dataNotReadable)
-            return nil
-        }
-        guard let decodedData = NSData(base64Encoded: data, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) else {
-            print(ErrorString.Encoding.dataNotEncoded)
-            return nil
-        }
         
-        let length = decodedData.length
-        var byteout = [UInt8](repeating: 0, count: length)
-        decodedData.getBytes(&byteout, length: length)
-        
-        return byteout
-    }
-    
     private func sha256(string: String) -> Array<UInt8> {
         let bytearr = Array<UInt8>(string.utf8)
         let hash = bytearr.sha256()
@@ -227,15 +190,4 @@ class AssertionBuilder {
         return bytes
     }
     
-    private func intToBytesArray(n: Int) -> Array<UInt8> {
-        let hex = String(format: "%2X", n)
-        let hexa = Array(hex.characters)
-        let bytes = stride(from: 0, to: hex.characters.count, by: 2).flatMap { UInt8(String(hexa[$0..<$0.advanced(by: 2)]), radix: 16) }
-        return bytes
-    }
-    
-    private func hexToBytesArray(hex: String) -> Array<UInt8> {
-        let hexa = Array(hex.characters)
-        return stride(from: 0, to: hex.characters.count, by: 2).flatMap { UInt8(String(hexa[$0..<$0.advanced(by: 2)]), radix: 16) }
-    }
 }

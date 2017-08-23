@@ -13,14 +13,26 @@ import CryptoSwift
 class Assertions: Glossy {
     var assertionScheme: String?
     var assertion: String?
-    private var privKeyTag: String?
+    var privKeyTag: String?
+    var keyID = Array<UInt8>()
+    
+    init(fcParams: String, keyTag: String, keyID: Array<UInt8>) {
+        let assertObj = AuthAssertion(keyTag: keyTag, keyID: keyID)
+        self.assertion = assertObj.buildAssertions(fcParams: fcParams)
+        self.assertionScheme = Constants.assertionScheme
+        
+        self.keyID = keyID
+        self.privKeyTag = assertObj.getKeyTag()
+    }
     
     init(fcParams: String) {
-        let assertObj = Assertion()
+        let assertObj = RegAssertion()
         self.assertion = assertObj.buildAssertions(fcParams: fcParams)
         self.assertionScheme = Constants.assertionScheme
         
         self.privKeyTag = assertObj.getKeyTag()
+        self.keyID = assertObj.getKeyID()
+
     }
     
     required init?(json: JSON) {
@@ -42,23 +54,52 @@ class Assertions: Glossy {
     }
 }
 
-class Assertion {
+class RegAssertion {
     var assertionInfo: String?
     var finalChallenge: String?
-    var keyID: String?
     var counter: Bool?
     var pubKey: String?
-    private let assertionBuilder: AssertionBuilder
+    var keyID: Array<UInt8>?
+    
+    private let regAssertionBuilder: RegAssertionBuilder
     
     init() {
-        assertionBuilder = AssertionBuilder()
+        regAssertionBuilder = RegAssertionBuilder()
     }
     
     func buildAssertions(fcParams: String) -> String? {
-        return assertionBuilder.getAssertions(fc: fcParams)
+        return regAssertionBuilder.getAssertions(fc: fcParams)
     }
     
     func getKeyTag() -> String {
-        return assertionBuilder.getPrivKeyTag()
+        return regAssertionBuilder.getPrivKeyTag()
     }
+    
+    func getKeyID() -> Array<UInt8> {
+        return regAssertionBuilder.keyID
+    }
+
+}
+
+class AuthAssertion {
+    var assertionInfo: String?
+    var finalChallenge: String?
+    var keyID: Array<UInt8>
+    var counter: Bool?
+    var pubKey: String?
+    private let authAssertionBuilder: AuthAssertionBuilder
+
+    init(keyTag: String, keyID: Array<UInt8>) {
+        authAssertionBuilder = AuthAssertionBuilder(keyTag: keyTag, keyID: keyID)
+        self.keyID = keyID
+    }
+    
+    func buildAssertions(fcParams: String) -> String? {
+        return authAssertionBuilder.getAssertions(fcParams: fcParams)
+    }
+    
+    func getKeyTag() -> String {
+        return authAssertionBuilder.getPrivKeyTag()
+    }
+    
 }

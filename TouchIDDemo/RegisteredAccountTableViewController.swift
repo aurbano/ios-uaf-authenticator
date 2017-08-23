@@ -32,32 +32,32 @@ class RegisteredAccountTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    @IBAction func unwindToRegistrationList(sender: UIStoryboardSegue) {
-        
-        if let sourceViewController = sender.source as? ViewController, let registration = sourceViewController.registration {
-            
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-
-                ValidRegistrations.registrations[selectedIndexPath.row] = registration
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            }
-            else {
-
-                let newIndexPath = IndexPath(row: ValidRegistrations.items(), section: 0)
-                
-                ValidRegistrations.addRegistration(registrationToAdd: registration)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-            saveRegistrations()
-        }
-    }
+//    @IBAction func unwindToRegistrationList(sender: UIStoryboardSegue) {
+//        
+//        if let sourceViewController = sender.source as? ViewController, let registration = sourceViewController.registration {
+//            
+//            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+//
+//                ValidRegistrations.registrations[selectedIndexPath.row] = registration
+//                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+//            }
+//            else {
+//
+//                let newIndexPath = IndexPath(row: ValidRegistrations.items(), section: 0)
+//                
+//                ValidRegistrations.addRegistration(registrationToAdd: registration)
+//                tableView.insertRows(at: [newIndexPath], with: .automatic)
+//            }
+//            saveRegistrations()
+//        }
+//    }
 
 
     func loadSample() {
-        let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "sample env1", username: "sample1")
+        let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "sample env1", username: "sample1", keyID: Array<UInt8>())
         ValidRegistrations.addRegistration(registrationToAdd: reg1)
         
-        let reg2 = Registration(appID: "sample appid", keyTag: "sample tag", url: "sample url", env: "sample env2", username: "sample2")
+        let reg2 = Registration(appID: "sample appid", keyTag: "sample tag", url: "sample url", env: "sample env2", username: "sample2", keyID: Array<UInt8>())
         ValidRegistrations.addRegistration(registrationToAdd: reg2)
 
     }
@@ -91,6 +91,7 @@ class RegisteredAccountTableViewController: UITableViewController {
 
         cell.envLabel.text = (cell.envLabel.text! + registration.environment)
         cell.username.text = (cell.username.text! + registration.username)
+        cell.index = indexPath.row
 
         return cell
     }
@@ -108,10 +109,10 @@ class RegisteredAccountTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            ValidRegistrations.deleteRegistration(atIndex: indexPath.row)
-            saveRegistrations()
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
+            if (ValidRegistrations.deleteRegistration(atIndex: indexPath.row)) {
+                saveRegistrations()
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

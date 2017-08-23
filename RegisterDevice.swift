@@ -25,8 +25,8 @@ class RegisterDevice {
             let appid = "{\n\"appID\": \"" + (regRequest?.header?.appId)! + "\",\n"
             let facetid = "\"facetID\": \"http://ms.com\",\n"
             let challenge = "\"challenge\": \"" + (regRequest?.challenge)! + "\"\n}"
-            
             let fcParams = (appid + facetid + challenge)
+            
             let fcParamsData = fcParams.data(using: .utf8)! as NSData
             let encoded = fcParamsData.base64EncodedString()
             
@@ -34,27 +34,27 @@ class RegisterDevice {
             regResponse.assertions = [Assertions(fcParams: fcParams)]
             let jsonResponse = regResponse.toJSONArray()
             
-            self.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
+            RegisterDevice.sharedInstance.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
                guard (postSuccessful) else {
-                    print(ErrorString.Requests.postFail)
-                    return
+                print(ErrorString.Requests.postFail)
+                return
                 }
                 if (regOutcome.status == Status.SUCCESS) {
                     print(ErrorString.Info.regSuccess)
-                    let registration = Registration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].assertion!)!, url: Constants.domain, env: "qa", username: username)
+
+                    let registration = Registration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: "qa", username: username, keyID: (regResponse.assertions?[0].keyID)!)
                     
                     ValidRegistrations.addRegistration(registrationToAdd: registration)
-                    self.saveRegistrations()
+                    RegisterDevice.sharedInstance.saveRegistrations()
                 }
-
             }
         }
     }
 
     
-    private func getRegRequest(username: String, taskCallback: @escaping (Bool, RegRequest?) -> ()) {
+    private func getRegRequest(username: String, taskCallback: @escaping (Bool, GetRequest?) -> ()) {
         let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regRequest/" + username, method: "GET")
-        var regRequest: RegRequest?
+        var regRequest: GetRequest?
         
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
             switch response.result {
@@ -67,7 +67,7 @@ class RegisterDevice {
                 }
             case .success(let responseObject):
                 let json = responseObject as! [[String:AnyObject]]
-                regRequest = RegRequest(json: json[0])!
+                regRequest = GetRequest(json: json[0])!
                 taskCallback(true, regRequest)
             }
         }
@@ -91,6 +91,7 @@ class RegisterDevice {
                     print(responseString)
                 }
             case .success(let responseObject):
+                print(responseObject)
                 let json = responseObject as! [[String:AnyObject]]
                 let regOutcome = RegOutcome(json: json[0])!
                 taskCallback(true, regOutcome)

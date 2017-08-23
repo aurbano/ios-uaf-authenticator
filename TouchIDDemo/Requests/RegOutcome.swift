@@ -22,7 +22,7 @@ class RegOutcome: Decodable {
     var deviceID: String?
     var status: Status?
     var tcDisplayPNGCharacteristics: String?
-    var timestamp: UInt64?
+    var timestamp: Int64?
     var userID: String?
     var username: String?
     

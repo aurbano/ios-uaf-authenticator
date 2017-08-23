@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-class RegRequest: Decodable {
+class GetRequest: Decodable {
     var header: Header?
     var challenge: String?
     var username: String?
@@ -38,10 +38,10 @@ class AcceptedPolicies: Decodable {
     var aaid: [String]?
     var vendorID: [String]?
     var keyIDs: [String]?
-    var userVerification: UInt64?
+    var userVerification: Int64?
     var keyProtection: Int?
     var matcherProtection: Int?
-    var attachmentHint: UInt64?
+    var attachmentHint: Int64?
     var tcDisplay: Int?
     var authenticationAlgorithms: [Int]?
     var assertionSchemes: [String]?
