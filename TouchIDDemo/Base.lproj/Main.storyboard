@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ragister Device-->
+        <!--Register Device-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-lI-EWb">
-                                <rect key="frame" x="16" y="124" width="343" height="150"/>
+                                <rect key="frame" x="16" y="124" width="343" height="190"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TfF-aS-LxV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -38,22 +38,28 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Environment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fzK-gz-vQZ">
+                                        <rect key="frame" x="0.0" y="40" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKN-xU-ZIu">
-                                        <rect key="frame" x="148" y="40" width="47" height="30"/>
-                                        <state key="normal" title="Sign in"/>
+                                        <rect key="frame" x="143" y="80" width="57" height="30"/>
+                                        <state key="normal" title="Register"/>
                                         <connections>
                                             <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x4y-aY-EOn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6f-XJ-KjI">
-                                        <rect key="frame" x="110" y="80" width="123" height="30"/>
+                                        <rect key="frame" x="110" y="120" width="123" height="30"/>
                                         <state key="normal" title="View registrations"/>
                                         <connections>
                                             <segue destination="n1w-eR-Kpv" kind="show" id="b3h-Qc-h2N"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKo-gs-MjV">
-                                        <rect key="frame" x="0.0" y="120" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="160" width="343" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="VhY-Un-3pT"/>
                                         </constraints>
@@ -63,6 +69,8 @@
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fzK-gz-vQZ" secondAttribute="trailing" id="8k3-8f-wru"/>
+                                    <constraint firstItem="fzK-gz-vQZ" firstAttribute="leading" secondItem="W6A-lI-EWb" secondAttribute="leading" id="HAt-yG-BfX"/>
                                     <constraint firstAttribute="trailing" secondItem="TfF-aS-LxV" secondAttribute="trailing" id="fMt-Po-v6P"/>
                                 </constraints>
                             </stackView>
@@ -74,8 +82,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="W6A-lI-EWb" secondAttribute="trailing" id="Kdc-AS-kGY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Ragister Device" id="cz9-w4-hVK"/>
+                    <navigationItem key="navigationItem" title="Register Device" id="cz9-w4-hVK"/>
                     <connections>
+                        <outlet property="environment" destination="fzK-gz-vQZ" id="kxd-L7-Qeh"/>
                         <outlet property="infoLabel" destination="FKo-gs-MjV" id="w9A-eE-nMZ"/>
                         <outlet property="username" destination="TfF-aS-LxV" id="xzr-U9-ca7"/>
                     </connections>

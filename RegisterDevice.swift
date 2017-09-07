@@ -14,7 +14,7 @@ class RegisterDevice {
     
     private init() { }
     
-    func register(username: String) {
+    func register(username: String, environment: String) {
         
         getRegRequest(username: username) { (getSuccessful, regRequest) in
             guard (getSuccessful) else {
@@ -31,7 +31,7 @@ class RegisterDevice {
             let encoded = fcParamsData.base64EncodedString()
             
             let regResponse = RegResponse(header: (regRequest?.header)!, fcparams: encoded)
-            regResponse.assertions = [Assertions(fcParams: fcParams)]
+            regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
             let jsonResponse = regResponse.toJSONArray()
             
             RegisterDevice.sharedInstance.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
@@ -42,7 +42,7 @@ class RegisterDevice {
                 if (regOutcome.status == Status.SUCCESS) {
                     print(ErrorString.Info.regSuccess)
 
-                    let registration = Registration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: "qa", username: username, keyID: (regResponse.assertions?[0].keyID)!)
+                    let registration = Registration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: environment, username: username, keyID: (regResponse.assertions?[0].keyID)!)
                     
                     ValidRegistrations.addRegistration(registrationToAdd: registration)
                     RegisterDevice.sharedInstance.saveRegistrations()

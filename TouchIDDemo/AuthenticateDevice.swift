@@ -46,7 +46,7 @@ class AuthenticateDevice {
     }
     
     func getAuthRequest(username: String, taskCallback: @escaping (Bool, GetRequest?)  -> ()) {
-        let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/authRequest/" + username, method: "GET")
+        let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/authRequest/" + Constants.appID, method: "GET")
         var authRequest: GetRequest?
         
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in

@@ -16,6 +16,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     //MARK: Properties
     
     @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var environment: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
 
     override func viewDidLoad() {
@@ -31,8 +32,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func register(_ sender: UIButton) {
-        if (username.text != nil) {
-            RegisterDevice.sharedInstance.register(username: username.text!)
+        if (username.text != nil && environment.text != nil) {
+            RegisterDevice.sharedInstance.register(username: username.text!, environment: environment.text!)
             username.text = ""
         }
     }

@@ -48,5 +48,10 @@ class Utils {
         return uint8Array.map{ Int8(bitPattern: $0)}
     }
 
+    static func getNewKeyTag(username: String, environment: String) -> String {
+        let timestamp = NSDate.timeIntervalSinceReferenceDate
+        let tag = username + "-" + environment + "-" + String(timestamp)
+        return tag
+    }
 
 }

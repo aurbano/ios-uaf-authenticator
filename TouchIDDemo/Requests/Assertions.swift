@@ -25,8 +25,8 @@ class Assertions: Glossy {
         self.privKeyTag = assertObj.getKeyTag()
     }
     
-    init(fcParams: String) {
-        let assertObj = RegAssertion()
+    init(fcParams: String, username: String, environment: String) {
+        let assertObj = RegAssertion(username: username, environment: environment)
         self.assertion = assertObj.buildAssertions(fcParams: fcParams)
         self.assertionScheme = Constants.assertionScheme
         
@@ -63,8 +63,8 @@ class RegAssertion {
     
     private let regAssertionBuilder: RegAssertionBuilder
     
-    init() {
-        regAssertionBuilder = RegAssertionBuilder()
+    init(username: String, environment: String) {
+        regAssertionBuilder = RegAssertionBuilder(username:username, environment: environment)
     }
     
     func buildAssertions(fcParams: String) -> String? {

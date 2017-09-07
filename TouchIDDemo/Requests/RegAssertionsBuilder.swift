@@ -15,8 +15,8 @@ class RegAssertionBuilder {
     var keyID: Array<UInt8>
     private let pair: (privateKey: SecKey?, publicKey: SecKey?)
     
-    init() {
-        privKeyTag = Constants.privateKeyTestTag
+    init(username: String, environment: String) {
+        privKeyTag = Utils.getNewKeyTag(username: username, environment: environment)
         keys = KeysManipulation()
         keyID = Array<UInt8>()
         self.pair = try! keys.generateKeyPair(tag: privKeyTag)
@@ -76,11 +76,11 @@ class RegAssertionBuilder {
         byteout.append(contentsOf: encodeInt(id: length))
         byteout.append(contentsOf: value)
         
-        byteout.append(contentsOf: encodeInt(id: Tags.TAG_ATTESTATION_CERT.rawValue))
-        value = Utils.base64ToByteArray(fromString: Constants.derCert)!
-        length = value.count
-        byteout.append(contentsOf: encodeInt(id: length))
-        byteout.append(contentsOf: value)
+//        byteout.append(contentsOf: encodeInt(id: Tags.TAG_ATTESTATION_CERT.rawValue))
+//        value = Utils.base64ToByteArray(fromString: Constants.derCert)!
+//        length = value.count
+//        byteout.append(contentsOf: encodeInt(id: length))
+//        byteout.append(contentsOf: value)
         
         return byteout
     }
@@ -148,7 +148,6 @@ class RegAssertionBuilder {
         let data = Array<UInt8>(keyId.utf8)
         let encoded = data.toBase64()
         let byteout = Array<UInt8>(encoded!.utf8)
-        
         self.keyID = byteout
         
         return byteout
@@ -168,7 +167,6 @@ class RegAssertionBuilder {
 
         var pubKeyArray = Array<UInt8>()
         var error:Unmanaged<CFError>?
-        var s = String()
         
         if let cfdata = SecKeyCopyExternalRepresentation((pubKey!), &error) {
             let data:Data = cfdata as Data
