@@ -35,6 +35,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         if (username.text != nil && environment.text != nil) {
             RegisterDevice.sharedInstance.register(username: username.text!, environment: environment.text!)
             username.text = ""
+            environment.text = ""
         }
     }
     

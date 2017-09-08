@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2375" y="134"/>
+            <point key="canvasLocation" x="2212" y="-629"/>
         </scene>
         <!--MS Auth Registrations-->
         <scene sceneID="JEk-Qx-9LP">
@@ -178,10 +178,46 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Ocx-DO-iFc" kind="show" identifier="QRScanner" id="ORV-Bw-R1y"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ny2-F6-NHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="616.79999999999995" y="133.5832083958021"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="rCg-iV-7P6">
+            <objects>
+                <viewController id="Ocx-DO-iFc" customClass="QRScannerViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0ib-5O-Gx1"/>
+                        <viewControllerLayoutGuide type="bottom" id="F9d-QP-Jw6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ydo-43-dA3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Scan QR code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bZ-QU-wps">
+                                <rect key="frame" x="16" y="626" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="0bZ-QU-wps" secondAttribute="trailing" id="0Gg-fZ-1zr"/>
+                            <constraint firstItem="0bZ-QU-wps" firstAttribute="leading" secondItem="ydo-43-dA3" secondAttribute="leadingMargin" id="Usv-PQ-XQE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="0bZ-QU-wps" id="vlD-EY-lHJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fp9-kH-cLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C7U-qc-QCP">
@@ -217,7 +253,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poE-3s-YUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1558" y="134"/>
+            <point key="canvasLocation" x="1399" y="-629"/>
         </scene>
     </scenes>
 </document>

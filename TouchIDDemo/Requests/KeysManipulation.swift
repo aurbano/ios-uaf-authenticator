@@ -121,9 +121,6 @@ class KeysManipulation {
             return nil
         }
         
-        print("data for signing")
-        print(dataForSigning.toBase64())
-        
         let publicKey = getPublicKeybyPrivate(privateKey: key)
         self.verifySignature(key: publicKey!, signature: signature, algorithm: algorithm, data: signedDataValueAsData!)
 
@@ -132,9 +129,6 @@ class KeysManipulation {
         CFDataGetBytes(signature, range, byteptr)
         
         let byteout = Array(UnsafeBufferPointer(start: byteptr, count: range.length))
-        print("signature")
-        print(byteout.toBase64())
-
         
         return byteout
 

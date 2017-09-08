@@ -41,54 +41,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RegisterDevice.swift"
-            timestampString = "526209512.354651"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "getRegRequest(username:taskCallback:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Violet_Anteater.RegisterDevice.(getRegRequest in _03B7F099CEDB95FB7D9D93D16CBFB7D8) (username : Swift.String, taskCallback : (Swift.Bool, Swift.Optional&lt;Violet_Anteater.GetRequest&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Violet Anteater"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/iva/Desktop/Exploration/TouchIDDemo/RegisterDevice.swift"
-                  timestampString = "526210541.588898"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "404">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Violet_Anteater.RegisterDevice.((getRegRequest in _03B7F099CEDB95FB7D9D93D16CBFB7D8) (username : Swift.String, taskCallback : (Swift.Bool, Swift.Optional&lt;Violet_Anteater.GetRequest&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "Violet Anteater"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/iva/Desktop/Exploration/TouchIDDemo/RegisterDevice.swift"
-                  timestampString = "526210541.591842"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TouchIDDemo/Requests/KeysManipulation.swift"
             timestampString = "526213681.296419"
             startingColumnNumber = "9223372036854775807"
@@ -112,6 +64,22 @@
             startingLineNumber = "49"
             endingLineNumber = "49"
             landmarkName = "getAuthRequest(username:taskCallback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RegisterDevice.swift"
+            timestampString = "526481201.014919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "register(username:environment:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

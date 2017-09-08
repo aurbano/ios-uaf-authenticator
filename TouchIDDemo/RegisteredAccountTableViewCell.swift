@@ -18,8 +18,6 @@ class RegisteredAccountTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     //MARK: Properties
@@ -30,4 +28,6 @@ class RegisteredAccountTableViewCell: UITableViewCell {
     @IBAction func loginButtonClicked(_ sender: UIButton) {
         AuthenticateDevice.sharedInstance.authenticate(registration: ValidRegistrations.registrations[index])
     }
+    
+    
 }

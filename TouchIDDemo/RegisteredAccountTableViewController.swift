@@ -52,6 +52,8 @@ class RegisteredAccountTableViewController: UITableViewController {
 //        }
 //    }
 
+    
+    
 
     func loadSample() {
         let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "sample env1", username: "sample1", keyID: Array<UInt8>())
@@ -96,8 +98,11 @@ class RegisteredAccountTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath)
+//        self.performSegue(withIdentifier: "QRScanner", sender: cell)
+    }
 
-    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -139,10 +144,20 @@ class RegisteredAccountTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//        super.prepare(for: segue, sender: sender)
+//        guard ((segue.destination as? QRScannerViewController) != nil) else {
+//            fatalError("Unexpected destination: \(segue.destination)")
+//        }
+//        
+//        guard let selectedRegistrationCell = sender as? RegisteredAccountTableViewCell else {
+//            fatalError("Unexpected sender: \(String(describing: sender))")
+//        }
+//        
+//        guard tableView.indexPath(for: selectedRegistrationCell) != nil else {
+//            fatalError("The selected cell is not being displayed by the table")
+//        }
     }
-    */
+*/
     
     
     private func saveRegistrations() {
