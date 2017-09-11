@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-lI-EWb">
-                                <rect key="frame" x="16" y="124" width="343" height="190"/>
+                                <rect key="frame" x="16" y="124" width="343" height="150"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TfF-aS-LxV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -58,15 +58,6 @@
                                             <segue destination="n1w-eR-Kpv" kind="show" id="b3h-Qc-h2N"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKo-gs-MjV">
-                                        <rect key="frame" x="0.0" y="160" width="343" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="VhY-Un-3pT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="fzK-gz-vQZ" secondAttribute="trailing" id="8k3-8f-wru"/>
@@ -85,13 +76,12 @@
                     <navigationItem key="navigationItem" title="Register Device" id="cz9-w4-hVK"/>
                     <connections>
                         <outlet property="environment" destination="fzK-gz-vQZ" id="kxd-L7-Qeh"/>
-                        <outlet property="infoLabel" destination="FKo-gs-MjV" id="w9A-eE-nMZ"/>
                         <outlet property="username" destination="TfF-aS-LxV" id="xzr-U9-ca7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2212" y="-629"/>
+            <point key="canvasLocation" x="2418" y="-629"/>
         </scene>
         <!--MS Auth Registrations-->
         <scene sceneID="JEk-Qx-9LP">
@@ -174,17 +164,23 @@
                     <navigationItem key="navigationItem" title="MS Auth Registrations" id="Ocb-Fp-9JR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1Vn-dw-6GO">
                             <connections>
-                                <segue destination="bJ4-LD-0On" kind="presentation" identifier="AddRegistration" id="ts1-jQ-3xP"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="3dn-Gk-YE7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Dzs-XR-i56">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
+                        <outlet property="view" destination="PwD-dm-B5j" id="dly-88-yJx"/>
                         <segue destination="Ocx-DO-iFc" kind="show" identifier="QRScanner" id="ORV-Bw-R1y"/>
+                        <segue destination="bJ4-LD-0On" kind="show" identifier="noRegistrationsSegue" animates="NO" id="BlM-B4-pmt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ny2-F6-NHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="616.79999999999995" y="133.5832083958021"/>
+            <point key="canvasLocation" x="578" y="134"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="rCg-iV-7P6">
@@ -217,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fp9-kH-cLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1398" y="134"/>
+            <point key="canvasLocation" x="1543" y="156"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C7U-qc-QCP">
@@ -240,7 +236,7 @@
         <!--Navigation Controller-->
         <scene sceneID="tTg-2q-4g8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bJ4-LD-0On" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RegisterDeviceVC" automaticallyAdjustsScrollViewInsets="NO" id="bJ4-LD-0On" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5N7-kl-2sy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -253,7 +249,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poE-3s-YUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1399" y="-629"/>
+            <point key="canvasLocation" x="1398" y="-629"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3dn-Gk-YE7"/>
+    </inferredMetricsTieBreakers>
 </document>

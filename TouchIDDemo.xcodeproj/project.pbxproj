@@ -44,8 +44,8 @@
 		AAE7881E1F4306BE00CE446D /* KeysManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */; };
 		AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788101F4306BE00CE446D /* PropertyKeys.swift */; };
 		AAE788201F4306BE00CE446D /* PropertyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788101F4306BE00CE446D /* PropertyKeys.swift */; };
-		AAE788211F4306BE00CE446D /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788111F4306BE00CE446D /* Registration.swift */; };
-		AAE788221F4306BE00CE446D /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788111F4306BE00CE446D /* Registration.swift */; };
+		AAE788211F4306BE00CE446D /* RegistrationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788111F4306BE00CE446D /* RegistrationObject.swift */; };
+		AAE788221F4306BE00CE446D /* RegistrationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788111F4306BE00CE446D /* RegistrationObject.swift */; };
 		AAE788231F4306BE00CE446D /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788121F4306BE00CE446D /* RegOutcome.swift */; };
 		AAE788241F4306BE00CE446D /* RegOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788121F4306BE00CE446D /* RegOutcome.swift */; };
 		AAE788251F4306BE00CE446D /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788131F4306BE00CE446D /* GetRequest.swift */; };
@@ -119,7 +119,7 @@
 		AAE7880E1F4306BE00CE446D /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Header.swift; path = Requests/Header.swift; sourceTree = "<group>"; };
 		AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeysManipulation.swift; path = Requests/KeysManipulation.swift; sourceTree = "<group>"; };
 		AAE788101F4306BE00CE446D /* PropertyKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PropertyKeys.swift; path = Requests/PropertyKeys.swift; sourceTree = "<group>"; };
-		AAE788111F4306BE00CE446D /* Registration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Registration.swift; path = Requests/Registration.swift; sourceTree = "<group>"; };
+		AAE788111F4306BE00CE446D /* RegistrationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationObject.swift; path = Requests/RegistrationObject.swift; sourceTree = "<group>"; };
 		AAE788121F4306BE00CE446D /* RegOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegOutcome.swift; path = Requests/RegOutcome.swift; sourceTree = "<group>"; };
 		AAE788131F4306BE00CE446D /* GetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetRequest.swift; path = Requests/GetRequest.swift; sourceTree = "<group>"; };
 		AAE788141F4306BE00CE446D /* RegResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegResponse.swift; path = Requests/RegResponse.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				AAE7880E1F4306BE00CE446D /* Header.swift */,
 				AAE7880F1F4306BE00CE446D /* KeysManipulation.swift */,
 				AAE788101F4306BE00CE446D /* PropertyKeys.swift */,
-				AAE788111F4306BE00CE446D /* Registration.swift */,
+				AAE788111F4306BE00CE446D /* RegistrationObject.swift */,
 				AAD61B491F44A1D1007A2D12 /* ValidRegistrations.swift */,
 				AAD61B4B1F45D2BC007A2D12 /* AuthenticateDevice.swift */,
 				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
@@ -370,7 +370,7 @@
 				AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */,
 				AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */,
 				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
-				AAE788211F4306BE00CE446D /* Registration.swift in Sources */,
+				AAE788211F4306BE00CE446D /* RegistrationObject.swift in Sources */,
 				AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */,
 				AAE21EAC1F4463C900C8DBE8 /* Errors.swift in Sources */,
 				AAE21EAA1F44605C00C8DBE8 /* Constants.swift in Sources */,
@@ -391,7 +391,7 @@
 				AAE788181F4306BE00CE446D /* Assertions.swift in Sources */,
 				AAE7882A1F4306BE00CE446D /* RequestBuilder.swift in Sources */,
 				AAE787D81F3C8C8A00CE446D /* Violet_AnteaterTests.swift in Sources */,
-				AAE788221F4306BE00CE446D /* Registration.swift in Sources */,
+				AAE788221F4306BE00CE446D /* RegistrationObject.swift in Sources */,
 				AA6ABF281F4C618900E9C622 /* Utils.swift in Sources */,
 				AAE788261F4306BE00CE446D /* GetRequest.swift in Sources */,
 				AAE788241F4306BE00CE446D /* RegOutcome.swift in Sources */,

@@ -14,17 +14,16 @@ class RegisteredAccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ValidRegistrations.reset()
+        
+        self.refreshControl?.addTarget(self, action: #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl!)
+        
         navigationItem.leftBarButtonItem = editButtonItem
-        if let savedRegistrations = loadRegistrations() {
-            for reg in savedRegistrations {
-                ValidRegistrations.addRegistration(registrationToAdd: reg)
-            }
-        }
-        else {
-            loadSample()
-        }
 
+        loadRegistrations()
+        if (ValidRegistrations.items() == 0) {
+            self.performSegue(withIdentifier: "noRegistrationsSegue", sender: self)
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -52,9 +51,18 @@ class RegisteredAccountTableViewController: UITableViewController {
 //        }
 //    }
 
+    func refresh() {
+        refreshControl?.endRefreshing()
+        loadRegistrations()
+//        self.tableView.reloadData()
+    }
     
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        loadRegistrations()
+        self.tableView.reloadData()
+    }
+    
     func loadSample() {
         let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "sample env1", username: "sample1", keyID: Array<UInt8>())
         ValidRegistrations.addRegistration(registrationToAdd: reg1)
@@ -170,7 +178,17 @@ class RegisteredAccountTableViewController: UITableViewController {
         }
     }
     
-    private func loadRegistrations() -> [Registration]? {
+    private func loadRegistrations() {
+        ValidRegistrations.reset()
+        if let savedRegistrations = getSavedRegistrations() {
+            for reg in savedRegistrations {
+                ValidRegistrations.addRegistration(registrationToAdd: reg)
+            }
+        }
+
+    }
+    
+    private func getSavedRegistrations() -> [Registration]? {
 //        guard let registrations = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path) as? [Registration] else {
 //            print(ErrorString.Info.regLoadFail)
 //            return nil

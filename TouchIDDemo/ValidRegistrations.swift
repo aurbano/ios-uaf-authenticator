@@ -10,9 +10,8 @@ import Foundation
 
 class ValidRegistrations {
     static var registrations = [Registration]()
-
     private init() { }
-    
+        
     static func addRegistration(registrationToAdd: Registration) {
         if (!registrations.contains(registrationToAdd)) {
             registrations += [registrationToAdd]

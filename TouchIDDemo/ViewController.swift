@@ -12,6 +12,8 @@ import Foundation
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
+    var overlay = UIView()
+    var activityIndicator = UIActivityIndicatorView()
     var registration: Registration?
     //MARK: Properties
     
@@ -21,7 +23,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -32,10 +33,38 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func register(_ sender: UIButton) {
-        if (username.text != nil && environment.text != nil) {
-            RegisterDevice.sharedInstance.register(username: username.text!, environment: environment.text!)
+        if (username.text != "" && environment.text != "") {
+            let trimmedUsername = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let trimmedEnv = environment.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            RegisterDevice.sharedInstance.register(username: trimmedUsername, environment: trimmedEnv)
             username.text = ""
             environment.text = ""
+            
+            overlay = UIView(frame: view.frame)
+            overlay.backgroundColor = UIColor.black
+            overlay.alpha = 0.8
+            
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+//            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            
+            view.addSubview(overlay)
+            overlay.addSubview(activityIndicator)
+
+            
+            activityIndicator.startAnimating()
+            
+            let when = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                
+                self.activityIndicator.stopAnimating()
+                self.overlay.removeFromSuperview()
+                let alert = UIAlertController(title: "Registration", message: "Registration successful", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+                self.present(alert, animated: true, completion: nil)
+
+            }
         }
     }
     
