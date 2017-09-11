@@ -30,47 +30,24 @@ class RegisteredAccountTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-//    @IBAction func unwindToRegistrationList(sender: UIStoryboardSegue) {
-//        
-//        if let sourceViewController = sender.source as? ViewController, let registration = sourceViewController.registration {
-//            
-//            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-//
-//                ValidRegistrations.registrations[selectedIndexPath.row] = registration
-//                tableView.reloadRows(at: [selectedIndexPath], with: .none)
-//            }
-//            else {
-//
-//                let newIndexPath = IndexPath(row: ValidRegistrations.items(), section: 0)
-//                
-//                ValidRegistrations.addRegistration(registrationToAdd: registration)
-//                tableView.insertRows(at: [newIndexPath], with: .automatic)
-//            }
-//            saveRegistrations()
-//        }
-//    }
 
     func refresh() {
+        self.tableView.reloadData()
         refreshControl?.endRefreshing()
-        loadRegistrations()
-//        self.tableView.reloadData()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        loadRegistrations()
         self.tableView.reloadData()
     }
     
-    func loadSample() {
-        let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "sample env1", username: "sample1", keyID: Array<UInt8>())
-        ValidRegistrations.addRegistration(registrationToAdd: reg1)
-        
-        let reg2 = Registration(appID: "sample appid", keyTag: "sample tag", url: "sample url", env: "sample env2", username: "sample2", keyID: Array<UInt8>())
-        ValidRegistrations.addRegistration(registrationToAdd: reg2)
-
-    }
+//    func loadSample() {
+//        let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "sample env1", username: "sample1", keyID: Array<UInt8>())
+//        ValidRegistrations.addRegistration(registrationToAdd: reg1)
+//        
+//        let reg2 = Registration(appID: "sample appid", keyTag: "sample tag", url: "sample url", env: "sample env2", username: "sample2", keyID: Array<UInt8>())
+//        ValidRegistrations.addRegistration(registrationToAdd: reg2)
+//
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -99,8 +76,8 @@ class RegisteredAccountTableViewController: UITableViewController {
         
         let registration = ValidRegistrations.registrations[indexPath.row]
 
-        cell.envLabel.text = (cell.envLabel.text! + registration.environment)
-        cell.username.text = (cell.username.text! + registration.username)
+        cell.envLabel.text = ("Environment: " + registration.environment)
+        cell.username.text = ("Username: " + registration.username)
         cell.index = indexPath.row
 
         return cell
@@ -185,17 +162,10 @@ class RegisteredAccountTableViewController: UITableViewController {
                 ValidRegistrations.addRegistration(registrationToAdd: reg)
             }
         }
-
     }
     
     private func getSavedRegistrations() -> [Registration]? {
-//        guard let registrations = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path) as? [Registration] else {
-//            print(ErrorString.Info.regLoadFail)
-//            return nil
-//        }
         let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
         return savedRegs as? [Registration]
-
-//        return registrations
     }
 }

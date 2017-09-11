@@ -33,6 +33,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func register(_ sender: UIButton) {
+        self.view.endEditing(true)
+
         if (username.text != "" && environment.text != "") {
             let trimmedUsername = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let trimmedEnv = environment.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -47,7 +49,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             
             activityIndicator.center = self.view.center
             activityIndicator.hidesWhenStopped = true
-//            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             
             view.addSubview(overlay)
             overlay.addSubview(activityIndicator)
@@ -55,14 +56,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             
             activityIndicator.startAnimating()
             
-            let when = DispatchTime.now() + 1
-            DispatchQueue.main.asyncAfter(deadline: when) {
+            
+            let deadline = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: deadline) {
                 
                 self.activityIndicator.stopAnimating()
                 self.overlay.removeFromSuperview()
-                let alert = UIAlertController(title: "Registration", message: "Registration successful", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
-                self.present(alert, animated: true, completion: nil)
+
+                if (RegisterDevice.sharedInstance.successful) {
+                    let alert = UIAlertController(title: "Registration successful", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+                    self.present(alert, animated: true, completion: nil)
+                    RegisterDevice.sharedInstance.successful = false
+                }
+                else {
+                    let alert = UIAlertController(title: "Registration failed", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
+                    self.present(alert, animated: true, completion: nil)
+
+                }
 
             }
         }

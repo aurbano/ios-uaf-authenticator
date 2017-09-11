@@ -12,20 +12,19 @@ import Alamofire
 class RegisterDevice {
     static let sharedInstance = RegisterDevice()
     
+    var successful = false
+    
     private init() { }
     
     func register(username: String, environment: String) {
         
-        getRegRequest(username: username) { (getSuccessful, regRequest) in
+        getRegRequest(username: username, successful: &RegisterDevice.sharedInstance.successful) { (getSuccessful, regRequest) in
             guard (getSuccessful) else {
                 print(ErrorString.Requests.getFail)
                 return
             }
             
-            let appid = "{\n\"appID\": \"" + (regRequest?.header?.appId)! + "\",\n"
-            let facetid = "\"facetID\": \"http://ms.com\",\n"
-            let challenge = "\"challenge\": \"" + (regRequest?.challenge)! + "\"\n}"
-            let fcParams = (appid + facetid + challenge)
+            let fcParams = self.buildFcParams(regRequest: regRequest)
             
             let fcParamsData = fcParams.data(using: .utf8)! as NSData
             let encoded = fcParamsData.base64EncodedString()
@@ -34,7 +33,7 @@ class RegisterDevice {
             regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
             let jsonResponse = regResponse.toJSONArray()
             
-            RegisterDevice.sharedInstance.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
+            RegisterDevice.sharedInstance.postRegRequest(json: jsonResponse as! [[String : AnyObject]], successful: &self.successful) { (postSuccessful, regOutcome) in
                guard (postSuccessful) else {
                 print(ErrorString.Requests.postFail)
                 return
@@ -46,13 +45,25 @@ class RegisterDevice {
                     
                     ValidRegistrations.addRegistration(registrationToAdd: registration)
                     RegisterDevice.sharedInstance.saveRegistrations()
+                    
+                    self.successful = true
                 }
             }
         }
+        
+//        if (successful) {
+//            ValidRegistrations.newRegistration = true
+//        }
     }
 
+    private func buildFcParams(regRequest: GetRequest?) -> String {
+        let appid = "{\n\"appID\": \"" + (regRequest?.header?.appId)! + "\",\n"
+        let facetid = "\"facetID\": \"http://ms.com\",\n"
+        let challenge = "\"challenge\": \"" + (regRequest?.challenge)! + "\"\n}"
+        return (appid + facetid + challenge)
+    }
     
-    private func getRegRequest(username: String, taskCallback: @escaping (Bool, GetRequest?) -> ()) {
+    private func getRegRequest(username: String, successful: inout Bool, taskCallback: @escaping (Bool, GetRequest?) -> ()) {
         let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regRequest/" + username, method: "GET")
         var regRequest: GetRequest?
         
@@ -73,7 +84,7 @@ class RegisterDevice {
         }
     }
     
-    private func postRegRequest(json: [[String : AnyObject]], taskCallback: @escaping (Bool, RegOutcome) -> ()) {
+    private func postRegRequest(json: [[String : AnyObject]], successful: inout Bool, taskCallback: @escaping (Bool, RegOutcome) -> ()) {
         let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regResponse", method: "POST")
         
         let header = ["application/json" : "Content-Type"]
