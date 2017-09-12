@@ -25,11 +25,11 @@ class Utils {
 
     static func base64ToByteArray(fromString: String) -> Array<UInt8>? {
         guard let data = fromString.data(using: .utf8) else {
-            print(ErrorString.Encoding.dataNotReadable)
+            print(MessageString.Encoding.dataNotReadable)
             return nil
         }
         guard let decodedData = NSData(base64Encoded: data, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) else {
-            print(ErrorString.Encoding.dataNotEncoded)
+            print(MessageString.Encoding.dataNotEncoded)
             return nil
         }
         
@@ -54,4 +54,12 @@ class Utils {
         return tag
     }
 
+    static func buildFcParams(request: GetRequest?) -> String {
+        let appid = "{\n\"appID\": \"" + (request?.header?.appId)! + "\",\n"
+        let facetid = "\"facetID\": \"http://ms.com\",\n"
+        let challenge = "\"challenge\": \"" + (request?.challenge)! + "\"\n}"
+        return (appid + facetid + challenge)
+    }
+
+    
 }

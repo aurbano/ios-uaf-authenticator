@@ -148,10 +148,10 @@ class RegisteredAccountTableViewController: UITableViewController {
     private func saveRegistrations() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
         if (isSuccessfulSave) {
-            print(ErrorString.Info.regSavedSuccess)
+            print(MessageString.Info.regSavedSuccess)
         }
         else {
-            print(ErrorString.Info.regSavedFail)
+            print(MessageString.Info.regSavedFail)
         }
     }
     

@@ -15,12 +15,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     var overlay = UIView()
     var activityIndicator = UIActivityIndicatorView()
     var registration: Registration?
+    var scannedData: String?
     //MARK: Properties
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var environment: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
 
+    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+        let qrScannerVC: QRScannerViewController = segue.source as! QRScannerViewController
+        scannedData = qrScannerVC.dataCaptured
+        print(scannedData)
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -36,46 +44,42 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.view.endEditing(true)
 
         if (username.text != "" && environment.text != "") {
+            self.overlay = UIView(frame: self.view.frame)
+            self.overlay.backgroundColor = UIColor.black
+            self.overlay.alpha = 0.8
+            
+            self.activityIndicator.center = self.view.center
+            self.activityIndicator.hidesWhenStopped = true
+            
+            self.view.addSubview(self.overlay)
+            self.overlay.addSubview(self.activityIndicator)
+
+            self.activityIndicator.startAnimating()
+            
             let trimmedUsername = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let trimmedEnv = environment.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 
-            RegisterDevice.sharedInstance.register(username: trimmedUsername, environment: trimmedEnv)
-            username.text = ""
-            environment.text = ""
-            
-            overlay = UIView(frame: view.frame)
-            overlay.backgroundColor = UIColor.black
-            overlay.alpha = 0.8
-            
-            activityIndicator.center = self.view.center
-            activityIndicator.hidesWhenStopped = true
-            
-            view.addSubview(overlay)
-            overlay.addSubview(activityIndicator)
-
-            
-            activityIndicator.startAnimating()
-            
-            
-            let deadline = DispatchTime.now() + 1
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
+            Register.sharedInstance.register(username: trimmedUsername, environment: trimmedEnv) { (success) in
+                self.username.text = ""
+                self.environment.text = ""
                 
-                self.activityIndicator.stopAnimating()
-                self.overlay.removeFromSuperview()
+//                let deadline = DispatchTime.now() + 1
+//                DispatchQueue.main.asyncAfter(deadline: deadline) {
+                    
+                    self.activityIndicator.stopAnimating()
+                    self.overlay.removeFromSuperview()
 
-                if (RegisterDevice.sharedInstance.successful) {
-                    let alert = UIAlertController(title: "Registration successful", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
-                    self.present(alert, animated: true, completion: nil)
-                    RegisterDevice.sharedInstance.successful = false
-                }
-                else {
-                    let alert = UIAlertController(title: "Registration failed", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
-                    self.present(alert, animated: true, completion: nil)
-
-                }
-
+                    if (success) {
+                        let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    else {
+                        let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+//                }
             }
         }
     }

@@ -12,14 +12,17 @@ class RequestBuilder {
     
     private let url: URL
     private let headers: [String : String]
-    private var request : URLRequest
+    private var request: URLRequest
+    private var timeout: Double
     
     init(url: String, method: String) {
         self.url = URL(string: url)!
         self.headers = [String() : String()]
         self.request = URLRequest(url: self.url)
         self.request.httpMethod = method
+        self.timeout = 10
     }
+
     
     func addHeaders(headers: [String : String]) {
         for (value, field) in headers {
@@ -34,6 +37,7 @@ class RequestBuilder {
     }
     
     func getRequest() -> URLRequest {
+        self.request.timeoutInterval  = self.timeout
         return self.request
     }
 }

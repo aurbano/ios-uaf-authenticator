@@ -43,7 +43,7 @@ class Registration: NSObject, NSCoding {
         
         func decodeObject(key: String, aDecoder: NSCoder) -> String {
             guard let property = aDecoder.decodeObject(forKey: key) as? String else {
-                print(ErrorString.Encoding.unableToDecode + key)
+                print(MessageString.Encoding.unableToDecode + key)
                 return String()
             }
             return property

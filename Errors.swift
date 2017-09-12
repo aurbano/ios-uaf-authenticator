@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ErrorString {
+struct MessageString {
     
     struct Keys {
         static let KeyPairNotGenerated = "Key pair not generated"
@@ -16,6 +16,9 @@ struct ErrorString {
         static let privKeyNotRetrieved = "Private key not retreieved"
         static let algoNotSupported = "Signing algorithm not supported"
         static let usuccessfulSign = "Signing unsuccessful"
+        static let algorithmNotSupported = "Algorithm not supported by verifying key"
+        static let signatureCorrupted = "Signature could not be verified with public key"
+        static let signatureVerified = "Signature verified with public key"
     }
     
     struct Encoding {
@@ -36,7 +39,7 @@ struct ErrorString {
         static let regSavedSuccess = "Registration data saved successfully"
         static let regSavedFail = "Failed to save registration data"
         static let regLoadFail = "Registrations not loaded correctly"
-        static let regFail = "Unable to register."
+        static let regFail = "Registration failed"
         static let authSuccess = "Logged in"
     }
 }

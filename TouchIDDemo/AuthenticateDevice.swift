@@ -17,14 +17,11 @@ class AuthenticateDevice {
     func authenticate(registration: Registration) {
         getAuthRequest(username: registration.username) { (getSuccessful, authRequest)  in
             guard (getSuccessful) else {
-                print(ErrorString.Requests.getFail)
+                print(MessageString.Requests.getFail)
                 return
             }
             
-            let appid = "{\n\"appID\": \"" + (authRequest?.header?.appId)! + "\",\n"
-            let facetid = "\"facetID\": \"http://ms.com\",\n"
-            let challenge = "\"challenge\": \"" + (authRequest?.challenge)! + "\"\n}"
-            let fcParams = (appid + facetid + challenge)
+            let fcParams = Utils.buildFcParams(request: authRequest)
 
             let fcParamsData = fcParams.data(using: .utf8)! as NSData
             let encoded = fcParamsData.base64EncodedString()
@@ -35,11 +32,11 @@ class AuthenticateDevice {
 
             self.postAuthRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
                 guard (postSuccessful) else {
-                    print(ErrorString.Requests.postFail)
+                    print(MessageString.Requests.postFail)
                     return
                 }
                 if (regOutcome?.status == Status.SUCCESS) {
-                    print(ErrorString.Info.authSuccess)
+                    print(MessageString.Info.authSuccess)
                 }
             }
         }
@@ -86,10 +83,9 @@ class AuthenticateDevice {
             case .success(let responseObject):
                 print(responseObject)
                 let json = responseObject as! [[String:AnyObject]]
-//                let regOutcome = RegOutcome(json: json[0])!
-                taskCallback(true, nil)
+                let regOutcome = RegOutcome(json: json[0])!
+                taskCallback(true, regOutcome)
             }
         }
     }
-
 }

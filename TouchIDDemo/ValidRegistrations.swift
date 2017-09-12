@@ -10,14 +10,6 @@ import Foundation
 
 class ValidRegistrations {
     static var registrations = [Registration]()
-//    static var newRegistration: Bool {
-//        set {
-//            ValidRegistrations.newRegistration = newValue
-//        }
-//        get {
-//            return ValidRegistrations.newRegistration
-//        }
-//    }
     
     private init() { }
         

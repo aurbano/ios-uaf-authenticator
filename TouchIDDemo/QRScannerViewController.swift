@@ -11,12 +11,10 @@ import AVFoundation
 
 class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
-    
-    @IBOutlet weak var messageLabel: UILabel!
-    
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var captureSession: AVCaptureSession!
     var qrCodeFrameView: UIView!
+    var dataCaptured: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +70,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrCodeFrameView.frame = (barCodeObj!.bounds)
             
             if metadataObj.stringValue != nil {
-                print(metadataObj.stringValue)
+                dataCaptured = metadataObj.stringValue
+                self.performSegue(withIdentifier: "unwindToViewController", sender: self)
             }
         }
     }

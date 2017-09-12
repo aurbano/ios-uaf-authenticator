@@ -22,15 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbx-wM-Fme">
-                                <rect key="frame" x="0.0" y="503" width="375" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-lI-EWb">
-                                <rect key="frame" x="16" y="124" width="343" height="150"/>
+                                <rect key="frame" x="16" y="124" width="343" height="190"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TfF-aS-LxV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -58,6 +51,13 @@
                                             <segue destination="n1w-eR-Kpv" kind="show" id="b3h-Qc-h2N"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqt-ND-NlP">
+                                        <rect key="frame" x="122.5" y="160" width="98" height="30"/>
+                                        <state key="normal" title="Scan QR code"/>
+                                        <connections>
+                                            <segue destination="Ocx-DO-iFc" kind="show" id="kRF-RI-wnn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="fzK-gz-vQZ" secondAttribute="trailing" id="8k3-8f-wru"/>
@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2418" y="-629"/>
+            <point key="canvasLocation" x="2417" y="-629"/>
         </scene>
         <!--MS Auth Registrations-->
         <scene sceneID="JEk-Qx-9LP">
@@ -174,7 +174,6 @@
                     </refreshControl>
                     <connections>
                         <outlet property="view" destination="PwD-dm-B5j" id="dly-88-yJx"/>
-                        <segue destination="Ocx-DO-iFc" kind="show" identifier="QRScanner" id="ORV-Bw-R1y"/>
                         <segue destination="bJ4-LD-0On" kind="show" identifier="noRegistrationsSegue" animates="NO" id="BlM-B4-pmt"/>
                     </connections>
                 </tableViewController>
@@ -193,27 +192,16 @@
                     <view key="view" contentMode="scaleToFill" id="ydo-43-dA3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Scan QR code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bZ-QU-wps">
-                                <rect key="frame" x="16" y="626" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="0bZ-QU-wps" secondAttribute="trailing" id="0Gg-fZ-1zr"/>
-                            <constraint firstItem="0bZ-QU-wps" firstAttribute="leading" secondItem="ydo-43-dA3" secondAttribute="leadingMargin" id="Usv-PQ-XQE"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="messageLabel" destination="0bZ-QU-wps" id="vlD-EY-lHJ"/>
+                        <segue destination="bR2-0t-AYO" kind="unwind" identifier="unwindToViewController" unwindAction="unwindToViewControllerWithSegue:" id="erf-7W-ZxM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fp9-kH-cLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bR2-0t-AYO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="156"/>
+            <point key="canvasLocation" x="2417" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C7U-qc-QCP">
@@ -249,10 +237,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poE-3s-YUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1398" y="-629"/>
+            <point key="canvasLocation" x="1404" y="-629"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3dn-Gk-YE7"/>
+        <segue reference="s8I-l7-L9f"/>
     </inferredMetricsTieBreakers>
 </document>

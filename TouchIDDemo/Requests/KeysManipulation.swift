@@ -20,7 +20,7 @@ class KeysManipulation {
                                                                [.privateKeyUsage, .touchIDCurrentSet],
                                                                nil)
             else {
-                print(ErrorString.Keys.KeyPairNotGenerated)
+                print(MessageString.Keys.KeyPairNotGenerated)
                 return (nil, nil)
             }
 
@@ -37,7 +37,7 @@ class KeysManipulation {
             var keyCreationError: Unmanaged<CFError>?
             guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &keyCreationError)
                 else {
-                    print(ErrorString.Keys.KeyPairNotGenerated)
+                    print(MessageString.Keys.KeyPairNotGenerated)
                     throw keyCreationError!.takeRetainedValue() as Error
             }
 
@@ -66,7 +66,7 @@ class KeysManipulation {
             var error: Unmanaged<CFError>?
             guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
                 print(error)
-                print(ErrorString.Keys.KeyPairNotGenerated)
+                print(MessageString.Keys.KeyPairNotGenerated)
                 throw error!.takeRetainedValue() as Error
             }
             
@@ -89,7 +89,7 @@ class KeysManipulation {
         var item: CFTypeRef?
         let status = SecItemCopyMatching(getquery as CFDictionary, &item)
         guard status == errSecSuccess else {
-            print(ErrorString.Keys.privKeyNotRetrieved)
+            print(MessageString.Keys.privKeyNotRetrieved)
             return (nil, nil)
         }
         let privateKey = item as! SecKey
@@ -101,7 +101,7 @@ class KeysManipulation {
 
     func getPublicKeybyPrivate(privateKey: SecKey) -> SecKey? {
         guard let publicKey = SecKeyCopyPublicKey(privateKey) else {
-                print(ErrorString.Keys.pubKeyNotCopied)
+                print(MessageString.Keys.pubKeyNotCopied)
                 return nil
         }
         return publicKey
@@ -109,7 +109,7 @@ class KeysManipulation {
 
     func signData(dataForSigning: Array<UInt8>, key: SecKey, algorithm: SecKeyAlgorithm) -> Array<UInt8>? {
         guard SecKeyIsAlgorithmSupported(key, .sign, algorithm) else {
-            print(ErrorString.Keys.algoNotSupported)
+            print(MessageString.Keys.algoNotSupported)
             return nil
         }
         
@@ -117,7 +117,7 @@ class KeysManipulation {
         let signedDataValueAsData = CFDataCreate(nil, dataForSigning, dataForSigning.count)
         guard let signature = SecKeyCreateSignature(key, algorithm, signedDataValueAsData!, &signingError) else {
             print(signingError)
-            print(ErrorString.Keys.usuccessfulSign)
+            print(MessageString.Keys.usuccessfulSign)
             return nil
         }
         
@@ -136,16 +136,16 @@ class KeysManipulation {
     
     func verifySignature(key: SecKey, signature: CFData, algorithm: SecKeyAlgorithm, data: CFData) {
         guard SecKeyIsAlgorithmSupported(key, .verify, algorithm) else {
-            print("Algorithm not supported by verifying key")
+            print(MessageString.Keys.algorithmNotSupported)
             return
         }
         var error: Unmanaged<CFError>?
         guard SecKeyVerifySignature(key, algorithm, data, signature, &error) else {
-            print("Signature corrupted")
+            print(MessageString.Keys.signatureCorrupted)
             return
         }
         
-        print("Signature verified")
+        print(MessageString.Keys.signatureVerified)
     }
 
 }

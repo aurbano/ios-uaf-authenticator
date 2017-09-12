@@ -59,6 +59,7 @@
 		AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */; };
 		AAE788301F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */; };
 		AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */; };
+		AAEDA3FD1F66BB9400CB67BB /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDA3FC1F66BB9400CB67BB /* Register.swift */; };
 		AAEF2ADE1F618C8700834F26 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */; };
 		AAEF2ADF1F618C8700834F26 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,7 @@
 		AAE788161F4306BE00CE446D /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tags.swift; path = Requests/Tags.swift; sourceTree = "<group>"; };
 		AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewCell.swift; sourceTree = "<group>"; };
 		AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewController.swift; sourceTree = "<group>"; };
+		AAEDA3FC1F66BB9400CB67BB /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,6 +241,7 @@
 				AAD61B491F44A1D1007A2D12 /* ValidRegistrations.swift */,
 				AAD61B4B1F45D2BC007A2D12 /* AuthenticateDevice.swift */,
 				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
+				AAEDA3FC1F66BB9400CB67BB /* Register.swift */,
 				AAE788151F4306BE00CE446D /* RequestBuilder.swift */,
 				AAE788161F4306BE00CE446D /* Tags.swift */,
 			);
@@ -355,6 +358,7 @@
 				AAD61B4A1F44A1D1007A2D12 /* ValidRegistrations.swift in Sources */,
 				AAD61B481F4486C1007A2D12 /* ViewController.swift in Sources */,
 				AAE787F71F41F80900CE446D /* old.swift in Sources */,
+				AAEDA3FD1F66BB9400CB67BB /* Register.swift in Sources */,
 				AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
 				AAEF2ADE1F618C8700834F26 /* QRScannerViewController.swift in Sources */,
 				AAE7881B1F4306BE00CE446D /* Header.swift in Sources */,
