@@ -60,6 +60,7 @@
 		AAE788301F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */; };
 		AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */; };
 		AAEDA3FD1F66BB9400CB67BB /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDA3FC1F66BB9400CB67BB /* Register.swift */; };
+		AAEDA4031F68625D00CB67BB /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDA4021F68625D00CB67BB /* AlertViewController.swift */; };
 		AAEF2ADE1F618C8700834F26 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */; };
 		AAEF2ADF1F618C8700834F26 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -129,6 +130,7 @@
 		AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewCell.swift; sourceTree = "<group>"; };
 		AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewController.swift; sourceTree = "<group>"; };
 		AAEDA3FC1F66BB9400CB67BB /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		AAEDA4021F68625D00CB67BB /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +189,7 @@
 				AA6ABF261F4C618900E9C622 /* Utils.swift */,
 				AAE787F61F41F80900CE446D /* old.swift */,
 				AA4CEA931F26361000245921 /* Main.storyboard */,
+				AAEDA4021F68625D00CB67BB /* AlertViewController.swift */,
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
 				AA4CEA981F26361000245921 /* LaunchScreen.storyboard */,
 				AA4CEA9B1F26361000245921 /* Info.plist */,
@@ -376,6 +379,7 @@
 				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
 				AAE788211F4306BE00CE446D /* RegistrationObject.swift in Sources */,
 				AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */,
+				AAEDA4031F68625D00CB67BB /* AlertViewController.swift in Sources */,
 				AAE21EAC1F4463C900C8DBE8 /* Errors.swift in Sources */,
 				AAE21EAA1F44605C00C8DBE8 /* Constants.swift in Sources */,
 				AAD61B4C1F45D2BC007A2D12 /* AuthenticateDevice.swift in Sources */,

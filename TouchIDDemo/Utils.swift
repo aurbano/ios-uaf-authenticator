@@ -60,6 +60,20 @@ class Utils {
         let challenge = "\"challenge\": \"" + (request?.challenge)! + "\"\n}"
         return (appid + facetid + challenge)
     }
-
     
+    static func buildFcParams(challenge: String) -> String {
+        let appid = "{\n\"appID\": \"" + Constants.appID + "\",\n"
+        let facetid = "\"facetID\": \"http://ms.com\",\n"
+        let challenge = "\"challenge\": \"" + (challenge) + "\"\n}"
+        return (appid + facetid + challenge)
+    }
+    
+    static func parseScannedData(data: String) -> (challenge: String, serverData: String, url: String)? {
+        let lines = data.components(separatedBy: .whitespacesAndNewlines)
+        let challenge = lines[1]
+        let serverData = lines[3]
+        let url = lines[5]
+        
+        return (challenge, serverData, url)
+    }
 }

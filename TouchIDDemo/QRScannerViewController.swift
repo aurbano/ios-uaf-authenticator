@@ -8,6 +8,9 @@
 
 import UIKit
 import AVFoundation
+import MapKit
+import CoreLocation
+
 
 class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -58,6 +61,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+        
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView.frame = CGRect.zero
             return
@@ -81,7 +85,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 

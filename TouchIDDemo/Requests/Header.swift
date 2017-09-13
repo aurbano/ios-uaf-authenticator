@@ -22,6 +22,13 @@ class Header: Glossy {
         self.serverData = "serverData" <~~ json
     }
     
+    init(serverData: String) {
+        self.upv = Upv()
+        self.op = "Reg"
+        self.appId = Constants.appID
+        self.serverData = serverData
+    }
+    
     func toJSON() -> JSON? {
         return jsonify([
             "upv" ~~> self.upv,
@@ -41,6 +48,8 @@ class Upv: Glossy {
         self.major = "major" <~~ json
         self.minor = "minor" <~~ json
     }
+    
+    init() {}
     
     func toJSON() -> JSON? {
         return jsonify([

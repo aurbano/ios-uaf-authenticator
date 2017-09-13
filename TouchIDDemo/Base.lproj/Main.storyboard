@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-lI-EWb">
-                                <rect key="frame" x="16" y="124" width="343" height="190"/>
+                                <rect key="frame" x="16" y="124" width="343" height="230"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TfF-aS-LxV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -56,6 +56,13 @@
                                         <state key="normal" title="Scan QR code"/>
                                         <connections>
                                             <segue destination="Ocx-DO-iFc" kind="show" id="kRF-RI-wnn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqa-5u-BSP">
+                                        <rect key="frame" x="148.5" y="200" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <segue destination="Qwz-rf-SUh" kind="presentation" id="ZGb-oX-4iB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -203,6 +210,65 @@
             </objects>
             <point key="canvasLocation" x="2417" y="134"/>
         </scene>
+        <!--Alert View Controller-->
+        <scene sceneID="xqa-7I-Zzc">
+            <objects>
+                <viewController storyboardIdentifier="alert" id="Qwz-rf-SUh" customClass="AlertViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RW8-KL-wvD"/>
+                        <viewControllerLayoutGuide type="bottom" id="T1V-83-kcb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YZo-hc-hfg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOB-68-QBK">
+                                <rect key="frame" x="67" y="192" width="240" height="268"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Czm-pW-vOT">
+                                        <rect key="frame" x="0.0" y="70" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </mapView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2d-ao-3l8">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="A user attempted registration from this location:">
+                                                <attributes>
+                                                    <font key="NSFont" size="17" name=".SFNSText"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="t3S-HE-pAB">
+                                        <rect key="frame" x="0.0" y="232" width="240" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Allow"/>
+                                            <segment title="Decline"/>
+                                        </segments>
+                                        <connections>
+                                            <segue destination="V31-Ly-TL6" kind="unwind" unwindAction="unwindToViewControllerFromAlertWithSegue:" id="1xM-yY-Mok"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Czm-pW-vOT" id="heu-Bk-Gd5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G0n-mj-ld7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="V31-Ly-TL6" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3304.8000000000002" y="133.5832083958021"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="C7U-qc-QCP">
             <objects>
@@ -241,6 +307,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s8I-l7-L9f"/>
+        <segue reference="3dn-Gk-YE7"/>
     </inferredMetricsTieBreakers>
 </document>

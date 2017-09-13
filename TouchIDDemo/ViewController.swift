@@ -9,28 +9,44 @@
 import UIKit
 import LocalAuthentication
 import Foundation
+import MapKit
+import CoreLocation
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
-    var overlay = UIView()
-    var activityIndicator = UIActivityIndicatorView()
     var registration: Registration?
-    var scannedData: String?
+    var scannedData: String = ""
+//    var locationManager = CLLocationManager.init()
+
     //MARK: Properties
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var environment: UITextField!
-    @IBOutlet weak var infoLabel: UILabel!
 
     @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+        var success: Bool
         let qrScannerVC: QRScannerViewController = segue.source as! QRScannerViewController
+//        showAlert(latitude: 51.50476244954495, longitude: -0.023882389068603516)
         scannedData = qrScannerVC.dataCaptured
-        print(scannedData)
+        Register.sharedInstance.completeRegistration(with: scannedData) { success in
+            if (success) {
+                print("Successful registration")
+            }
+            else {
+                print("Registration failed")
+            }
+        }
+    }
+    
+    @IBAction func unwindToViewControllerFromAlert(segue: UIStoryboardSegue) {
+        let qrScannerVC: AlertViewController = segue.source as! AlertViewController
     }
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+//        showAlert(latitude: 51.50476244954495, longitude: -0.023882389068603516)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -42,19 +58,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func register(_ sender: UIButton) {
         self.view.endEditing(true)
-
+        var overlay = UIView()
+        let activityIndicator = UIActivityIndicatorView()
+        
         if (username.text != "" && environment.text != "") {
-            self.overlay = UIView(frame: self.view.frame)
-            self.overlay.backgroundColor = UIColor.black
-            self.overlay.alpha = 0.8
+            overlay = UIView(frame: self.view.frame)
+            overlay.backgroundColor = UIColor.black
+            overlay.alpha = 0.8
             
-            self.activityIndicator.center = self.view.center
-            self.activityIndicator.hidesWhenStopped = true
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
             
-            self.view.addSubview(self.overlay)
-            self.overlay.addSubview(self.activityIndicator)
+            self.view.addSubview(overlay)
+            overlay.addSubview(activityIndicator)
 
-            self.activityIndicator.startAnimating()
+            activityIndicator.startAnimating()
             
             let trimmedUsername = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let trimmedEnv = environment.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -63,28 +81,59 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 self.username.text = ""
                 self.environment.text = ""
                 
-//                let deadline = DispatchTime.now() + 1
-//                DispatchQueue.main.asyncAfter(deadline: deadline) {
-                    
-                    self.activityIndicator.stopAnimating()
-                    self.overlay.removeFromSuperview()
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
 
-                    if (success) {
-                        let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                    else {
-                        let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-//                }
+                if (success) {
+                    let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else {
+                    let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }
     
-    //MARK: Helper methods
+    
+    func showAlert(latitude: Double, longitude: Double) {
+        
+        
+        let mapView = MKMapView()
+//        let locationManager = CLLocationManager.init()
+//        locationManager.requestWhenInUseAuthorization()
+        
+        let alert = UIAlertController(title: "Location", message: "User registering from this location", preferredStyle: .alert)
+        
+
+        mapView.mapType = .standard
+        mapView.showsBuildings = true
+        
+//        alert.view.frame.size = CGSize(width: 1000, height: 800)
+//        mapView.frame = CGRect(x: 50, y:10, width: alert.view.frame.width * 0.6, height: alert.view.frame.height * 0.3)
+        
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        let span = MKCoordinateSpanMake(0.005, 0.005)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        mapView.addAnnotation(annotation)
+
+        alert.view.addSubview(mapView)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Allow", comment: "Default action"), style: UIAlertActionStyle.cancel, handler: {_ in NSLog("Registration fail alert")}))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Decline", comment: "Default action"), style:UIAlertActionStyle.destructive , handler: {_ in NSLog("Registration fail alert")}))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
     func addText(field: UILabel, text: String) {
         DispatchQueue.main.async() { field.text?.append(text) }
