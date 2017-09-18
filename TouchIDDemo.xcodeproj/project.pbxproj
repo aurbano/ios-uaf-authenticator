@@ -12,6 +12,7 @@
 		AA4CEA971F26361000245921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA961F26361000245921 /* Assets.xcassets */; };
 		AA4CEA9A1F26361000245921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA981F26361000245921 /* LaunchScreen.storyboard */; };
 		AA4CEAA31F26384D00245921 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */; };
+		AA69F29F1F6D60AE0044B455 /* TransactionsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA69F29E1F6D60AE0044B455 /* TransactionsPageViewController.swift */; };
 		AA6ABF231F4740AC00E9C622 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF221F4740AC00E9C622 /* AuthResponse.swift */; };
 		AA6ABF251F47433800E9C622 /* AuthAssertionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */; };
 		AA6ABF271F4C618900E9C622 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF261F4C618900E9C622 /* Utils.swift */; };
@@ -99,6 +100,7 @@
 		AA4CEA991F26361000245921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA4CEA9B1F26361000245921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		AA69F29E1F6D60AE0044B455 /* TransactionsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsPageViewController.swift; sourceTree = "<group>"; };
 		AA6ABF221F4740AC00E9C622 /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAssertionBuilder.swift; sourceTree = "<group>"; };
 		AA6ABF261F4C618900E9C622 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				AA6ABF261F4C618900E9C622 /* Utils.swift */,
 				AAE787F61F41F80900CE446D /* old.swift */,
 				AA4CEA931F26361000245921 /* Main.storyboard */,
+				AA69F29E1F6D60AE0044B455 /* TransactionsPageViewController.swift */,
 				AAEDA4021F68625D00CB67BB /* AlertViewController.swift */,
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
 				AA4CEA981F26361000245921 /* LaunchScreen.storyboard */,
@@ -377,6 +380,7 @@
 				AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */,
 				AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */,
 				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
+				AA69F29F1F6D60AE0044B455 /* TransactionsPageViewController.swift in Sources */,
 				AAE788211F4306BE00CE446D /* RegistrationObject.swift in Sources */,
 				AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */,
 				AAEDA4031F68625D00CB67BB /* AlertViewController.swift in Sources */,

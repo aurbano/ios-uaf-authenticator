@@ -16,7 +16,7 @@ class Register {
     func register(username: String, environment: String, callback: @escaping (Bool) -> ()) {
         
         let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regRequest/" + username, method: "GET")
-        var regRequest: GetRequest?
+//        var regRequest: GetRequest?
         
         var getResult: GetRequest?
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
@@ -32,7 +32,6 @@ class Register {
             case .success(let responseObject):
                 let json = responseObject as! [[String:AnyObject]]
                 getResult = GetRequest(json: json[0])!
-                getResult = regRequest
                 let fcParams = Utils.buildFcParams(request: getResult)
                 
                 let fcParamsData = fcParams.data(using: .utf8)! as NSData
@@ -98,7 +97,7 @@ class Register {
         regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
         let jsonResponse = regResponse.toJSONArray()
         
-        let requestBuilder = RequestBuilder(url: data.url, method: "POST")
+        let requestBuilder = RequestBuilder(url: data.url + "/v1/public/regResponse", method: "PUT")
         
         let header = ["application/json" : "Content-Type"]
         requestBuilder.addHeaders(headers: header)
@@ -124,7 +123,14 @@ class Register {
                 if(postResult?.status == Status.SUCCESS && postResult?.attestVerifiedStatus == AttestationStatus.VALID) {
                     print(MessageString.Info.regSuccess)
                     
-                    let registration = Registration(appID: (regResponse.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: environment, username: username, keyID: (regResponse.assertions?[0].keyID)!)
+                    let registration = Registration(
+                        appID: (regResponse.header?.appId)!,
+                        keyTag: (regResponse.assertions?[0].privKeyTag)!,
+                        url: data.url,
+                        env: environment,
+                        username: username,
+                        keyID: (regResponse.assertions?[0].keyID)!
+                    )
                     
                     ValidRegistrations.addRegistration(registrationToAdd: registration)
                     Register.sharedInstance.saveRegistrations()

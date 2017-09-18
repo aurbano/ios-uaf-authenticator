@@ -14,7 +14,7 @@ class RegisteredAccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addSample()
         self.refreshControl?.addTarget(self, action: #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl!)
         
@@ -32,6 +32,7 @@ class RegisteredAccountTableViewController: UITableViewController {
     }
 
     func refresh() {
+        addSample()
         self.tableView.reloadData()
         refreshControl?.endRefreshing()
     }
@@ -40,14 +41,16 @@ class RegisteredAccountTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-//    func loadSample() {
-//        let reg1 = Registration(appID: "sample reg", keyTag: "sample reg", url: "sample reg", env: "sample env1", username: "sample1", keyID: Array<UInt8>())
-//        ValidRegistrations.addRegistration(registrationToAdd: reg1)
-//        
-//        let reg2 = Registration(appID: "sample appid", keyTag: "sample tag", url: "sample url", env: "sample env2", username: "sample2", keyID: Array<UInt8>())
-//        ValidRegistrations.addRegistration(registrationToAdd: reg2)
-//
-//    }
+    func addSample() {
+        
+        let reg1 = Registration(appID: "appID1", keyTag: "keyTag1", url: "url", env: "dev", username: "iva", keyID: Array<UInt8>())
+        let reg2 = Registration(appID: "appID2", keyTag: "keyTag2", url: "url", env: "prod", username: "iva", keyID: Array<UInt8>())
+        
+        ValidRegistrations.addRegistration(registrationToAdd: reg1)
+        ValidRegistrations.addRegistration(registrationToAdd: reg2)
+        
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -168,4 +171,18 @@ class RegisteredAccountTableViewController: UITableViewController {
         let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
         return savedRegs as? [Registration]
     }
+    
+    @IBAction func unwindFromPageViewDecline(segue: UIStoryboardSegue) {
+        print("decline")
+        //remove transaction and send response
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func unwindFromPageViewAllow(segue: UIStoryboardSegue) {
+        print("sign")
+        //remove transaction and send response
+        self.tableView.reloadData()
+    }
+    
+
 }

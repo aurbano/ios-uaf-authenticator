@@ -12,11 +12,22 @@ import CoreLocation
 
 class AlertViewController: ViewController {
 
+    var pageIndex: Int = 0
+    var coordinates: CLLocationCoordinate2D!
+    
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var alertView: UIView!
+    @IBOutlet weak var webView: UIWebView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        showMap(latitude: 51.50476244954495, longitude: -0.023882389068603516)
+                
+        self.alertView.center = self.view.center
+        showMap(location: coordinates)
+//        let url = URL(string: "https://www.morganstanley.com/")
+//        let reqObj = URLRequest(url: url!)
+//        webView.loadRequest(reqObj)
         // Do any additional setup after loading the view.
     }
 
@@ -25,19 +36,18 @@ class AlertViewController: ViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showMap(latitude: Double, longitude: Double) {
+    func showMap(location: CLLocationCoordinate2D) {
 
-        self.mapView.mapType = .standard
-        self.mapView.showsBuildings = true
+        mapView.mapType = .standard
+        mapView.showsBuildings = true
         
-        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let span = MKCoordinateSpanMake(0.005, 0.005)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        self.mapView.addAnnotation(annotation)
+        mapView.addAnnotation(annotation)
 
     }
     /*
@@ -49,5 +59,15 @@ class AlertViewController: ViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    @IBAction func declineButton(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func signButton(_ sender: UIButton) {
+        
+    }
+    
 
 }

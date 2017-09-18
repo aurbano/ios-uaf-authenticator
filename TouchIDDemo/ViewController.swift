@@ -14,7 +14,7 @@ import CoreLocation
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
-    var registration: Registration?
+//    var registration: Registration?
     var scannedData: String = ""
 //    var locationManager = CLLocationManager.init()
 
@@ -23,37 +23,58 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var environment: UITextField!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //        showAlert(latitude: 51.50476244954495, longitude: -0.023882389068603516)
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    
     @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
-        var success: Bool
+        var overlay = UIView()
+        let activityIndicator = UIActivityIndicatorView()
+        
+        overlay = UIView(frame: self.view.frame)
+        overlay.backgroundColor = UIColor.black
+        overlay.alpha = 0.8
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        
+        self.view.addSubview(overlay)
+        overlay.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+
         let qrScannerVC: QRScannerViewController = segue.source as! QRScannerViewController
 //        showAlert(latitude: 51.50476244954495, longitude: -0.023882389068603516)
         scannedData = qrScannerVC.dataCaptured
         Register.sharedInstance.completeRegistration(with: scannedData) { success in
             if (success) {
-                print("Successful registration")
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
+                
+                let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+                
+                self.present(alert, animated: true, completion: nil)
             }
             else {
-                print("Registration failed")
+                let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
     
-    @IBAction func unwindToViewControllerFromAlert(segue: UIStoryboardSegue) {
-        let qrScannerVC: AlertViewController = segue.source as! AlertViewController
-    }
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        showAlert(latitude: 51.50476244954495, longitude: -0.023882389068603516)
-        
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+//    @IBAction func unwindToViewControllerFromAlert(segue: UIStoryboardSegue) {
+//        let qrScannerVC: AlertViewController = segue.source as! AlertViewController
+//    }
     
     
     @IBAction func register(_ sender: UIButton) {
@@ -81,12 +102,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 self.username.text = ""
                 self.environment.text = ""
                 
-                activityIndicator.stopAnimating()
-                overlay.removeFromSuperview()
 
                 if (success) {
+                    activityIndicator.stopAnimating()
+                    overlay.removeFromSuperview()
+
                     let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+
                     self.present(alert, animated: true, completion: nil)
                 }
                 else {

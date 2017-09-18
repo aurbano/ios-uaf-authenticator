@@ -12,7 +12,7 @@ struct Constants {
     static let aaid = "EBA0#0001"
     static let assertionScheme = "UAFV1TLV"
     static let assertionInfo = Array<UInt8>([0x00, 0x00, 0x01, 0x02, 0x00, 0x00, 0x01])
-    static let domain = "https://uaf-test-service.herokuapp.com"
+    static let domain = "http://169.254.223.34:8080"
     static let appID = "http://169.254.226.97:8080/v1/public/uaf/facets"
     
     struct Environment {
