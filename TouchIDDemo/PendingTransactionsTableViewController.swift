@@ -14,7 +14,6 @@ class PendingTransactionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSample()
         self.refreshControl?.addTarget(self, action: #selector(PendingTransactionsTableViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl!)
         NotificationCenter.default.addObserver(self,
@@ -39,10 +38,7 @@ class PendingTransactionsTableViewController: UITableViewController {
     }
     
     func refresh() {
-        //get registrationID
-        //        AuthenticateDevice.sharedInstance.authenticate(registration: ) {
-        //            //TODO: Handle callback
-        //        }
+        AuthenticateDevice.sharedInstance.getPendingTransactions()
         self.tableView.reloadData()
         refreshControl?.endRefreshing()
     }

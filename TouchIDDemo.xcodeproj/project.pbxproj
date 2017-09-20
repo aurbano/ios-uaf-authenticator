@@ -17,6 +17,7 @@
 		AA6ABF251F47433800E9C622 /* AuthAssertionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */; };
 		AA6ABF271F4C618900E9C622 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF261F4C618900E9C622 /* Utils.swift */; };
 		AA6ABF281F4C618900E9C622 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF261F4C618900E9C622 /* Utils.swift */; };
+		AA938B8A1F72CC8300BABC1A /* CurrencyEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA938B891F72CC8300BABC1A /* CurrencyEnum.swift */; };
 		AAA6D8D41F34B81D00E014A5 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; };
 		AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */; };
@@ -109,6 +110,7 @@
 		AA6ABF221F4740AC00E9C622 /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAssertionBuilder.swift; sourceTree = "<group>"; };
 		AA6ABF261F4C618900E9C622 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		AA938B891F72CC8300BABC1A /* CurrencyEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyEnum.swift; sourceTree = "<group>"; };
 		AAA6D8D31F34B81D00E014A5 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
 		AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AAD61B471F4486C1007A2D12 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				AAE788111F4306BE00CE446D /* RegistrationObject.swift */,
 				AAD61B491F44A1D1007A2D12 /* ValidRegistrations.swift */,
 				AAE9CBA61F6FFAA900EA70DD /* PendingTransactions.swift */,
+				AA938B891F72CC8300BABC1A /* CurrencyEnum.swift */,
 				AAD61B4B1F45D2BC007A2D12 /* AuthenticateDevice.swift */,
 				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
 				AAEDA3FC1F66BB9400CB67BB /* Register.swift */,
@@ -404,6 +407,7 @@
 				AAE7881D1F4306BE00CE446D /* KeysManipulation.swift in Sources */,
 				AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */,
 				AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */,
+				AA938B8A1F72CC8300BABC1A /* CurrencyEnum.swift in Sources */,
 				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
 				AA69F29F1F6D60AE0044B455 /* TransactionsPageViewController.swift in Sources */,
 				AAE788211F4306BE00CE446D /* RegistrationObject.swift in Sources */,

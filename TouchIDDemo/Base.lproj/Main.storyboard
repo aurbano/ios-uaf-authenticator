@@ -181,7 +181,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIU-qh-MXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5055" y="-1416"/>
+            <point key="canvasLocation" x="4420" y="-629"/>
         </scene>
         <!--Alert View Controller-->
         <scene sceneID="xqa-7I-Zzc">
@@ -376,6 +376,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="LaS-N6-VhJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Qcs-2z-pvh">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -391,6 +392,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kRF-RI-wnn"/>
+        <segue reference="xZT-Rz-NLR"/>
     </inferredMetricsTieBreakers>
 </document>

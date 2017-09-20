@@ -71,8 +71,3 @@ class Transaction: Equatable {
     }
 }
 
-enum Currency: String {
-    case gbp = "GBP"
-    case euro = "EUR"
-    case usd = "USD"
-}
