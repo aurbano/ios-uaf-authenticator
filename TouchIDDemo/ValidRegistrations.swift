@@ -20,14 +20,13 @@ class ValidRegistrations {
     }
     
     static func deleteRegistration(registrationToDelete: Registration) -> Bool {
-        var removed = false
         for (index, reg) in registrations.enumerated() {
             if reg == registrationToDelete {
                 registrations.remove(at: index)
-                removed = true
+                return true
             }
         }
-        return removed
+        return false
     }
     
     static func deleteRegistration(atIndex: Int) -> Bool {

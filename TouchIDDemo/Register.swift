@@ -13,72 +13,6 @@ class Register {
     static let sharedInstance = Register()
     private init() {}
     
-    func register(username: String, environment: String, callback: @escaping (Bool) -> ()) {
-        
-        let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regRequest/" + username, method: "GET")
-//        var regRequest: GetRequest?
-        
-        var getResult: GetRequest?
-        Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
-            switch response.result {
-            case .failure(let error):
-                print(error)
-                getResult = nil
-                callback(false)
-                
-                if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
-                    print(responseString)
-                }
-            case .success(let responseObject):
-                let json = responseObject as! [[String:AnyObject]]
-                getResult = GetRequest(json: json[0])!
-                let fcParams = Utils.buildFcParams(request: getResult)
-                
-                let fcParamsData = fcParams.data(using: .utf8)! as NSData
-                let encoded = fcParamsData.base64EncodedString()
-                
-                let regResponse = RegResponse(header: (getResult?.header)!, fcparams: encoded)
-                regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
-                let jsonResponse = regResponse.toJSONArray()
-                
-                let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regResponse", method: "POST")
-                
-                let header = ["application/json" : "Content-Type"]
-                requestBuilder.addHeaders(headers: header)
-                
-                let data = try! JSONSerialization.data(withJSONObject: jsonResponse, options: [])
-                requestBuilder.addBody(body: data)
-                
-                var postResult: RegOutcome?
-                Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
-                    switch response.result {
-                    case .failure(let error):
-                        print(error)
-                        
-                        if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
-                            print(responseString)
-                            callback(false)
-                        }
-                    case .success(let responseObject):
-                        print(responseObject)
-                        let json = responseObject as! [[String:AnyObject]]
-                        let regOutcome = RegOutcome(json: json[0])!
-                        postResult = regOutcome
-                        if(postResult?.status == Status.SUCCESS && postResult?.attestVerifiedStatus == AttestationStatus.VALID) {
-                            print(MessageString.Info.regSuccess)
-                            
-                            let registration = Registration(appID: (getResult?.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: environment, username: username, keyID: (regResponse.assertions?[0].keyID)!)
-                            
-                            ValidRegistrations.addRegistration(registrationToAdd: registration)
-                            Register.sharedInstance.saveRegistrations()
-                            callback(true)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
     func completeRegistration(with scannedData: String, callback: @escaping (Bool) -> ()) {
         let environment = "dev"
         let username = "iva"
@@ -105,6 +39,8 @@ class Register {
         let requestBody = try! JSONSerialization.data(withJSONObject: jsonResponse, options: [])
         requestBuilder.addBody(body: requestBody)
         
+        print(requestBody)
+        
         var postResult: RegOutcome?
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
             switch response.result {
@@ -124,6 +60,7 @@ class Register {
                     print(MessageString.Info.regSuccess)
                     
                     let registration = Registration(
+                        registrationID: regOutcome.registrationID,
                         appID: (regResponse.header?.appId)!,
                         keyTag: (regResponse.assertions?[0].privKeyTag)!,
                         url: data.url,
@@ -135,6 +72,9 @@ class Register {
                     ValidRegistrations.addRegistration(registrationToAdd: registration)
                     Register.sharedInstance.saveRegistrations()
                     callback(true)
+                }
+                else {
+                    callback(false)
                 }
             }
         }

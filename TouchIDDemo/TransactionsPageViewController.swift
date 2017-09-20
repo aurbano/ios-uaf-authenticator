@@ -11,11 +11,10 @@ import MapKit
 
 class TransactionsPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
-    var arrCoordinates = Array<CLLocationCoordinate2D>()
-    
+//    var arrCoordinates = Array<CLLocationCoordinate2D>()
+    var page: Int!
     override func viewDidLoad() {
         super.viewDidLoad()
-        arrCoordinates = [CLLocationCoordinate2D(latitude: 51.50476244954495, longitude: -0.023882389068603516), CLLocationCoordinate2D(latitude: 51.5030154, longitude: -0.022172700000055556)]
 
         self.dataSource = self
         self.setViewControllers([getViewControllerAtIndex(index: 0)] as [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
@@ -50,7 +49,7 @@ class TransactionsPageViewController: UIPageViewController, UIPageViewController
             return nil;
         }
         index += 1;
-        if (index == arrCoordinates.count)
+        if (index == PendingTransactions.items())
         {
             return nil;
         }
@@ -61,12 +60,25 @@ class TransactionsPageViewController: UIPageViewController, UIPageViewController
     {
         // Create a new view controller and pass suitable data.
         let pageContentViewController = self.storyboard?.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
-        pageContentViewController.coordinates = arrCoordinates[index]
+        let transaction = PendingTransactions.getTransaction(atIndex: index)
+        pageContentViewController.coordinates = transaction.location
+        pageContentViewController.company = transaction.company
+        pageContentViewController.date = transaction.date
+        pageContentViewController.value = String(transaction.value) + transaction.currency.rawValue
         pageContentViewController.pageIndex = index
+        
         return pageContentViewController
     }
 
+//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+//        return
+//    }
 
+
+    @IBAction func openPageView(segue: UIStoryboardSegue) {
+
+    }
+    
     /*
     // MARK: - Navigation
 

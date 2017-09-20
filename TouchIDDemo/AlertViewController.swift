@@ -14,10 +14,16 @@ class AlertViewController: ViewController {
 
     var pageIndex: Int = 0
     var coordinates: CLLocationCoordinate2D!
+    var company: String!
+    var date: String!
+    var value: String!
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var alertView: UIView!
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var companyLabel: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -25,6 +31,10 @@ class AlertViewController: ViewController {
                 
         self.alertView.center = self.view.center
         showMap(location: coordinates)
+        companyLabel.text = MessageString.Labels.company + company
+        valueLabel.text = MessageString.Labels.value + value
+        dateLabel.text = MessageString.Labels.date + date
+        
 //        let url = URL(string: "https://www.morganstanley.com/")
 //        let reqObj = URLRequest(url: url!)
 //        webView.loadRequest(reqObj)
@@ -61,13 +71,22 @@ class AlertViewController: ViewController {
     */
     
     
-    @IBAction func declineButton(_ sender: UIButton) {
-        
+    @IBAction func declineButtonClick(_ sender: UIButton) {
+        let index = self.pageIndex
+        if (PendingTransactions.removeTransaction(atIndex: index)) {
+            print("declined")
+            self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: Notification.Name("UPDATED_DATA"), object: nil)
+        }
     }
     
-    @IBAction func signButton(_ sender: UIButton) {
-        
+    @IBAction func signButtonClick(_ sender: UIButton) {
+        let index = self.pageIndex
+        if (PendingTransactions.removeTransaction(atIndex: index)) {
+            print("approved")
+            self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: Notification.Name("UPDATED_DATA"), object: nil)
+        }
     }
-    
 
 }

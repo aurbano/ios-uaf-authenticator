@@ -11,19 +11,19 @@ import UIKit
 class RegisteredAccountTableViewController: UITableViewController {
     
     //MARK: Properties
+    var scannedData: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSample()
         self.refreshControl?.addTarget(self, action: #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl!)
         
-        navigationItem.leftBarButtonItem = editButtonItem
+//        navigationItem.leftBarButtonItem = editButtonItem
 
-        loadRegistrations()
-        if (ValidRegistrations.items() == 0) {
-            self.performSegue(withIdentifier: "noRegistrationsSegue", sender: self)
-        }
+        //Pull pending transactions
+//        if (PendingTransactions.items() == 0) {
+//            self.performSegue(withIdentifier: "noRegistrationsSegue", sender: self)
+//        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -31,8 +31,16 @@ class RegisteredAccountTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    func loadList() {
+        self.tableView.reloadData()
+    }
+    
     func refresh() {
         addSample()
+        //get registrationID
+//        AuthenticateDevice.sharedInstance.authenticate(registration: ) {
+//            //TODO: Handle callback
+//        }
         self.tableView.reloadData()
         refreshControl?.endRefreshing()
     }
@@ -42,13 +50,24 @@ class RegisteredAccountTableViewController: UITableViewController {
     }
     
     func addSample() {
+        let registration1 = Registration(registrationID: "regID1",
+                                         appID: "appID1",
+                                         keyTag: "keyTag1",
+                                         url: "url",
+                                         env: "dev",
+                                         username: "iva",
+                                         keyID: Array<UInt8>())
         
-        let reg1 = Registration(appID: "appID1", keyTag: "keyTag1", url: "url", env: "dev", username: "iva", keyID: Array<UInt8>())
-        let reg2 = Registration(appID: "appID2", keyTag: "keyTag2", url: "url", env: "prod", username: "iva", keyID: Array<UInt8>())
-        
-        ValidRegistrations.addRegistration(registrationToAdd: reg1)
-        ValidRegistrations.addRegistration(registrationToAdd: reg2)
-        
+        let registration2 = Registration(registrationID: "regID2",
+                                         appID: "appID2",
+                                         keyTag: "keyTag2",
+                                         url: "url",
+                                         env: "qa",
+                                         username: "iva",
+                                         keyID: Array<UInt8>())
+
+        ValidRegistrations.addRegistration(registrationToAdd: registration1)
+        ValidRegistrations.addRegistration(registrationToAdd: registration2)
     }
 
     
@@ -79,7 +98,7 @@ class RegisteredAccountTableViewController: UITableViewController {
         
         let registration = ValidRegistrations.registrations[indexPath.row]
 
-        cell.envLabel.text = ("Environment: " + registration.environment)
+        cell.environment.text = ("Environment: " + registration.environment)
         cell.username.text = ("Username: " + registration.username)
         cell.index = indexPath.row
 
@@ -127,23 +146,12 @@ class RegisteredAccountTableViewController: UITableViewController {
     }
     */
 
-    /*
+   /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//        guard ((segue.destination as? QRScannerViewController) != nil) else {
-//            fatalError("Unexpected destination: \(segue.destination)")
-//        }
-//        
-//        guard let selectedRegistrationCell = sender as? RegisteredAccountTableViewCell else {
-//            fatalError("Unexpected sender: \(String(describing: sender))")
-//        }
-//        
-//        guard tableView.indexPath(for: selectedRegistrationCell) != nil else {
-//            fatalError("The selected cell is not being displayed by the table")
-//        }
+        
     }
 */
     
@@ -172,17 +180,42 @@ class RegisteredAccountTableViewController: UITableViewController {
         return savedRegs as? [Registration]
     }
     
-    @IBAction func unwindFromPageViewDecline(segue: UIStoryboardSegue) {
-        print("decline")
-        //remove transaction and send response
-        self.tableView.reloadData()
+    @IBAction func unwindToRegistrationsTableView(segue: UIStoryboardSegue) {
+        var overlay = UIView()
+        let activityIndicator = UIActivityIndicatorView()
+        
+        overlay = UIView(frame: self.view.frame)
+        overlay.backgroundColor = UIColor.black
+        overlay.alpha = 0.8
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        
+        self.view.addSubview(overlay)
+        overlay.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        
+        let qrScannerVC: QRScannerViewController = segue.source as! QRScannerViewController
+        scannedData = qrScannerVC.dataCaptured
+        Register.sharedInstance.completeRegistration(with: scannedData) { success in
+            if (success) {
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
+                
+                let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+            else {
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
+                
+                let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
-    
-    @IBAction func unwindFromPageViewAllow(segue: UIStoryboardSegue) {
-        print("sign")
-        //remove transaction and send response
-        self.tableView.reloadData()
-    }
-    
-
 }

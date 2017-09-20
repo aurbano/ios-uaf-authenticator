@@ -60,10 +60,15 @@
 		AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */; };
 		AAE788301F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */; };
 		AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */; };
+		AAE9CBA71F6FFAA900EA70DD /* PendingTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9CBA61F6FFAA900EA70DD /* PendingTransactions.swift */; };
+		AAE9CBA91F71139D00EA70DD /* AuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9CBA81F71139D00EA70DD /* AuthResult.swift */; };
+		AAE9CBAB1F71587900EA70DD /* BottomBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9CBAA1F71587900EA70DD /* BottomBarController.swift */; };
 		AAEDA3FD1F66BB9400CB67BB /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDA3FC1F66BB9400CB67BB /* Register.swift */; };
 		AAEDA4031F68625D00CB67BB /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDA4021F68625D00CB67BB /* AlertViewController.swift */; };
 		AAEF2ADE1F618C8700834F26 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */; };
 		AAEF2ADF1F618C8700834F26 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */; };
+		AAF013181F72623B00B07E93 /* PendingTransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF013171F72623B00B07E93 /* PendingTransactionsTableViewController.swift */; };
+		AAF0131A1F72631500B07E93 /* PendingTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF013191F72631500B07E93 /* PendingTransactionsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,9 +136,14 @@
 		AAE788161F4306BE00CE446D /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tags.swift; path = Requests/Tags.swift; sourceTree = "<group>"; };
 		AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewCell.swift; sourceTree = "<group>"; };
 		AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewController.swift; sourceTree = "<group>"; };
+		AAE9CBA61F6FFAA900EA70DD /* PendingTransactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingTransactions.swift; sourceTree = "<group>"; };
+		AAE9CBA81F71139D00EA70DD /* AuthResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResult.swift; sourceTree = "<group>"; };
+		AAE9CBAA1F71587900EA70DD /* BottomBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarController.swift; sourceTree = "<group>"; };
 		AAEDA3FC1F66BB9400CB67BB /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		AAEDA4021F68625D00CB67BB /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		AAF013171F72623B00B07E93 /* PendingTransactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingTransactionsTableViewController.swift; sourceTree = "<group>"; };
+		AAF013191F72631500B07E93 /* PendingTransactionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingTransactionsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,12 +195,12 @@
 				AA4CEA8F1F26361000245921 /* AppDelegate.swift */,
 				AAE21EAB1F4463C900C8DBE8 /* Errors.swift */,
 				AAD61B471F4486C1007A2D12 /* ViewController.swift */,
-				AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */,
-				AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */,
+				AAF0131B1F72642C00B07E93 /* TableViews */,
 				AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */,
 				AA6ABF261F4C618900E9C622 /* Utils.swift */,
 				AAE787F61F41F80900CE446D /* old.swift */,
 				AA4CEA931F26361000245921 /* Main.storyboard */,
+				AAE9CBAA1F71587900EA70DD /* BottomBarController.swift */,
 				AA69F29E1F6D60AE0044B455 /* TransactionsPageViewController.swift */,
 				AAEDA4021F68625D00CB67BB /* AlertViewController.swift */,
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
@@ -216,6 +226,7 @@
 			children = (
 				AAE7880C1F4306BE00CE446D /* Assertions.swift */,
 				AAE788131F4306BE00CE446D /* GetRequest.swift */,
+				AAE9CBA81F71139D00EA70DD /* AuthResult.swift */,
 				AAE788121F4306BE00CE446D /* RegOutcome.swift */,
 				AA6ABF221F4740AC00E9C622 /* AuthResponse.swift */,
 				AAE788141F4306BE00CE446D /* RegResponse.swift */,
@@ -245,6 +256,7 @@
 				AAE788101F4306BE00CE446D /* PropertyKeys.swift */,
 				AAE788111F4306BE00CE446D /* RegistrationObject.swift */,
 				AAD61B491F44A1D1007A2D12 /* ValidRegistrations.swift */,
+				AAE9CBA61F6FFAA900EA70DD /* PendingTransactions.swift */,
 				AAD61B4B1F45D2BC007A2D12 /* AuthenticateDevice.swift */,
 				AAE787FB1F42FC9100CE446D /* RegisterDevice.swift */,
 				AAEDA3FC1F66BB9400CB67BB /* Register.swift */,
@@ -252,6 +264,17 @@
 				AAE788161F4306BE00CE446D /* Tags.swift */,
 			);
 			name = requests;
+			sourceTree = "<group>";
+		};
+		AAF0131B1F72642C00B07E93 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */,
+				AAF013191F72631500B07E93 /* PendingTransactionsTableViewCell.swift */,
+				AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */,
+				AAF013171F72623B00B07E93 /* PendingTransactionsTableViewController.swift */,
+			);
+			name = TableViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,12 +388,14 @@
 				AAD61B481F4486C1007A2D12 /* ViewController.swift in Sources */,
 				AAE787F71F41F80900CE446D /* old.swift in Sources */,
 				AAEDA3FD1F66BB9400CB67BB /* Register.swift in Sources */,
+				AAE9CBA71F6FFAA900EA70DD /* PendingTransactions.swift in Sources */,
 				AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
 				AAEF2ADE1F618C8700834F26 /* QRScannerViewController.swift in Sources */,
 				AAE7881B1F4306BE00CE446D /* Header.swift in Sources */,
 				AAE788171F4306BE00CE446D /* Assertions.swift in Sources */,
 				AAE788251F4306BE00CE446D /* GetRequest.swift in Sources */,
 				AA6ABF231F4740AC00E9C622 /* AuthResponse.swift in Sources */,
+				AAF013181F72623B00B07E93 /* PendingTransactionsTableViewController.swift in Sources */,
 				AA6ABF251F47433800E9C622 /* AuthAssertionBuilder.swift in Sources */,
 				AAE788291F4306BE00CE446D /* RequestBuilder.swift in Sources */,
 				AAE7882B1F4306BE00CE446D /* Tags.swift in Sources */,
@@ -382,9 +407,12 @@
 				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
 				AA69F29F1F6D60AE0044B455 /* TransactionsPageViewController.swift in Sources */,
 				AAE788211F4306BE00CE446D /* RegistrationObject.swift in Sources */,
+				AAF0131A1F72631500B07E93 /* PendingTransactionsTableViewCell.swift in Sources */,
 				AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */,
 				AAEDA4031F68625D00CB67BB /* AlertViewController.swift in Sources */,
 				AAE21EAC1F4463C900C8DBE8 /* Errors.swift in Sources */,
+				AAE9CBAB1F71587900EA70DD /* BottomBarController.swift in Sources */,
+				AAE9CBA91F71139D00EA70DD /* AuthResult.swift in Sources */,
 				AAE21EAA1F44605C00C8DBE8 /* Constants.swift in Sources */,
 				AAD61B4C1F45D2BC007A2D12 /* AuthenticateDevice.swift in Sources */,
 				AA6ABF271F4C618900E9C622 /* Utils.swift in Sources */,

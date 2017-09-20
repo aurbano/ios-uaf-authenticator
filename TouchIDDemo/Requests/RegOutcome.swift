@@ -17,14 +17,15 @@ class RegOutcome: Decodable {
     var attestCert: String?
     var attestDataToSign: String?
     var attestSignature: String?
-    var attestVerifiedStatus: AttestationStatus?
+    var attestVerifiedStatus: AttestationStatus!
     var authenticator: Authenticator?
     var deviceID: String?
-    var status: Status?
+    var status: Status!
     var tcDisplayPNGCharacteristics: String?
     var timestamp: Int64?
     var userID: String?
     var username: String?
+    var registrationID: String!
     
     required init?(json: JSON) {
         self.authenticatorVersion = "AuthenticatorVersion" <~~ json
@@ -41,6 +42,7 @@ class RegOutcome: Decodable {
         self.timestamp = "timeStamp" <~~ json
         self.userID = "userId" <~~ json
         self.username = "username" <~~ json
+        self.registrationID = "registrationID" <~~ json
     }
 }
 

@@ -42,4 +42,10 @@ struct MessageString {
         static let regFail = "Registration failed"
         static let authSuccess = "Logged in"
     }
+    
+    struct Labels {
+        static let company = "Company: "
+        static let value = "Value: "
+        static let date = "Date: "
+    }
 }

@@ -12,5 +12,36 @@ import CryptoSwift
 import os.log
 
 class AuthResponse {
+    var header: Header? = nil
+    var fcparams: String? = nil
+    var assertions: [Assertions]? = nil
+    var registrationID: String? = nil
+    
+    private init() {}
+    
+    init(header: Header, fcparams: String) {
+        self.header = header
+        self.fcparams = fcparams
+    }
+    
+    required init?(json: JSON) {
+        self.header = "header" <~~ json
+        self.fcparams = "fcParams" <~~ json
+        self.assertions = "assertions" <~~ json
+        self.registrationID = "registrationID" <~~ json
+    }
+    
+    func toJSON() -> JSON? {
+        return jsonify([
+            "header" ~~> self.header,
+            "fcParams" ~~> self.fcparams,
+            "assertions" ~~> self.assertions,
+            "registrationID" ~~> self.registrationID
+            ])
+    }
+    
+    func toJSONArray() -> [JSON?] {
+        return [toJSON()]
+    }
 
 }

@@ -232,3 +232,144 @@ import Foundation
 //    }
 
 
+//    @IBAction func register(_ sender: UIButton) {
+//        self.view.endEditing(true)
+//        var overlay = UIView()
+//        let activityIndicator = UIActivityIndicatorView()
+//
+//        if (username.text != "" && environment.text != "") {
+//            overlay = UIView(frame: self.view.frame)
+//            overlay.backgroundColor = UIColor.black
+//            overlay.alpha = 0.8
+//
+//            activityIndicator.center = self.view.center
+//            activityIndicator.hidesWhenStopped = true
+//
+//            self.view.addSubview(overlay)
+//            overlay.addSubview(activityIndicator)
+//
+//            activityIndicator.startAnimating()
+//
+//            let trimmedUsername = username.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//            let trimmedEnv = environment.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+//
+//            Register.sharedInstance.register(username: trimmedUsername, environment: trimmedEnv) { (success) in
+//                self.username.text = ""
+//                self.environment.text = ""
+//
+//
+//                if (success) {
+//                    activityIndicator.stopAnimating()
+//                    overlay.removeFromSuperview()
+//
+//                    let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+//
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//                else {
+//                    let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }
+//        }
+//    }
+
+//func register(username: String, environment: String, callback: @escaping (Bool) -> ()) {
+//    
+//    let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regRequest/" + username, method: "GET")
+//    //        var regRequest: GetRequest?
+//    
+//    var getResult: GetRequest?
+//    Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
+//        switch response.result {
+//        case .failure(let error):
+//            print(error)
+//            getResult = nil
+//            callback(false)
+//            
+//            if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
+//                print(responseString)
+//            }
+//        case .success(let responseObject):
+//            let json = responseObject as! [[String:AnyObject]]
+//            getResult = GetRequest(json: json[0])!
+//            let fcParams = Utils.buildFcParams(request: getResult)
+//            
+//            let fcParamsData = fcParams.data(using: .utf8)! as NSData
+//            let encoded = fcParamsData.base64EncodedString()
+//            
+//            let regResponse = RegResponse(header: (getResult?.header)!, fcparams: encoded)
+//            regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
+//            let jsonResponse = regResponse.toJSONArray()
+//            
+//            let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regResponse", method: "POST")
+//            
+//            let header = ["application/json" : "Content-Type"]
+//            requestBuilder.addHeaders(headers: header)
+//            
+//            let data = try! JSONSerialization.data(withJSONObject: jsonResponse, options: [])
+//            requestBuilder.addBody(body: data)
+//            
+//            var postResult: RegOutcome?
+//            Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
+//                switch response.result {
+//                case .failure(let error):
+//                    print(error)
+//                    
+//                    if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
+//                        print(responseString)
+//                        callback(false)
+//                    }
+//                case .success(let responseObject):
+//                    print(responseObject)
+//                    let json = responseObject as! [[String:AnyObject]]
+//                    let regOutcome = RegOutcome(json: json[0])!
+//                    postResult = regOutcome
+//                    if(postResult?.status == Status.SUCCESS && postResult?.attestVerifiedStatus == AttestationStatus.VALID) {
+//                        print(MessageString.Info.regSuccess)
+//                        
+//                        let registration = Registration(appID: (getResult?.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: environment, username: username, keyID: (regResponse.assertions?[0].keyID)!)
+//                        
+//                        ValidRegistrations.addRegistration(registrationToAdd: registration)
+//                        Register.sharedInstance.saveRegistrations()
+//                        callback(true)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+
+
+//func showAlert(latitude: Double, longitude: Double) {
+//    
+//    
+//    let mapView = MKMapView()
+//    let alert = UIAlertController(title: "Location", message: "User registering from this location", preferredStyle: .alert)
+//    
+//    
+//    mapView.mapType = .standard
+//    mapView.showsBuildings = true
+//    
+//    let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//    
+//    let span = MKCoordinateSpanMake(0.005, 0.005)
+//    let region = MKCoordinateRegion(center: location, span: span)
+//    mapView.setRegion(region, animated: true)
+//    
+//    let annotation = MKPointAnnotation()
+//    annotation.coordinate = location
+//    mapView.addAnnotation(annotation)
+//    
+//    alert.view.addSubview(mapView)
+//    
+//    alert.addAction(UIAlertAction(title: NSLocalizedString("Allow", comment: "Default action"), style: UIAlertActionStyle.cancel, handler: {_ in NSLog("Registration fail alert")}))
+//    
+//    alert.addAction(UIAlertAction(title: NSLocalizedString("Decline", comment: "Default action"), style:UIAlertActionStyle.destructive , handler: {_ in NSLog("Registration fail alert")}))
+//    
+//    self.present(alert, animated: true, completion: nil)
+//    
+//}
+

@@ -14,36 +14,64 @@ class AuthenticateDevice {
     
     private init() { }
 
-    func authenticate(registration: Registration) {
-        getAuthRequest(username: registration.username) { (getSuccessful, authRequest)  in
-            guard (getSuccessful) else {
-                print(MessageString.Requests.getFail)
-                return
-            }
-            
-            let fcParams = Utils.buildFcParams(request: authRequest)
-
-            let fcParamsData = fcParams.data(using: .utf8)! as NSData
-            let encoded = fcParamsData.base64EncodedString()
-
-            let authResponse = RegResponse(header: (authRequest?.header)!, fcparams: encoded)
-            authResponse.assertions = [Assertions(fcParams: fcParams, keyTag: registration.keyTag, keyID: registration.keyID)]
-            let jsonResponse = authResponse.toJSONArray()
-
-            self.postAuthRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
-                guard (postSuccessful) else {
-                    print(MessageString.Requests.postFail)
-                    return
+    func authenticate(registration: Registration, taskCallback: @escaping (Bool, [AuthResult]?) -> ()) {
+        let reqRequestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/authRequest/" + Constants.appID, method: "POST")
+        var authRequest: GetRequest?
+        
+        Alamofire.request(reqRequestBuilder.getRequest()).responseJSON { response in
+            switch response.result {
+            case .failure(let error):
+                print(error)
+                taskCallback(false, nil)
+                
+                if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
+                    print(responseString)
                 }
-                if (regOutcome?.status == Status.SUCCESS) {
-                    print(MessageString.Info.authSuccess)
+            case .success(let responseObject):
+                let json = responseObject as! [[String:AnyObject]]
+                authRequest = GetRequest(json: json[0])!
+                
+                let fcParams = Utils.buildFcParams(request: authRequest)
+
+                let fcParamsData = fcParams.data(using: .utf8)! as NSData
+                let encoded = fcParamsData.base64EncodedString()
+                
+                let authResponse = AuthResponse(header: (authRequest?.header)!, fcparams: encoded)
+                authResponse.assertions = [Assertions(fcParams: fcParams, keyTag: registration.keyTag, keyID: registration.keyID)]
+                let jsonResponse = authResponse.toJSONArray()
+        
+                let respRequestBuilder = RequestBuilder(url: registration.url + "/v1/public/authResponse", method: "POST")
+        
+                let header = ["application/json" : "Content-Type"]
+                respRequestBuilder.addHeaders(headers: header)
+                
+                let data = try! JSONSerialization.data(withJSONObject: jsonResponse as! [[String : AnyObject]], options: [])
+                respRequestBuilder.addBody(body: data)
+                
+                Alamofire.request(respRequestBuilder.getRequest()).responseJSON { response in
+                    switch response.result {
+                    case .failure(let error):
+                        print(error)
+                        
+                        if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
+                            print(responseString)
+                        }
+                    case .success(let responseObject):
+                        print(responseObject)
+                        let json = responseObject as! [[String:AnyObject]]
+                        var authResult = [AuthResult()]
+                        for obj in json {
+                            authResult.append(AuthResult(json: obj)!)
+                        }
+                        taskCallback(true, authResult)
+                    }
                 }
             }
         }
     }
     
-    func getAuthRequest(username: String, taskCallback: @escaping (Bool, GetRequest?)  -> ()) {
-        let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/authRequest/" + Constants.appID, method: "GET")
+    private func authRequest(registrationID: String, taskCallback: @escaping (Bool, GetRequest?)  -> ()) {
+        let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/authRequest/" + Constants.appID, method: "POST")
         var authRequest: GetRequest?
         
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
@@ -63,7 +91,7 @@ class AuthenticateDevice {
         }
     }
     
-    private func postAuthRequest(json: [[String : AnyObject]], taskCallback: @escaping (Bool, RegOutcome?) -> ()) {
+    private func authResponse(json: [[String : AnyObject]], taskCallback: @escaping (Bool, [AuthResult]?) -> ()) {
         let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/authResponse", method: "POST")
         
         let header = ["application/json" : "Content-Type"]
@@ -83,8 +111,11 @@ class AuthenticateDevice {
             case .success(let responseObject):
                 print(responseObject)
                 let json = responseObject as! [[String:AnyObject]]
-                let regOutcome = RegOutcome(json: json[0])!
-                taskCallback(true, regOutcome)
+                var authResult = [AuthResult()]
+                for obj in json {
+                    authResult.append(AuthResult(json: obj)!)
+                }
+                taskCallback(true, authResult)
             }
         }
     }
