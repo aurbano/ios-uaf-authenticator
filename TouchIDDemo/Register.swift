@@ -38,10 +38,7 @@ class Register {
         
         let requestBody = try! JSONSerialization.data(withJSONObject: jsonResponse, options: [])
         requestBuilder.addBody(body: requestBody)
-        
-        print(requestBody)
-        
-        var postResult: RegOutcome?
+                
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
             switch response.result {
             case .failure(let error):
@@ -55,12 +52,11 @@ class Register {
                 print(responseObject)
                 let json = responseObject as! [[String:AnyObject]]
                 let regOutcome = RegOutcome(json: json[0])!
-                postResult = regOutcome
-                if(postResult?.status == Status.SUCCESS && postResult?.attestVerifiedStatus == AttestationStatus.VALID) {
+                if(regOutcome.status == Status.SUCCESS && regOutcome.attestVerifiedStatus == AttestationStatus.VALID) {
                     print(MessageString.Info.regSuccess)
                     
                     let registration = Registration(
-                        registrationID: regOutcome.registrationID,
+                        registrationID: regOutcome.registrationId,
                         appID: (regResponse.header?.appId)!,
                         keyTag: (regResponse.assertions?[0].privKeyTag)!,
                         url: data.url,

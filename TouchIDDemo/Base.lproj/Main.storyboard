@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LaS-N6-VhJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LaS-N6-VhJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -163,6 +163,7 @@
                                 <connections>
                                     <outlet property="environment" destination="bw9-4E-haZ" id="hO5-9Q-dvY"/>
                                     <outlet property="username" destination="mHN-QA-Sry" id="Psl-S8-Klz"/>
+                                    <segue destination="K1I-kv-l4H" kind="show" identifier="InitiateTransaction" id="SDf-DW-i4S"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -182,6 +183,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIU-qh-MXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4420" y="-629"/>
+        </scene>
+        <!--Create Transaction View Controller-->
+        <scene sceneID="Gs9-Zf-xjx">
+            <objects>
+                <viewController id="K1I-kv-l4H" customClass="CreateTransactionViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jZf-Ic-ILm"/>
+                        <viewControllerLayoutGuide type="bottom" id="M9b-gz-TFz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g0r-9M-rTa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="cLn-tj-H6H">
+                                <rect key="frame" x="10" y="244" width="355" height="81"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Transaction content" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Adm-q9-bc2">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H48-i1-fL0">
+                                        <rect key="frame" x="86" y="51" width="183" height="30"/>
+                                        <state key="normal" title="Create transaction request"/>
+                                        <connections>
+                                            <action selector="createTransaction:" destination="phH-cJ-dsa" eventType="touchUpInside" id="qal-zb-bBh"/>
+                                            <action selector="initiateTx:" destination="K1I-kv-l4H" eventType="touchUpInside" id="K0w-Xo-uVj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Adm-q9-bc2" secondAttribute="trailing" id="odu-Ev-eT5"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cLn-tj-H6H" firstAttribute="leading" secondItem="g0r-9M-rTa" secondAttribute="leading" constant="10" id="JfC-UZ-4SM"/>
+                            <constraint firstItem="cLn-tj-H6H" firstAttribute="top" secondItem="jZf-Ic-ILm" secondAttribute="bottom" constant="180" id="pOT-e2-cvz"/>
+                            <constraint firstAttribute="trailing" secondItem="cLn-tj-H6H" secondAttribute="trailing" constant="10" id="urx-cw-Q4M"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="transactionContents" destination="Adm-q9-bc2" id="WJk-er-t8m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hm8-ri-QlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="phH-cJ-dsa" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5508" y="-629.2353823088456"/>
         </scene>
         <!--Alert View Controller-->
         <scene sceneID="xqa-7I-Zzc">
@@ -320,7 +372,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="iWE-DG-cea"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b7H-Rb-f90">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -339,7 +391,7 @@
                     <tabBarItem key="tabBarItem" title="Home" id="HK8-5Q-wrM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5N7-kl-2sy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -358,7 +410,7 @@
                     <tabBarItem key="tabBarItem" title="Registrations" id="OmF-uV-GFB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jMf-Z9-W15">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

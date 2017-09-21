@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-class AuthResult: Decodable {
+class AuthResult: Gloss.Decodable {
     
     var header: Header? = nil
     var challenge: String? = nil
@@ -26,7 +26,7 @@ class AuthResult: Decodable {
     }
 }
 
-class TransactionContent: Decodable {
+class TransactionContent: Gloss.Decodable {
     var contentType: String? = nil
     var content: String? = nil
     

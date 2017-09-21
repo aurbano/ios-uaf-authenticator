@@ -15,11 +15,10 @@ class RegisteredAccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSample()
         self.refreshControl?.addTarget(self, action: #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
         
-//        navigationItem.leftBarButtonItem = editButtonItem
-
+        navigationItem.leftBarButtonItem = editButtonItem
+        
         //Pull pending transactions
 //        if (PendingTransactions.items() == 0) {
 //            self.performSegue(withIdentifier: "noRegistrationsSegue", sender: self)
@@ -27,8 +26,6 @@ class RegisteredAccountTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     func loadList() {
@@ -36,7 +33,6 @@ class RegisteredAccountTableViewController: UITableViewController {
     }
     
     func refresh() {
-        addSample()
         //get registrationID
 //        AuthenticateDevice.sharedInstance.authenticate(registration: ) {
 //            //TODO: Handle callback
@@ -146,14 +142,28 @@ class RegisteredAccountTableViewController: UITableViewController {
     }
     */
 
-   /*
+   
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if (segue.identifier == "InitiateTransaction") {
+            guard let initiateTxViewController = segue.destination as? CreateTransactionViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedRegCell = sender as? RegisteredAccountTableViewCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+
+            guard let indexPath = tableView.indexPath(for: selectedRegCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+
+            let selectedReg = ValidRegistrations.registrations[indexPath.row]
+            initiateTxViewController.selectedReg = selectedReg
+        }
     }
-*/
     
     
     private func saveRegistrations() {

@@ -31,7 +31,7 @@ class RequestBuilder {
     }
     
     func addBody(body: Data) {
-        if (self.request.httpMethod == "POST") {
+        if (self.request.httpMethod == "PUT" || self.request.httpMethod == "POST") {
             self.request.httpBody = body
         }
     }

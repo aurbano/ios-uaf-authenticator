@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import Gloss
 
 class PendingTransactions {
     private static var transactions = [Transaction]()
@@ -47,12 +48,12 @@ class PendingTransactions {
 
 }
 
-class Transaction: Equatable {
-    var currency: Currency
-    var value: Int
-    var date: String
-    var company: String
-    var location: CLLocationCoordinate2D
+class Transaction: Equatable, Gloss.Decodable {
+    var currency: Currency?
+    var value: Int?
+    var date: String?
+    var company: String?
+    var location: CLLocationCoordinate2D?
     
     init(value: Int, currency: Currency, date: String, company: String, location: [Double]) {
         self.value = value
@@ -62,12 +63,20 @@ class Transaction: Equatable {
         self.location = CLLocationCoordinate2D(latitude: location[0], longitude: location[1])
     }
     
+    required init?(json: JSON) {
+        self.currency = "currency" <~~ json
+        self.value = "value" <~~ json
+        self.date = "date" <~~ json
+        self.company = "company" <~~ json
+        self.location = "location" <~~ json
+    }
+
     static func == (lhs: Transaction, rhs: Transaction) -> Bool {
         return (lhs.value == rhs.value &&
                 lhs.company == rhs.company &&
                 lhs.date == rhs.date &&
-                lhs.location.latitude == rhs.location.latitude &&
-                lhs.location.longitude == rhs.location.longitude)
+                lhs.location!.latitude == rhs.location!.latitude &&
+                lhs.location!.longitude == rhs.location!.longitude )
     }
 }
 

@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA4561431F740D84002770B3 /* TransactionsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF644661F7405730050EF56 /* TransactionsPageViewController.swift */; };
 		AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4CEA8F1F26361000245921 /* AppDelegate.swift */; };
 		AA4CEA951F26361000245921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA931F26361000245921 /* Main.storyboard */; };
 		AA4CEA971F26361000245921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA961F26361000245921 /* Assets.xcassets */; };
 		AA4CEA9A1F26361000245921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4CEA981F26361000245921 /* LaunchScreen.storyboard */; };
 		AA4CEAA31F26384D00245921 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */; };
-		AA69F29F1F6D60AE0044B455 /* TransactionsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA69F29E1F6D60AE0044B455 /* TransactionsPageViewController.swift */; };
 		AA6ABF231F4740AC00E9C622 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF221F4740AC00E9C622 /* AuthResponse.swift */; };
 		AA6ABF251F47433800E9C622 /* AuthAssertionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */; };
 		AA6ABF271F4C618900E9C622 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF261F4C618900E9C622 /* Utils.swift */; };
@@ -70,6 +70,7 @@
 		AAEF2ADF1F618C8700834F26 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */; };
 		AAF013181F72623B00B07E93 /* PendingTransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF013171F72623B00B07E93 /* PendingTransactionsTableViewController.swift */; };
 		AAF0131A1F72631500B07E93 /* PendingTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF013191F72631500B07E93 /* PendingTransactionsTableViewCell.swift */; };
+		AAF644631F73FEBC0050EF56 /* CreateTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF644621F73FEBC0050EF56 /* CreateTransactionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +107,6 @@
 		AA4CEA991F26361000245921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA4CEA9B1F26361000245921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA4CEAA21F26384D00245921 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		AA69F29E1F6D60AE0044B455 /* TransactionsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsPageViewController.swift; sourceTree = "<group>"; };
 		AA6ABF221F4740AC00E9C622 /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAssertionBuilder.swift; sourceTree = "<group>"; };
 		AA6ABF261F4C618900E9C622 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -146,6 +146,9 @@
 		AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		AAF013171F72623B00B07E93 /* PendingTransactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingTransactionsTableViewController.swift; sourceTree = "<group>"; };
 		AAF013191F72631500B07E93 /* PendingTransactionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingTransactionsTableViewCell.swift; sourceTree = "<group>"; };
+		AAF644621F73FEBC0050EF56 /* CreateTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionViewController.swift; sourceTree = "<group>"; };
+		AAF644651F7404520050EF56 /* RegisteredAccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredAccountTableViewController.swift; sourceTree = "<group>"; };
+		AAF644661F7405730050EF56 /* TransactionsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,10 +203,12 @@
 				AAF0131B1F72642C00B07E93 /* TableViews */,
 				AAEF2ADD1F618C8600834F26 /* QRScannerViewController.swift */,
 				AA6ABF261F4C618900E9C622 /* Utils.swift */,
+				AAF644651F7404520050EF56 /* RegisteredAccountTableViewController.swift */,
+				AAF644661F7405730050EF56 /* TransactionsPageViewController.swift */,
 				AAE787F61F41F80900CE446D /* old.swift */,
 				AA4CEA931F26361000245921 /* Main.storyboard */,
+				AAF644621F73FEBC0050EF56 /* CreateTransactionViewController.swift */,
 				AAE9CBAA1F71587900EA70DD /* BottomBarController.swift */,
-				AA69F29E1F6D60AE0044B455 /* TransactionsPageViewController.swift */,
 				AAEDA4021F68625D00CB67BB /* AlertViewController.swift */,
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
 				AA4CEA981F26361000245921 /* LaunchScreen.storyboard */,
@@ -392,6 +397,7 @@
 				AAE787F71F41F80900CE446D /* old.swift in Sources */,
 				AAEDA3FD1F66BB9400CB67BB /* Register.swift in Sources */,
 				AAE9CBA71F6FFAA900EA70DD /* PendingTransactions.swift in Sources */,
+				AA4561431F740D84002770B3 /* TransactionsPageViewController.swift in Sources */,
 				AAE787FC1F42FC9100CE446D /* RegisterDevice.swift in Sources */,
 				AAEF2ADE1F618C8700834F26 /* QRScannerViewController.swift in Sources */,
 				AAE7881B1F4306BE00CE446D /* Header.swift in Sources */,
@@ -403,13 +409,13 @@
 				AAE788291F4306BE00CE446D /* RequestBuilder.swift in Sources */,
 				AAE7882B1F4306BE00CE446D /* Tags.swift in Sources */,
 				AAE788271F4306BE00CE446D /* RegResponse.swift in Sources */,
+				AAF644631F73FEBC0050EF56 /* CreateTransactionViewController.swift in Sources */,
 				AAE788191F4306BE00CE446D /* RegAssertionsBuilder.swift in Sources */,
 				AAE7881D1F4306BE00CE446D /* KeysManipulation.swift in Sources */,
 				AA4CEA901F26361000245921 /* AppDelegate.swift in Sources */,
 				AAE7882F1F432B9500CE446D /* RegisteredAccountTableViewCell.swift in Sources */,
 				AA938B8A1F72CC8300BABC1A /* CurrencyEnum.swift in Sources */,
 				AAE788321F432E4500CE446D /* RegisteredAccountTableViewController.swift in Sources */,
-				AA69F29F1F6D60AE0044B455 /* TransactionsPageViewController.swift in Sources */,
 				AAE788211F4306BE00CE446D /* RegistrationObject.swift in Sources */,
 				AAF0131A1F72631500B07E93 /* PendingTransactionsTableViewCell.swift in Sources */,
 				AAE7881F1F4306BE00CE446D /* PropertyKeys.swift in Sources */,

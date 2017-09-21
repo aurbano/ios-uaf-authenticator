@@ -3,7 +3,7 @@
 //  CryptoSwift
 //
 //  Created by Marcin Krzyzanowski on 15/08/14.
-//  Copyright (c) 2014 Marcin Krzyzanowski. All rights reserved.
+//  Copyright (C) 2014-2017 Krzyzanowski. All rights reserved.
 //
 import XCTest
 import Foundation
@@ -29,8 +29,8 @@ final class ExtensionsTest: XCTestCase {
         let result = chunk.toUInt32Array()
 
         XCTAssert(result.count == 2, "Invalid conversion")
-        XCTAssert(result[0] == 117506305, "Invalid conversion")
-        XCTAssert(result[1] == 84148994, "Invalid conversion")
+        XCTAssert(result[0] == 117_506_305, "Invalid conversion")
+        XCTAssert(result[1] == 84_148_994, "Invalid conversion")
     }
 
     func testDataInit() {
@@ -75,17 +75,6 @@ final class ExtensionsTest: XCTestCase {
         let hex = array.toHexString()
         XCTAssertEqual(str, hex)
     }
-    
-    func testArrayInitHexPerformance(){
-        var str = "b1b2b3b3b3b3b3b3b1b2b3b3b3b3b3b3"
-        for _ in 0...12{
-            str += str
-        }
-        measure {
-            let _ = Array<UInt8>(hex: str)
-        }
-    }
-    
 }
 
 #if !CI
@@ -93,13 +82,24 @@ final class ExtensionsTest: XCTestCase {
     extension ExtensionsTest {
 
         func testArrayChunksPerformance() {
-            measureMetrics([XCTPerformanceMetric_WallClockTime], automaticallyStartMeasuring: false, for: { () -> Void in
+            measureMetrics([XCTPerformanceMetric.wallClockTime], automaticallyStartMeasuring: false, for: { () -> Void in
                 let message = Array<UInt8>(repeating: 7, count: 1024 * 1024)
                 self.startMeasuring()
                 _ = message.chunks(size: AES.blockSize)
                 self.stopMeasuring()
             })
         }
+
+        func testArrayInitHexPerformance() {
+            var str = "b1b2b3b3b3b3b3b3b1b2b3b3b3b3b3b3"
+            for _ in 0...12 {
+                str += str
+            }
+            measure {
+                _ = Array<UInt8>(hex: str)
+            }
+        }
+
     }
 #endif
 
@@ -119,6 +119,7 @@ extension ExtensionsTest {
         #if !CI
             tests += [
                 ("testArrayChunksPerformance", testArrayChunksPerformance),
+                ("testArrayInitHexPerformance", testArrayInitHexPerformance)
             ]
         #endif
         return tests

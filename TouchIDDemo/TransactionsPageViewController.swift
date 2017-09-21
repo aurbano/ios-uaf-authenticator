@@ -64,7 +64,7 @@ class TransactionsPageViewController: UIPageViewController, UIPageViewController
         pageContentViewController.coordinates = transaction.location
         pageContentViewController.company = transaction.company
         pageContentViewController.date = transaction.date
-        pageContentViewController.value = String(transaction.value) + transaction.currency.rawValue
+        pageContentViewController.value = String(describing: transaction.value) + transaction.currency!.rawValue
         pageContentViewController.pageIndex = index
         
         return pageContentViewController

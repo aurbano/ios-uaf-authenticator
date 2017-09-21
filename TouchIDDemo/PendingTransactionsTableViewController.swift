@@ -15,6 +15,7 @@ class PendingTransactionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl?.addTarget(self, action: #selector(PendingTransactionsTableViewController.refresh), for: UIControlEvents.valueChanged)
+        
         tableView.addSubview(refreshControl!)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(loadList),
@@ -53,7 +54,7 @@ class PendingTransactionsTableViewController: UITableViewController {
                                        date: "18/09/17",
                                        company: "Apple",
                                        location: [51.50476244954495, -0.023882389068603516])
-        
+
         let transaction2 = Transaction(value: 5000,
                                        currency: Currency.usd,
                                        date: "18/09/17",
@@ -92,8 +93,8 @@ class PendingTransactionsTableViewController: UITableViewController {
         
         let transaction = PendingTransactions.getTransaction(atIndex: indexPath.row)
         
-        cell.companyLabel.text = ("Company: " + transaction.company)
-        cell.valueLabel.text = ("Value: " + String(transaction.value) + transaction.currency.rawValue)
+        cell.companyLabel.text = ("Company: " + transaction.company!)
+        cell.valueLabel.text = ("Value: " + String(transaction.value!) + transaction.currency!.rawValue)
         cell.index = indexPath.row
         
         return cell
@@ -145,11 +146,10 @@ class PendingTransactionsTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
         switch(segue.identifier ?? "") {
         case "openPageView":
-            
-            super.prepare(for: segue, sender: sender)
-            
             guard let pageViewController = segue.destination as? TransactionsPageViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }

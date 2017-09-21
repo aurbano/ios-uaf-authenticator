@@ -70,11 +70,10 @@ class KeysManipulation {
                 throw error!.takeRetainedValue() as Error
             }
             
-            guard let data = SecKeyCopyExternalRepresentation(privateKey, &error) else {
-                print(error)
-                return (nil, nil)
-            }
-            let str = String(data: data as Data, encoding: .utf8)
+//            guard let data = SecKeyCopyExternalRepresentation(privateKey, &error) else {
+//                print(error)
+//                return (nil, nil)
+//            }
             
             let publicKey = getPublicKeybyPrivate(privateKey: privateKey)
             return (privateKey, publicKey)
