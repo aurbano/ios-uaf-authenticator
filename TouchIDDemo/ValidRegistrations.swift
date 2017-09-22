@@ -45,4 +45,13 @@ class ValidRegistrations {
     static func items() -> Int {
         return registrations.count
     }
+    
+    static func getRegistrationFrom(registrationId: String) -> Registration? {
+        for reg in registrations {
+            if (reg.registrationId == registrationId) {
+                return reg
+            }
+        }
+        return nil
+    }
 }

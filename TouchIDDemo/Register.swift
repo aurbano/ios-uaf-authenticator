@@ -56,7 +56,7 @@ class Register {
                     print(MessageString.Info.regSuccess)
                     
                     let registration = Registration(
-                        registrationID: regOutcome.registrationId,
+                        registrationId: regOutcome.registrationId,
                         appID: (regResponse.header?.appId)!,
                         keyTag: (regResponse.assertions?[0].privKeyTag)!,
                         url: data.url,

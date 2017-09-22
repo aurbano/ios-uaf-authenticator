@@ -18,20 +18,16 @@ class PendingTransactions {
         transactions.append(t)
     }
     
-    static func removeTransaction(t: Transaction) -> Bool {
+    static func removeTransaction(t: Transaction) {
         if let index = transactions.index(where: { $0 == t}) {
             transactions.remove(at: index)
-            return true
         }
-        return false
     }
     
-    static func removeTransaction(atIndex: Int) -> Bool {
+    static func removeTransaction(atIndex: Int) {
         if (atIndex < transactions.count) {
             transactions.remove(at: atIndex)
-            return true
         }
-        return false
     }
     
     static func getTransactions() -> [Transaction] {
@@ -45,6 +41,10 @@ class PendingTransactions {
     static func items() -> Int {
         return transactions.count
     }
+    
+    static func reset() {
+        transactions = [Transaction]()
+    }
 
 }
 
@@ -54,13 +54,34 @@ class Transaction: Equatable, Gloss.Decodable {
     var date: String?
     var company: String?
     var location: CLLocationCoordinate2D?
+    var registrationId: String?
+    var txId: Int64?
     
-    init(value: Int, currency: Currency, date: String, company: String, location: [Double]) {
+    init(value: Int,
+         currency: Currency,
+         date: String,
+         company: String,
+         location: [Double],
+         registrationId: String,
+         txId: Int64) {
+        
+        self.registrationId = registrationId
         self.value = value
         self.date = date
         self.company = company
         self.currency = currency
         self.location = CLLocationCoordinate2D(latitude: location[0], longitude: location[1])
+        self.txId = txId
+    }
+    
+    init(data: String, registrationId: String, txId: Int64) {
+        self.registrationId = registrationId
+        self.company = data
+        self.date = "29/09/17"
+        self.currency = Currency.gbp
+        self.value = 1000000
+        self.location = CLLocationCoordinate2D(latitude: 51.504901, longitude: -0.024186199999999998)
+        self.txId = txId
     }
     
     required init?(json: JSON) {
@@ -71,6 +92,11 @@ class Transaction: Equatable, Gloss.Decodable {
         self.location = "location" <~~ json
     }
 
+    func addRegIdTxId(registrationId: String, txId: Int64) {
+        self.registrationId = registrationId
+        self.txId = txId
+    }
+   
     static func == (lhs: Transaction, rhs: Transaction) -> Bool {
         return (lhs.value == rhs.value &&
                 lhs.company == rhs.company &&

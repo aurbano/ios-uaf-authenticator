@@ -197,7 +197,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="cLn-tj-H6H">
-                                <rect key="frame" x="10" y="244" width="355" height="81"/>
+                                <rect key="frame" x="10" y="204" width="355" height="81"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Transaction content" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Adm-q9-bc2">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
@@ -221,8 +221,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cLn-tj-H6H" firstAttribute="top" secondItem="jZf-Ic-ILm" secondAttribute="bottom" constant="140" id="HK9-j9-1Z3"/>
                             <constraint firstItem="cLn-tj-H6H" firstAttribute="leading" secondItem="g0r-9M-rTa" secondAttribute="leading" constant="10" id="JfC-UZ-4SM"/>
-                            <constraint firstItem="cLn-tj-H6H" firstAttribute="top" secondItem="jZf-Ic-ILm" secondAttribute="bottom" constant="180" id="pOT-e2-cvz"/>
                             <constraint firstAttribute="trailing" secondItem="cLn-tj-H6H" secondAttribute="trailing" constant="10" id="urx-cw-Q4M"/>
                         </constraints>
                     </view>
@@ -253,7 +253,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOB-68-QBK">
-                                <rect key="frame" x="67" y="76" width="240" height="520"/>
+                                <rect key="frame" x="67" y="76" width="240" height="447"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2d-ao-3l8">
@@ -270,16 +270,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Czm-pW-vOT">
-                                        <rect key="frame" x="0.0" y="304" width="240" height="128"/>
+                                        <rect key="frame" x="0.0" y="256" width="240" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </mapView>
                                     <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ri5-mG-aSN">
-                                        <rect key="frame" x="0.0" y="70" width="240" height="226"/>
+                                        <rect key="frame" x="0.0" y="70" width="240" height="165"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </webView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iy-Pn-0YA">
-                                        <rect key="frame" x="120" y="484" width="120" height="36"/>
+                                        <rect key="frame" x="120" y="410" width="120" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -292,7 +292,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ory-PV-tYh">
-                                        <rect key="frame" x="0.0" y="484" width="120" height="36"/>
+                                        <rect key="frame" x="0.0" y="410" width="120" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -302,12 +302,12 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSr-WA-OIe">
-                                        <rect key="frame" x="0.0" y="483" width="240" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="410" width="240" height="0.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h8F-Pv-7bL">
-                                        <rect key="frame" x="121" y="483" width="0.5" height="37"/>
+                                        <rect key="frame" x="120" y="410" width="0.5" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -354,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G0n-mj-ld7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2343" y="889"/>
+            <point key="canvasLocation" x="2341.5999999999999" y="888.30584707646187"/>
         </scene>
         <!--Transactions Page View Controller-->
         <scene sceneID="FeJ-vp-Cci">

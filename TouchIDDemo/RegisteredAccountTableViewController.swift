@@ -18,14 +18,6 @@ class RegisteredAccountTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
         
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        //Pull pending transactions
-//        if (PendingTransactions.items() == 0) {
-//            self.performSegue(withIdentifier: "noRegistrationsSegue", sender: self)
-//        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
     }
 
     func loadList() {
@@ -46,7 +38,7 @@ class RegisteredAccountTableViewController: UITableViewController {
     }
     
     func addSample() {
-        let registration1 = Registration(registrationID: "regID1",
+        let registration1 = Registration(registrationId: "regID1",
                                          appID: "appID1",
                                          keyTag: "keyTag1",
                                          url: "url",
@@ -54,7 +46,7 @@ class RegisteredAccountTableViewController: UITableViewController {
                                          username: "iva",
                                          keyID: Array<UInt8>())
         
-        let registration2 = Registration(registrationID: "regID2",
+        let registration2 = Registration(registrationId: "regID2",
                                          appID: "appID2",
                                          keyTag: "keyTag2",
                                          url: "url",
@@ -165,31 +157,7 @@ class RegisteredAccountTableViewController: UITableViewController {
         }
     }
     
-    
-    private func saveRegistrations() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
-        if (isSuccessfulSave) {
-            print(MessageString.Info.regSavedSuccess)
-        }
-        else {
-            print(MessageString.Info.regSavedFail)
-        }
-    }
-    
-    private func loadRegistrations() {
-        ValidRegistrations.reset()
-        if let savedRegistrations = getSavedRegistrations() {
-            for reg in savedRegistrations {
-                ValidRegistrations.addRegistration(registrationToAdd: reg)
-            }
-        }
-    }
-    
-    private func getSavedRegistrations() -> [Registration]? {
-        let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
-        return savedRegs as? [Registration]
-    }
-    
+        
     @IBAction func unwindToRegistrationsTableView(segue: UIStoryboardSegue) {
         var overlay = UIView()
         let activityIndicator = UIActivityIndicatorView()
@@ -228,4 +196,54 @@ class RegisteredAccountTableViewController: UITableViewController {
             }
         }
     }
+    private func saveRegistrations() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
+        if (isSuccessfulSave) {
+            print(MessageString.Info.regSavedSuccess)
+        }
+        else {
+            print(MessageString.Info.regSavedFail)
+        }
+    }
+
+    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+        var overlay = UIView()
+        let activityIndicator = UIActivityIndicatorView()
+        
+        overlay = UIView(frame: self.view.frame)
+        overlay.backgroundColor = UIColor.black
+        overlay.alpha = 0.8
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        
+        self.view.addSubview(overlay)
+        overlay.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        
+        let qrScannerVC: QRScannerViewController = segue.source as! QRScannerViewController
+        scannedData = qrScannerVC.dataCaptured
+        Register.sharedInstance.completeRegistration(with: scannedData) { success in
+            if (success) {
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
+                
+                let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration complete alert")}))
+                
+                self.present(alert, animated: true, completion: nil)
+                self.tableView.reloadData()
+            }
+            else {
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
+                
+                let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in NSLog("Registration fail alert")}))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
 }

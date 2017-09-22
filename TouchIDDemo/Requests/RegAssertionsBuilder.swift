@@ -71,17 +71,11 @@ class RegAssertionBuilder {
         var length: Int = 0
         
         byteout.append(contentsOf: encodeInt(id: Tags.TAG_SIGNATURE.rawValue))
-        value = getSignature(signedDataValue: signedDataValue)!
+        value = getSignature(signedDataValue: signedDataValue)
         length = value.count
         byteout.append(contentsOf: encodeInt(id: length))
         byteout.append(contentsOf: value)
-        
-//        byteout.append(contentsOf: encodeInt(id: Tags.TAG_ATTESTATION_CERT.rawValue))
-//        value = Utils.base64ToByteArray(fromString: Constants.derCert)!
-//        length = value.count
-//        byteout.append(contentsOf: encodeInt(id: length))
-//        byteout.append(contentsOf: value)
-        
+                
         return byteout
     }
     
@@ -129,11 +123,11 @@ class RegAssertionBuilder {
         return byteout
     }
     
-    private func getSignature(signedDataValue: Array<UInt8>) -> Array<UInt8>? {
+    private func getSignature(signedDataValue: Array<UInt8>) -> Array<UInt8> {
         let algorithm: SecKeyAlgorithm = .ecdsaSignatureMessageX962SHA256
         
-        let signatute = keys.signData(dataForSigning: signedDataValue, key: self.pair.privateKey!, algorithm: algorithm)
-        return signatute
+        let signature = keys.signData(dataForSigning: signedDataValue, key: self.pair.privateKey!, algorithm: algorithm)!
+        return signature
         
     }
     

@@ -70,39 +70,40 @@ class AuthenticateDevice {
         }
     }
     
-    func getPendingTransactions() {
+    func getPendingTransactions(callback: @escaping (Bool) -> ()) {
         for reg in ValidRegistrations.registrations {
-            let url = reg.url + "/public/getTransactions/" + reg.registrationID
+            let url = reg.url + "/v1/public/getTransactions/" + reg.registrationId
             let requestBuilder = RequestBuilder(url: url, method: "GET")
             
             Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
                 switch response.result {
                 case .failure(let error):
                     print(error)
-//                    taskCallback(false, nil)
-                    
                     if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
                         print(responseString)
                     }
+                    callback(false)
                 case .success(let responseObject):
-                    print(responseObject)
-//                    let json = responseObject as! [[String:String]]
-//                    if (json.count != 0) {
-//                        for obj in json {
-//                            let contents = obj["contents"]
-//                            let data = contents!.data(using: .utf8)
+                    let json = responseObject as! [[String: Any]]
+                    if (json.count != 0) {
+                        for obj in json {
+                            let contents = obj["content"] as! String
+                            let txId = obj["id"] as! Int64
+//                            let data = contents.data(using: .utf8)
 //                            let transactionData = try? JSONSerialization.jsonObject(with: data!, options: .mutableLeaves ) as! Dictionary<String, Any>
-//                            let transaction = Transaction(json: transactionData!)
-//                    PendingTransactions.addTransaction(t: transaction!)
-//                        }
-//                    }
+                            let transaction = Transaction(data: contents, registrationId: reg.registrationId, txId: txId)
+                            PendingTransactions.addTransaction(t: transaction)
+                            callback(true)
+                        }
+                    }
+                    callback(false)
                 }
             }
         }
     }
     
     func initiateTx(data: String, reg: Registration, callback: @escaping (Bool) -> ()) {
-        let requestBuilder = RequestBuilder(url: reg.url + "/v1/public/authRequest/" + reg.registrationID, method: "POST")
+        let requestBuilder = RequestBuilder(url: reg.url + "/v1/public/authRequest/" + reg.registrationId, method: "POST")
         requestBuilder.addBody(body: data.data(using: .utf8)!)
         
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
@@ -116,6 +117,29 @@ class AuthenticateDevice {
                 }
             case .success(let responseObject):
 //                let json = responseObject as! [[String:String]]
+                print(responseObject)
+                callback(true)
+            }
+        }
+    }
+    
+    func respondTx(response: String, index: Int64, registration: Registration, callback: @escaping (Bool) -> ()) {
+        let url = registration.url + "/v1/public/authResponse/" + registration.registrationId + "/" + String(describing: index)
+        let requestBuilder = RequestBuilder(url: url, method: "PUT")
+        let body = response.data(using: .utf8)
+        //sign body with private key
+        requestBuilder.addBody(body: body!)
+        
+        Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
+            switch response.result {
+            case .failure(let error):
+                print(error)
+                callback(false)
+                
+                if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
+                    print(responseString)
+                }
+            case .success(let responseObject):
                 print(responseObject)
                 callback(true)
             }

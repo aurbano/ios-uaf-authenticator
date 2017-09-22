@@ -73,8 +73,13 @@ class AlertViewController: ViewController {
     
     @IBAction func declineButtonClick(_ sender: UIButton) {
         let index = self.pageIndex
-        if (PendingTransactions.removeTransaction(atIndex: index)) {
-            print("declined")
+        let tx = PendingTransactions.getTransaction(atIndex: index)
+        guard let reg = ValidRegistrations.getRegistrationFrom(registrationId: tx.registrationId!) else {
+            return
+        }
+
+        AuthenticateDevice.sharedInstance.respondTx(response: MessageString.Server.declinedTx, index: tx.txId!, registration: reg) { success in
+            PendingTransactions.removeTransaction(atIndex: index)
             self.dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: Notification.Name("UPDATED_DATA"), object: nil)
         }
@@ -82,11 +87,15 @@ class AlertViewController: ViewController {
     
     @IBAction func signButtonClick(_ sender: UIButton) {
         let index = self.pageIndex
-        if (PendingTransactions.removeTransaction(atIndex: index)) {
-            print("approved")
+        let tx = PendingTransactions.getTransaction(atIndex: index)
+        guard let reg = ValidRegistrations.getRegistrationFrom(registrationId: tx.registrationId!) else {
+            return
+        }
+        
+        AuthenticateDevice.sharedInstance.respondTx(response: MessageString.Server.signedTx, index: tx.txId!, registration: reg) { success in
+            PendingTransactions.removeTransaction(atIndex: index)
             self.dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: Notification.Name("UPDATED_DATA"), object: nil)
         }
     }
-
 }

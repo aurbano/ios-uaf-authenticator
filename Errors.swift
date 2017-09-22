@@ -48,4 +48,8 @@ struct MessageString {
         static let value = "Value: "
         static let date = "Date: "
     }
+    struct Server {
+        static let declinedTx = "DECLINED_TX"
+        static let signedTx = "SIGNED_TX"
+    }
 }

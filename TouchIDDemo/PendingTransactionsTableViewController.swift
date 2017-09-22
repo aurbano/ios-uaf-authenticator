@@ -15,7 +15,7 @@ class PendingTransactionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl?.addTarget(self, action: #selector(PendingTransactionsTableViewController.refresh), for: UIControlEvents.valueChanged)
-        
+
         tableView.addSubview(refreshControl!)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(loadList),
@@ -39,8 +39,12 @@ class PendingTransactionsTableViewController: UITableViewController {
     }
     
     func refresh() {
-        AuthenticateDevice.sharedInstance.getPendingTransactions()
-        self.tableView.reloadData()
+        PendingTransactions.reset()
+        AuthenticateDevice.sharedInstance.getPendingTransactions() { success in
+            if (success) {
+                self.tableView.reloadData()
+            }
+        }
         refreshControl?.endRefreshing()
     }
     
@@ -53,13 +57,17 @@ class PendingTransactionsTableViewController: UITableViewController {
                                        currency: Currency.gbp,
                                        date: "18/09/17",
                                        company: "Apple",
-                                       location: [51.50476244954495, -0.023882389068603516])
+                                       location: [51.50476244954495, -0.023882389068603516],
+                                       registrationId: "qwertyuiop",
+                                       txId: 123456789)
 
         let transaction2 = Transaction(value: 5000,
                                        currency: Currency.usd,
                                        date: "18/09/17",
                                        company: "Microsoft",
-                                       location: [51.5030154, -0.022172700000055556])
+                                       location: [51.5030154, -0.022172700000055556],
+                                       registrationId: "asdfghjkl",
+                                       txId: 123456789)
         
         PendingTransactions.addTransaction(t: transaction1)
         PendingTransactions.addTransaction(t: transaction2)

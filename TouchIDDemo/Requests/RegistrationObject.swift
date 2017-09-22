@@ -19,9 +19,9 @@ class Registration: NSObject, NSCoding {
     let environment: String
     let username: String
     let keyID: Array<UInt8>
-    let registrationID: String
+    let registrationId: String
     
-    init(registrationID: String,
+    init(registrationId: String,
          appID: String,
          keyTag: String,
          url: String,
@@ -35,7 +35,7 @@ class Registration: NSObject, NSCoding {
         self.environment = env
         self.username = username
         self.keyID = keyID
-        self.registrationID = registrationID
+        self.registrationId = registrationId
     }
     
     func encode(with aCoder: NSCoder) {
@@ -46,7 +46,7 @@ class Registration: NSObject, NSCoding {
         aCoder.encode(username, forKey: PropertyKey.username)
         let keyIDStr = String(bytes: keyID, encoding: .utf8)
         aCoder.encode(keyIDStr, forKey: PropertyKey.keyID)
-        aCoder.encode(registrationID, forKey: PropertyKey.registrationID)
+        aCoder.encode(registrationId, forKey: PropertyKey.registrationId)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -67,9 +67,9 @@ class Registration: NSObject, NSCoding {
         let username = decodeObject(key: PropertyKey.username, aDecoder: aDecoder)
         let keyIDStr = decodeObject(key: PropertyKey.keyID, aDecoder: aDecoder)
         let keyID = Array<UInt8>(keyIDStr.utf8)
-        let registrationID = decodeObject(key: PropertyKey.registrationID, aDecoder: aDecoder)
+        let registrationId = decodeObject(key: PropertyKey.registrationId, aDecoder: aDecoder)
         
-        self.init(registrationID: registrationID,
+        self.init(registrationId: registrationId,
                   appID: appID,
                   keyTag: keyTag,
                   url: url,
