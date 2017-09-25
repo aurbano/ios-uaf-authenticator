@@ -65,7 +65,7 @@ class KeysManipulation {
             
             var error: Unmanaged<CFError>?
             guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
-                print(error)
+                print(error as Any)
                 print(MessageString.Keys.KeyPairNotGenerated)
                 throw error!.takeRetainedValue() as Error
             }
@@ -80,7 +80,7 @@ class KeysManipulation {
         }
     }
     
-    func getKeyPair(tag: String) -> (SecKey?, SecKey?) {
+    func getKeyPair(tag: String) -> (privateKey: SecKey?, publicKey: SecKey?) {
         let getquery: [String: Any] = [ kSecClass              as String:  kSecClassKey,
                                         kSecAttrApplicationTag as String:  tag,
                                         kSecAttrKeyType        as String:  kSecAttrKeyTypeECSECPrimeRandom,
@@ -115,7 +115,7 @@ class KeysManipulation {
         var signingError: Unmanaged<CFError>?
         let signedDataValueAsData = CFDataCreate(nil, dataForSigning, dataForSigning.count)
         guard let signature = SecKeyCreateSignature(key, algorithm, signedDataValueAsData!, &signingError) else {
-            print(signingError)
+            print(signingError as Any)
             print(MessageString.Keys.usuccessfulSign)
             return nil
         }

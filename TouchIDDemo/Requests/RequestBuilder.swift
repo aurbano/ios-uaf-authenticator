@@ -36,6 +36,12 @@ class RequestBuilder {
         }
     }
     
+    func addBody(body: [[String: Any]]) {
+        let json = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)        
+        self.addBody(body: json!)
+
+    }
+    
     func getRequest() -> URLRequest {
         self.request.timeoutInterval  = self.timeout
         return self.request

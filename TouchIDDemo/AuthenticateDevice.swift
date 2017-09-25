@@ -124,11 +124,22 @@ class AuthenticateDevice {
     }
     
     func respondTx(response: String, index: Int64, registration: Registration, callback: @escaping (Bool) -> ()) {
+        
+        let keys = KeysManipulation()
+        let pair = keys.getKeyPair(tag: registration.keyTag)
+        let algorithm: SecKeyAlgorithm = .ecdsaSignatureMessageX962SHA256
+        let signature = keys.signData(dataForSigning: Array<UInt8>(response.data(using: .utf8)!), key: pair.privateKey!, algorithm: algorithm)
+
         let url = registration.url + "/v1/public/authResponse/" + registration.registrationId + "/" + String(describing: index)
         let requestBuilder = RequestBuilder(url: url, method: "PUT")
-        let body = response.data(using: .utf8)
-        //sign body with private key
-        requestBuilder.addBody(body: body!)
+        
+        let respBytes = Array<UInt8>(response.utf8)
+        let encodedResp = respBytes.toBase64()
+        let encodedSignature = signature?.toBase64()
+
+        let body: [[String: Any]] = [["response": encodedResp as Any,
+                                      "signature": encodedSignature!]]
+        requestBuilder.addBody(body: body)
         
         Alamofire.request(requestBuilder.getRequest()).responseJSON { response in
             switch response.result {

@@ -145,7 +145,7 @@ class RegisteredAccountTableViewController: UITableViewController {
             }
             
             guard let selectedRegCell = sender as? RegisteredAccountTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
 
             guard let indexPath = tableView.indexPath(for: selectedRegCell) else {
