@@ -126,7 +126,7 @@ class RegAssertionBuilder {
     private func getSignature(signedDataValue: Array<UInt8>) -> Array<UInt8> {
         let algorithm: SecKeyAlgorithm = .ecdsaSignatureMessageX962SHA256
         
-        let signature = keys.signData(dataForSigning: signedDataValue, key: self.pair.privateKey!, algorithm: algorithm)!
+        let signature = keys.signData(dataForSigning: signedDataValue, key: self.pair.privateKey!, algorithm: algorithm)
         return signature
         
     }

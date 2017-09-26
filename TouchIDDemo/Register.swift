@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import Registrations
 
 class Register {
     static let sharedInstance = Register()
@@ -55,7 +56,7 @@ class Register {
                 if(regOutcome.status == Status.SUCCESS && regOutcome.attestVerifiedStatus == AttestationStatus.VALID) {
                     print(MessageString.Info.regSuccess)
                     
-                    let registration = Registration(
+                    let registration = Registrations.Registration(
                         registrationId: regOutcome.registrationId,
                         appID: (regResponse.header?.appId)!,
                         keyTag: (regResponse.assertions?[0].privKeyTag)!,
@@ -77,13 +78,18 @@ class Register {
     }
     
     private func saveRegistrations() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
-        if (isSuccessfulSave) {
-            print(MessageString.Info.regSavedSuccess)
-        }
-        else {
-            print(MessageString.Info.regSavedFail)
-        }
+        NSKeyedArchiver.setClassName("Registration", for: Registration.self)
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: ValidRegistrations.registrations)
+        ValidRegistrations.userDefaults?.set(encodedData, forKey: "registrations")
+        ValidRegistrations.userDefaults?.synchronize()
+
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
+//        if (isSuccessfulSave) {
+//            print(MessageString.Info.regSavedSuccess)
+//        }
+//        else {
+//            print(MessageString.Info.regSavedFail)
+//        }
     }
     
 }

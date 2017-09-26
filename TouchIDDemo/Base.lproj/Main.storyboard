@@ -53,7 +53,7 @@
         <scene sceneID="JEk-Qx-9LP">
             <objects>
                 <tableViewController id="v2k-Th-xmM" customClass="PendingTransactionsTableViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" id="PwD-dm-B5j">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="PwD-dm-B5j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,7 +120,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="bR2-0t-AYO" kind="unwind" identifier="unwindToViewController" unwindAction="unwindToViewControllerWithSegue:" id="erf-7W-ZxM"/>
+                        <segue destination="bR2-0t-AYO" kind="unwind" identifier="unwindToRegistrationsTableView" unwindAction="unwindToRegistrationsTableViewWithSegue:" id="erf-7W-ZxM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fp9-kH-cLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,7 +132,7 @@
         <scene sceneID="whF-3m-N8W">
             <objects>
                 <tableViewController id="ZGj-Uf-IBN" customClass="RegisteredAccountTableViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="EkJ-K8-iC6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="EkJ-K8-iC6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -420,7 +420,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2d-UY-Nls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2183" y="-1416"/>
+            <point key="canvasLocation" x="4420" y="-1417"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pHp-Uk-4kb">

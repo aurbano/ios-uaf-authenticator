@@ -75,7 +75,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             if metadataObj.stringValue != nil {
                 dataCaptured = metadataObj.stringValue
-                self.performSegue(withIdentifier: "unwindToViewController", sender: self)
+                self.performSegue(withIdentifier: "unwindToRegistrationsTableView", sender: self)
             }
         }
     }

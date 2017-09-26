@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Registrations
 
 class CreateTransactionViewController: UIViewController {
 
     @IBOutlet weak var transactionContents: UITextField!
-    var selectedReg: Registration?
+    var selectedReg: Registrations.Registration?
     override func viewDidLoad() {
         super.viewDidLoad()
 

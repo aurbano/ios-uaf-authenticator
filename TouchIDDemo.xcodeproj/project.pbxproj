@@ -17,6 +17,8 @@
 		AA6ABF251F47433800E9C622 /* AuthAssertionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */; };
 		AA6ABF271F4C618900E9C622 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF261F4C618900E9C622 /* Utils.swift */; };
 		AA6ABF281F4C618900E9C622 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6ABF261F4C618900E9C622 /* Utils.swift */; };
+		AA7FC0691F7AAB8F00FF6435 /* Registrations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7FC0681F7AAB8E00FF6435 /* Registrations.framework */; };
+		AA7FC06C1F7AAF0000FF6435 /* Registrations.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA7FC06A1F7AAF0000FF6435 /* Registrations.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA938B8A1F72CC8300BABC1A /* CurrencyEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA938B891F72CC8300BABC1A /* CurrencyEnum.swift */; };
 		AAA6D8D41F34B81D00E014A5 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; };
 		AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAA6D8D31F34B81D00E014A5 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -91,6 +93,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				AAE787CC1F3BA8F500CE446D /* CryptoSwift.framework in Embed Frameworks */,
+				AA7FC06C1F7AAF0000FF6435 /* Registrations.framework in Embed Frameworks */,
 				AAA6D8D81F34D2B900E014A5 /* Gloss.framework in Embed Frameworks */,
 				AAA6D8DD1F38FD2100E014A5 /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -110,6 +113,9 @@
 		AA6ABF221F4740AC00E9C622 /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		AA6ABF241F47433800E9C622 /* AuthAssertionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAssertionBuilder.swift; sourceTree = "<group>"; };
 		AA6ABF261F4C618900E9C622 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		AA7FC00B1F7A817200FF6435 /* Violet Anteater.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Violet Anteater.entitlements"; sourceTree = "<group>"; };
+		AA7FC0681F7AAB8E00FF6435 /* Registrations.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Registrations.framework; path = "../../../Library/Developer/Xcode/DerivedData/Registrations-cdatkzxunprfqefwarcdqkgjbjvd/Build/Products/Debug-iphoneos/Registrations.framework"; sourceTree = "<group>"; };
+		AA7FC06A1F7AAF0000FF6435 /* Registrations.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Registrations.framework; path = Carthage/Build/iOS/Registrations.framework; sourceTree = "<group>"; };
 		AA938B891F72CC8300BABC1A /* CurrencyEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyEnum.swift; sourceTree = "<group>"; };
 		AAA6D8D31F34B81D00E014A5 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
 		AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7FC0691F7AAB8F00FF6435 /* Registrations.framework in Frameworks */,
 				AAA6D8DB1F38FBA300E014A5 /* Alamofire.framework in Frameworks */,
 				AAA6D8D41F34B81D00E014A5 /* Gloss.framework in Frameworks */,
 				AA4CEAA31F26384D00245921 /* LocalAuthentication.framework in Frameworks */,
@@ -177,6 +184,7 @@
 		AA4CEA831F26361000245921 = {
 			isa = PBXGroup;
 			children = (
+				AA7FC06A1F7AAF0000FF6435 /* Registrations.framework */,
 				AA4CEA8E1F26361000245921 /* TouchIDDemo */,
 				AAE787D61F3C8C8A00CE446D /* Violet AnteaterTests */,
 				AA4CEA8D1F26361000245921 /* Products */,
@@ -196,6 +204,7 @@
 		AA4CEA8E1F26361000245921 /* TouchIDDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AA7FC00B1F7A817200FF6435 /* Violet Anteater.entitlements */,
 				AAE7882D1F4306F300CE446D /* requests */,
 				AA4CEA8F1F26361000245921 /* AppDelegate.swift */,
 				AAE21EAB1F4463C900C8DBE8 /* Errors.swift */,
@@ -206,10 +215,10 @@
 				AAF644651F7404520050EF56 /* RegisteredAccountTableViewController.swift */,
 				AAF644661F7405730050EF56 /* TransactionsPageViewController.swift */,
 				AAE787F61F41F80900CE446D /* old.swift */,
-				AA4CEA931F26361000245921 /* Main.storyboard */,
 				AAF644621F73FEBC0050EF56 /* CreateTransactionViewController.swift */,
 				AAE9CBAA1F71587900EA70DD /* BottomBarController.swift */,
 				AAEDA4021F68625D00CB67BB /* AlertViewController.swift */,
+				AA4CEA931F26361000245921 /* Main.storyboard */,
 				AA4CEA961F26361000245921 /* Assets.xcassets */,
 				AA4CEA981F26361000245921 /* LaunchScreen.storyboard */,
 				AA4CEA9B1F26361000245921 /* Info.plist */,
@@ -220,6 +229,7 @@
 		AA4CEAA11F26384D00245921 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA7FC0681F7AAB8E00FF6435 /* Registrations.framework */,
 				AAE787CA1F3BA8F500CE446D /* CryptoSwift.framework */,
 				AAA6D8DA1F38FBA300E014A5 /* Alamofire.framework */,
 				AAA6D8D31F34B81D00E014A5 /* Gloss.framework */,
@@ -338,6 +348,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = PN5TA7JVQ2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					AAE787D41F3C8C8A00CE446D = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -525,7 +540,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -569,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -581,6 +596,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TouchIDDemo/Violet Anteater.entitlements";
 				DEVELOPMENT_TEAM = PN5TA7JVQ2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -598,6 +614,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TouchIDDemo/Violet Anteater.entitlements";
 				DEVELOPMENT_TEAM = PN5TA7JVQ2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

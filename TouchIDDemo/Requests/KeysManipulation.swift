@@ -106,10 +106,10 @@ class KeysManipulation {
         return publicKey
     }
 
-    func signData(dataForSigning: Array<UInt8>, key: SecKey, algorithm: SecKeyAlgorithm) -> Array<UInt8>? {
+    func signData(dataForSigning: Array<UInt8>, key: SecKey, algorithm: SecKeyAlgorithm) -> Array<UInt8> {
         guard SecKeyIsAlgorithmSupported(key, .sign, algorithm) else {
             print(MessageString.Keys.algoNotSupported)
-            return nil
+            return Array<UInt8>()
         }
         
         var signingError: Unmanaged<CFError>?
@@ -117,7 +117,7 @@ class KeysManipulation {
         guard let signature = SecKeyCreateSignature(key, algorithm, signedDataValueAsData!, &signingError) else {
             print(signingError as Any)
             print(MessageString.Keys.usuccessfulSign)
-            return nil
+            return Array<UInt8>()
         }
         
         let publicKey = getPublicKeybyPrivate(privateKey: key)
@@ -127,7 +127,7 @@ class KeysManipulation {
         let byteptr = UnsafeMutablePointer<UInt8>.allocate(capacity: range.length)
         CFDataGetBytes(signature, range, byteptr)
         
-        let byteout = Array(UnsafeBufferPointer(start: byteptr, count: range.length))
+        let byteout = Array<UInt8>(UnsafeBufferPointer(start: byteptr, count: range.length))
         
         return byteout
 

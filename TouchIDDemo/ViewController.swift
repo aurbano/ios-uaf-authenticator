@@ -11,6 +11,7 @@ import LocalAuthentication
 import Foundation
 import MapKit
 import CoreLocation
+import Registrations
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -19,15 +20,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        loadRegistrations()
+//        loadRegistrations()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
     
     private func loadRegistrations() {
         ValidRegistrations.reset()
@@ -38,9 +37,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    private func getSavedRegistrations() -> [Registration]? {
-        let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
-        return savedRegs as? [Registration]
+    private func getSavedRegistrations() -> [Registrations.Registration]? {
+//        let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
+//        return savedRegs as? [Registration]
+        NSKeyedUnarchiver.setClass(Registration.self, forClassName: "Registration")
+        let decoded = ValidRegistrations.userDefaults?.object(forKey: "registrations") as! Data
+        let decodedRegs = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Registrations.Registration]
+        return decodedRegs
+        
     }
 
 }

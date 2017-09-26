@@ -7,19 +7,22 @@
 //
 
 import Foundation
+import Registrations
 
 class ValidRegistrations {
-    static var registrations = [Registration]()
-    
+    static var registrations = [Registrations.Registration]()
+    static let userDefaults = UserDefaults(suiteName: "group.com.ms.auth.iva")
+    static let oldUserDefaults = UserDefaults(suiteName: "authApps")
+
     private init() { }
         
-    static func addRegistration(registrationToAdd: Registration) {
+    static func addRegistration(registrationToAdd: Registrations.Registration) {
         if (!registrations.contains(registrationToAdd)) {
             registrations += [registrationToAdd]
         }
     }
     
-    static func deleteRegistration(registrationToDelete: Registration) -> Bool {
+    static func deleteRegistration(registrationToDelete: Registrations.Registration) -> Bool {
         for (index, reg) in registrations.enumerated() {
             if reg == registrationToDelete {
                 registrations.remove(at: index)
@@ -46,7 +49,7 @@ class ValidRegistrations {
         return registrations.count
     }
     
-    static func getRegistrationFrom(registrationId: String) -> Registration? {
+    static func getRegistrationFrom(registrationId: String) -> Registrations.Registration? {
         for reg in registrations {
             if (reg.registrationId == registrationId) {
                 return reg

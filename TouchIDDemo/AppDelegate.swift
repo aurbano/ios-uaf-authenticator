@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let params = NSMutableDictionary()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -40,7 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//
+//        let kvPairs : [String] = (url.query?.components(separatedBy: "&"))!
+//        for param in  kvPairs{
+//            let keyValuePair : Array = param.components(separatedBy: "=")
+//            if keyValuePair.count == 2{
+//                params.setObject(keyValuePair.last!, forKey: keyValuePair.first! as NSCopying)
+//            }
+//        }
+//
+//        return false
+//    }
 }
 

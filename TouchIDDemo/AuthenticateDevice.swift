@@ -8,13 +8,14 @@
 
 import Foundation
 import Alamofire
+import Registrations
 
 class AuthenticateDevice {
     static let sharedInstance = AuthenticateDevice()
     
     private init() { }
 
-    func authenticate(registration: Registration, taskCallback: @escaping (Bool, [AuthResult]?) -> ()) {
+    func authenticate(registration: Registrations.Registration, taskCallback: @escaping (Bool, [AuthResult]?) -> ()) {
         let reqRequestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/authRequest/" + Constants.appID, method: "POST")
         var authRequest: GetRequest?
         
@@ -102,7 +103,7 @@ class AuthenticateDevice {
         }
     }
     
-    func initiateTx(data: String, reg: Registration, callback: @escaping (Bool) -> ()) {
+    func initiateTx(data: String, reg: Registrations.Registration, callback: @escaping (Bool) -> ()) {
         let requestBuilder = RequestBuilder(url: reg.url + "/v1/public/authRequest/" + reg.registrationId, method: "POST")
         requestBuilder.addBody(body: data.data(using: .utf8)!)
         
@@ -123,7 +124,7 @@ class AuthenticateDevice {
         }
     }
     
-    func respondTx(response: String, index: Int64, registration: Registration, callback: @escaping (Bool) -> ()) {
+    func respondTx(response: String, index: Int64, registration: Registrations.Registration, callback: @escaping (Bool) -> ()) {
         
         let keys = KeysManipulation()
         let pair = keys.getKeyPair(tag: registration.keyTag)
@@ -135,7 +136,7 @@ class AuthenticateDevice {
         
         let respBytes = Array<UInt8>(response.utf8)
         let encodedResp = respBytes.toBase64()
-        let encodedSignature = signature?.toBase64()
+        let encodedSignature = signature.toBase64()
 
         let body: [[String: Any]] = [["response": encodedResp as Any,
                                       "signature": encodedSignature!]]
