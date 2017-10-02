@@ -99,13 +99,13 @@ class RegisterDevice {
         }
     }
     
-    private func saveRegistrations() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
-        if (isSuccessfulSave) {
-            print(MessageString.Info.regSavedSuccess)
-        }
-        else {
-            print(MessageString.Info.regSavedFail)
-        }
-    }
+//    private func saveRegistrations() {
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
+//        if (isSuccessfulSave) {
+//            print(MessageString.Info.regSavedSuccess)
+//        }
+//        else {
+//            print(MessageString.Info.regSavedFail)
+//        }
+//    }
 }

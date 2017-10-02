@@ -11,6 +11,7 @@ import MapKit
 import Gloss
 
 class PendingTransactions {
+    static var switched = String()
     private static var transactions = [Transaction]()
     private init() {}
     
@@ -42,8 +43,8 @@ class PendingTransactions {
         return transactions.count
     }
     
-    static func reset() {
-        transactions = [Transaction]()
+    static func clear() {
+        transactions.removeAll()
     }
 
 }
@@ -52,54 +53,53 @@ class Transaction: Equatable, Gloss.Decodable {
     var currency: Currency?
     var value: Int?
     var date: String?
-    var company: String?
+    var contents: String?
     var location: CLLocationCoordinate2D?
     var registrationId: String?
-    var txId: Int64?
+    var challenge: String?
     
     init(value: Int,
          currency: Currency,
          date: String,
-         company: String,
+         contents: String,
          location: [Double],
-         registrationId: String,
-         txId: Int64) {
+         registrationId: String) {
         
         self.registrationId = registrationId
         self.value = value
         self.date = date
-        self.company = company
+        self.contents = contents
         self.currency = currency
         self.location = CLLocationCoordinate2D(latitude: location[0], longitude: location[1])
-        self.txId = txId
+        self.challenge = String()
     }
     
-    init(data: String, registrationId: String, txId: Int64) {
+    init(data: String, registrationId: String, challenge: String) {
         self.registrationId = registrationId
-        self.company = data
+        self.contents = data
         self.date = "29/09/17"
         self.currency = Currency.gbp
         self.value = 1000000
         self.location = CLLocationCoordinate2D(latitude: 51.504901, longitude: -0.024186199999999998)
-        self.txId = txId
+        self.challenge = challenge
     }
     
     required init?(json: JSON) {
         self.currency = "currency" <~~ json
         self.value = "value" <~~ json
         self.date = "date" <~~ json
-        self.company = "company" <~~ json
+        self.contents = "contents" <~~ json
         self.location = "location" <~~ json
+        self.challenge = "challenge" <~~ json
     }
 
     func addRegIdTxId(registrationId: String, txId: Int64) {
         self.registrationId = registrationId
-        self.txId = txId
     }
    
     static func == (lhs: Transaction, rhs: Transaction) -> Bool {
         return (lhs.value == rhs.value &&
-                lhs.company == rhs.company &&
+                lhs.contents == rhs.contents &&
                 lhs.date == rhs.date &&
                 lhs.location!.latitude == rhs.location!.latitude &&
                 lhs.location!.longitude == rhs.location!.longitude )

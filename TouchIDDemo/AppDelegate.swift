@@ -41,17 +41,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//
-//        let kvPairs : [String] = (url.query?.components(separatedBy: "&"))!
-//        for param in  kvPairs{
-//            let keyValuePair : Array = param.components(separatedBy: "=")
-//            if keyValuePair.count == 2{
-//                params.setObject(keyValuePair.last!, forKey: keyValuePair.first! as NSCopying)
-//            }
-//        }
-//
-//        return false
-//    }
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+
+        let string = url.absoluteString
+        
+        var params = [String: String]()
+        let index = string.index(string.startIndex, offsetBy: 7)
+        let query = string.substring(from: index)
+        
+        let pairs = query.components(separatedBy: "&")
+        
+        if (pairs.count == 1) {
+            let split = pairs[0].components(separatedBy: "=")
+            PendingTransactions.switched = split[1]
+            
+            let initialController: UITabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+
+            let controllers = initialController.viewControllers
+
+            initialController.selectedViewController = controllers?[Constants.TabBarControllersIndex.transactions]
+            self.window?.rootViewController = initialController
+        }
+            
+        else if (pairs.count == 3) {
+            let data = Utils.parseRegURL(url: string)
+            ValidRegistrations.pendingRegistration = data
+            
+            let navigationController : UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegistrationsNavigationController") as! UINavigationController
+
+            self.window?.rootViewController = navigationController
+
+        }
+        return true
+    }
 }
 

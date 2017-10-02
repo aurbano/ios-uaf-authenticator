@@ -14,24 +14,13 @@ class PendingTransactionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
         self.refreshControl?.addTarget(self, action: #selector(PendingTransactionsTableViewController.refresh), for: UIControlEvents.valueChanged)
 
         tableView.addSubview(refreshControl!)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(loadList),
-                                               name:Notification.Name("UPDATED_DATA"),
-                                               object: nil)
-        
-        
-        //Pull pending transactions
-//        if (PendingTransactions.items() == 0) {
-//            self.performSegue(withIdentifier: "noRegistrationsSegue", sender: self)
-//        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func loadList() {
@@ -39,38 +28,13 @@ class PendingTransactionsTableViewController: UITableViewController {
     }
     
     func refresh() {
-        PendingTransactions.reset()
-        AuthenticateDevice.sharedInstance.getPendingTransactions() { success in
-            if (success) {
-                self.tableView.reloadData()
-            }
-        }
+        queryTransactions()
         refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        queryTransactions()
         self.tableView.reloadData()
-    }
-    
-    func addSample() {
-        let transaction1 = Transaction(value: 100000,
-                                       currency: Currency.gbp,
-                                       date: "18/09/17",
-                                       company: "Apple",
-                                       location: [51.50476244954495, -0.023882389068603516],
-                                       registrationId: "qwertyuiop",
-                                       txId: 123456789)
-
-        let transaction2 = Transaction(value: 5000,
-                                       currency: Currency.usd,
-                                       date: "18/09/17",
-                                       company: "Microsoft",
-                                       location: [51.5030154, -0.022172700000055556],
-                                       registrationId: "asdfghjkl",
-                                       txId: 123456789)
-        
-        PendingTransactions.addTransaction(t: transaction1)
-        PendingTransactions.addTransaction(t: transaction2)
     }
     
     
@@ -101,8 +65,8 @@ class PendingTransactionsTableViewController: UITableViewController {
         
         let transaction = PendingTransactions.getTransaction(atIndex: indexPath.row)
         
-        cell.companyLabel.text = ("Company: " + transaction.company!)
-        cell.valueLabel.text = ("Value: " + String(transaction.value!) + transaction.currency!.rawValue)
+        cell.companyLabel.text = ("Contents: " + transaction.contents!)
+//        cell.valueLabel.text = ("Value: " + String(transaction.value!) + transaction.currency!.rawValue)
         cell.index = indexPath.row
         
         return cell
@@ -155,6 +119,7 @@ class PendingTransactionsTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        var index = -1
 
         switch(segue.identifier ?? "") {
         case "openPageView":
@@ -162,32 +127,50 @@ class PendingTransactionsTableViewController: UITableViewController {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
-            guard let selectedTransactionCell = sender as? PendingTransactionsTableViewCell else {
-                fatalError("Unexpected sender: \(String(describing: sender))")
+            if let selectedTransactionCell = sender as? PendingTransactionsTableViewCell {
+                guard let indexPath = tableView.indexPath(for: selectedTransactionCell) else {
+                    fatalError("The selected cell is not being displayed by the table")
+                }
+                index = indexPath.row
+            }
+            else if PendingTransactions.items() == 1 {
+                index = 0
+            }
+            if (index != -1) {
+                pageViewController.page = index
+            }
+            else {
+                fatalError("Unexpected sender cell")
             }
             
-            guard let indexPath = tableView.indexPath(for: selectedTransactionCell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-            
-            pageViewController.page = indexPath.row
-            
+//        case "openPageViewSingleTx":
+//            guard let pageViewController = segue.destination as? TransactionsPageViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//
+//            pageViewController.page = 0
+
         default:
             fatalError("Unexpected segue indentifier: \(String(describing: segue.identifier))")
         }
     }
     
-    @IBAction func unwindFromPageViewDecline(segue: UIStoryboardSegue) {
-        print("decline")
-        
-        //remove transaction and send response
-        self.tableView.reloadData()
-    }
-    
-    @IBAction func unwindFromPageViewSign(segue: UIStoryboardSegue) {
-        print("sign")
-        //remove transaction and send response
-        self.tableView.reloadData()
-    }
+//    @IBAction func unwindFromPageViewDecline(segue: UIStoryboardSegue) {
+//        print("decline")
+//        self.tableView.reloadData()
+//    }
+//
+//    @IBAction func unwindFromPageViewSign(segue: UIStoryboardSegue) {
+//        print("sign")
+//        self.tableView.reloadData()
+//    }
  
+    func queryTransactions() {
+        PendingTransactions.clear()
+        AuthenticateDevice.sharedInstance.getPendingTransactions() { success in
+            if (success) {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }

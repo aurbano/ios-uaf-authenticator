@@ -11,7 +11,7 @@ import Gloss
 import CryptoSwift
 import os.log
 
-class AuthResponse {
+class TransactionResponse {
     var header: Header? = nil
     var fcparams: String? = nil
     var assertions: [Assertions]? = nil

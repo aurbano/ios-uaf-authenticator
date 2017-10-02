@@ -16,7 +16,7 @@ class Register {
     
     func completeRegistration(with scannedData: String, callback: @escaping (Bool) -> ()) {
         let environment = "dev"
-        let username = "iva"
+        let username = "alex"
 
         guard let data = Utils.parseScannedData(data: scannedData) else {
             print("QR not formatted properly")
@@ -32,7 +32,7 @@ class Register {
         regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
         let jsonResponse = regResponse.toJSONArray()
         
-        let requestBuilder = RequestBuilder(url: data.url + "/v1/public/regResponse", method: "PUT")
+        let requestBuilder = RequestBuilder(url: data.url + Constants.URL.completeReg, method: "PUT")
         
         let header = ["application/json" : "Content-Type"]
         requestBuilder.addHeaders(headers: header)
@@ -67,7 +67,7 @@ class Register {
                     )
                     
                     ValidRegistrations.addRegistration(registrationToAdd: registration)
-                    Register.sharedInstance.saveRegistrations()
+                    ValidRegistrations.saveRegistrations()
                     callback(true)
                 }
                 else {
@@ -76,20 +76,4 @@ class Register {
             }
         }
     }
-    
-    private func saveRegistrations() {
-        NSKeyedArchiver.setClassName("Registration", for: Registration.self)
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: ValidRegistrations.registrations)
-        ValidRegistrations.userDefaults?.set(encodedData, forKey: "registrations")
-        ValidRegistrations.userDefaults?.synchronize()
-
-//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
-//        if (isSuccessfulSave) {
-//            print(MessageString.Info.regSavedSuccess)
-//        }
-//        else {
-//            print(MessageString.Info.regSavedFail)
-//        }
-    }
-    
 }

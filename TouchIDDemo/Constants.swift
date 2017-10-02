@@ -21,4 +21,14 @@ struct Constants {
         static let qa = "qa"
         static let prod = "prod"
     }
+    struct TabBarControllersIndex {
+        static let home = 0
+        static let transactions = 1
+        static let registrations = 2
+    }
+    
+    struct URL {
+        static let transactions = "/v1/public/authResponse/"
+        static let completeReg = "/v1/public/regResponse"
+    }
 }

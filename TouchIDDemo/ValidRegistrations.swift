@@ -10,6 +10,7 @@ import Foundation
 import Registrations
 
 class ValidRegistrations {
+    static var pendingRegistration: String? = ""
     static var registrations = [Registrations.Registration]()
     static let userDefaults = UserDefaults(suiteName: "group.com.ms.auth.iva")
     static let oldUserDefaults = UserDefaults(suiteName: "authApps")
@@ -48,7 +49,7 @@ class ValidRegistrations {
     static func items() -> Int {
         return registrations.count
     }
-    
+
     static func getRegistrationFrom(registrationId: String) -> Registrations.Registration? {
         for reg in registrations {
             if (reg.registrationId == registrationId) {
@@ -56,5 +57,12 @@ class ValidRegistrations {
             }
         }
         return nil
+    }
+    
+    static func saveRegistrations() {
+        NSKeyedArchiver.setClassName("Registration", for: Registration.self)
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: ValidRegistrations.registrations)
+        ValidRegistrations.userDefaults?.set(encodedData, forKey: "registrations")
+        ValidRegistrations.userDefaults?.synchronize()
     }
 }

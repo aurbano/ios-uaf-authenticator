@@ -16,11 +16,23 @@ class TransactionsPageViewController: UIPageViewController, UIPageViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
+
+
+        let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
+        appearance.pageIndicatorTintColor = UIColor.red
+        appearance.currentPageIndicatorTintColor = UIColor.red
+
         self.dataSource = self
         self.setViewControllers([getViewControllerAtIndex(index: 0)] as [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,22 +73,15 @@ class TransactionsPageViewController: UIPageViewController, UIPageViewController
         // Create a new view controller and pass suitable data.
         let pageContentViewController = self.storyboard?.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
         let transaction = PendingTransactions.getTransaction(atIndex: index)
-        pageContentViewController.coordinates = transaction.location
-        pageContentViewController.company = transaction.company
-        pageContentViewController.date = transaction.date
-        pageContentViewController.value = String(describing: transaction.value) + transaction.currency!.rawValue
+        pageContentViewController.coordinates = transaction.location!
+        pageContentViewController.company = transaction.contents
         pageContentViewController.pageIndex = index
         
         return pageContentViewController
     }
-
-//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-//        return
-//    }
-
-
-    @IBAction func openPageView(segue: UIStoryboardSegue) {
-
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return page
     }
     
     /*

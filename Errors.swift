@@ -25,13 +25,11 @@ struct MessageString {
         static let dataNotReadable = "Data not readable"
         static let dataNotEncoded = "Data cannot be decoded"
         static let unableToDecode = "Unable to decode property: "
-
     }
     
     struct Requests {
         static let postFail = "Post request unsuccessful"
         static let getFail = "Get request unsuccessful"
-
     }
     
     struct Info {
@@ -41,15 +39,20 @@ struct MessageString {
         static let regLoadFail = "Registrations not loaded correctly"
         static let regFail = "Registration failed"
         static let authSuccess = "Logged in"
+        static let txFail = "Transaction signing failed"
+        static let txSuccess = "Transaction signing successful"
     }
     
     struct Labels {
         static let company = "Company: "
         static let value = "Value: "
         static let date = "Date: "
+        static let content = "Contents: "
     }
+    
     struct Server {
         static let declinedTx = "DECLINED_TX"
         static let signedTx = "SIGNED_TX"
+        static let qrNotParsed = "Unable to parse data from QR code"
     }
 }

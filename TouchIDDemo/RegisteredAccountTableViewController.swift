@@ -12,25 +12,45 @@ import Registrations
 class RegisteredAccountTableViewController: UITableViewController {
     
     //MARK: Properties
-    var scannedData: String!
-    
+//    var scannedData: String!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.refreshControl?.addTarget(self, action: #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
         
+        self.refreshControl?.addTarget(self, action:
+            #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
         navigationItem.leftBarButtonItem = editButtonItem
+
+        if (ValidRegistrations.pendingRegistration != "") {
+            let alert = UIAlertController(title: "Complete registration?", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                NSLog("Registration to be completed...")
+                Register.sharedInstance.completeRegistration(with: ValidRegistrations.pendingRegistration!) {
+                    success in
+                    if (success) {
+                        self.tableView.reloadData()
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                NSLog("Canceled registration completion")
+            }))
+           
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
-    func loadList() {
-        self.tableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func refresh() {
         self.tableView.reloadData()
         refreshControl?.endRefreshing()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
     }
     
     func addSample() {
@@ -106,7 +126,7 @@ class RegisteredAccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if (ValidRegistrations.deleteRegistration(atIndex: indexPath.row)) {
-                saveRegistrations()
+                ValidRegistrations.saveRegistrations()
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         } else if editingStyle == .insert {
@@ -135,26 +155,47 @@ class RegisteredAccountTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "InitiateTransaction") {
-            guard let initiateTxViewController = segue.destination as? CreateTransactionViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-            guard let selectedRegCell = sender as? RegisteredAccountTableViewCell else {
-                fatalError("Unexpected sender: \(String(describing: sender))")
-            }
-
-            guard let indexPath = tableView.indexPath(for: selectedRegCell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-
-            let selectedReg = ValidRegistrations.registrations[indexPath.row]
-            initiateTxViewController.selectedReg = selectedReg
-        }
+//        if (segue.identifier == "InitiateTransaction") {
+//            guard let initiateTxViewController = segue.destination as? CreateTransactionViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//            
+//            guard let selectedRegCell = sender as? RegisteredAccountTableViewCell else {
+//                fatalError("Unexpected sender: \(String(describing: sender))")
+//            }
+//
+//            guard let indexPath = tableView.indexPath(for: selectedRegCell) else {
+//                fatalError("The selected cell is not being displayed by the table")
+//            }
+//
+//            let selectedReg = ValidRegistrations.registrations[indexPath.row]
+//            initiateTxViewController.selectedReg = selectedReg
+//        }
     }
     
         
     @IBAction func unwindToRegistrationsTableView(segue: UIStoryboardSegue) {
+        let qrScannerVC: QRScannerViewController = segue.source as! QRScannerViewController
+        var scannedData = qrScannerVC.dataCaptured
+
+        if (scannedData.starts(with: "auth://")) {
+            scannedData = Utils.parseRegURL(url: scannedData)
+        }
+        
+        self.completeReg(withData: scannedData)
+    }
+    
+//    @objc private func regObserver(_ notification: NSNotification) {
+//        let challenge = notification.userInfo?["challenge"] as? String
+//        let serverData = notification.userInfo?["serverData"] as? String
+//        let url = notification.userInfo?["url"] as? String
+//
+//        let string = challenge! + "," + serverData! + "," + url!
+//
+//        self.completeReg(withData: string)
+//    }
+    
+    private func completeReg(withData: String) {
         var overlay = UIView()
         let activityIndicator = UIActivityIndicatorView()
         
@@ -164,48 +205,37 @@ class RegisteredAccountTableViewController: UITableViewController {
         
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        
+        overlay.layer.zPosition = 0
         self.view.addSubview(overlay)
         overlay.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
-        let qrScannerVC: QRScannerViewController = segue.source as! QRScannerViewController
-        scannedData = qrScannerVC.dataCaptured
-        
-        Register.sharedInstance.completeRegistration(with: scannedData) { success in
+        Register.sharedInstance.completeRegistration(with: withData) { success in
             if (success) {
                 
                 let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
-                        NSLog("Registration success alert")
-                        activityIndicator.stopAnimating()
-                        overlay.removeFromSuperview()
+                    NSLog(MessageString.Info.regSuccess)
                 }))
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
                 
                 self.present(alert, animated: true, completion: nil)
-
+                
                 self.tableView.reloadData()
             }
             else {
                 
                 let alert = UIAlertController(title: MessageString.Info.regFail, message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
-                    NSLog("Registration success alert")
-                    activityIndicator.stopAnimating()
-                    overlay.removeFromSuperview()
+                    NSLog(MessageString.Info.regFail)
                 }))
+                activityIndicator.stopAnimating()
+                overlay.removeFromSuperview()
+                
                 self.present(alert, animated: true, completion: nil)
-
+                
             }
-        }
-    }
-    private func saveRegistrations() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
-        if (isSuccessfulSave) {
-            print(MessageString.Info.regSavedSuccess)
-        }
-        else {
-            print(MessageString.Info.regSavedFail)
         }
     }
 }

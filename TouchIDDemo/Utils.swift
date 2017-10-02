@@ -77,4 +77,20 @@ class Utils {
         
         return (challenge, serverData, url)
     }
+    
+    static func parseRegURL(url: String) -> String {
+        var params = [String: String]()
+        let index = url.index(url.startIndex, offsetBy: 7)
+        let query = url.substring(from: index)
+
+        let pairs = query.components(separatedBy: "&")
+        
+        for pair in pairs {
+            let split = pair.components(separatedBy: "=")
+            params[split[0]] = split[1]
+        }
+        
+        let string = params["challenge"]! + "," + params["serverData"]! + "," + params["url"]!
+        return string
+    }
 }

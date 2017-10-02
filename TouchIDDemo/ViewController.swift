@@ -17,10 +17,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     var scannedData: String = ""
 
+    @IBOutlet var webView: UIWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
+        
+//                let url = URL(string: "https://www.morganstanley.com/")
+//                let reqObj = URLRequest(url: url!)
+//                webView.loadRequest(reqObj)
+
         // Do any additional setup after loading the view, typically from a nib.
-//        loadRegistrations()
+        loadRegistrations()
     }
     
     override func didReceiveMemoryWarning() {
