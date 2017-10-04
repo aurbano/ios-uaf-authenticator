@@ -22,12 +22,13 @@ class RegisteredAccountTableViewCell: UITableViewCell {
     
     //MARK: Properties
     
-    @IBOutlet weak var envLabel: UILabel!
     @IBOutlet weak var username: UILabel!
-
-    @IBAction func loginButtonClicked(_ sender: UIButton) {
-        AuthenticateDevice.sharedInstance.authenticate(registration: ValidRegistrations.registrations[index])
-    }
+    @IBOutlet weak var environment: UILabel!
+    
+    
+//    @IBAction func loginButtonClicked(_ sender: UIButton) {
+//        AuthenticateDevice.sharedInstance.authenticate(registration: ValidRegistrations.registrations[index])
+//    }
     
     
 }

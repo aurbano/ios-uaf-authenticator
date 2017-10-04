@@ -16,44 +16,40 @@ class RegisterDevice {
     
     private init() { }
     
-    func register(username: String, environment: String) {
-        
-        getRegRequest(username: username) { (getSuccessful, regRequest) in
-            guard (getSuccessful) else {
-                print(MessageString.Requests.getFail)
-                return
-            }
-            
-            let fcParams = Utils.buildFcParams(request: regRequest)
-            
-            let fcParamsData = fcParams.data(using: .utf8)! as NSData
-            let encoded = fcParamsData.base64EncodedString()
-            
-            let regResponse = RegResponse(header: (regRequest?.header)!, fcparams: encoded)
-            regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
-            let jsonResponse = regResponse.toJSONArray()
-            
-            RegisterDevice.sharedInstance.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
-               guard (postSuccessful) else {
-                print(MessageString.Requests.postFail)
-                return
-                }
-                if (regOutcome.status == Status.SUCCESS && regOutcome.attestVerifiedStatus == AttestationStatus.VALID) {
-                    print(MessageString.Info.regSuccess)
-
-                    let registration = Registration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: environment, username: username, keyID: (regResponse.assertions?[0].keyID)!)
-                    
-                    ValidRegistrations.addRegistration(registrationToAdd: registration)
-                    RegisterDevice.sharedInstance.saveRegistrations()
-                    return
-                }
-            }
-        }
-        
-//        if (successful) {
-//            ValidRegistrations.newRegistration = true
+//    func register(username: String, environment: String) {
+//        
+//        getRegRequest(username: username) { (getSuccessful, regRequest) in
+//            guard (getSuccessful) else {
+//                print(MessageString.Requests.getFail)
+//                return
+//            }
+//            
+//            let fcParams = Utils.buildFcParams(request: regRequest)
+//            
+//            let fcParamsData = fcParams.data(using: .utf8)! as NSData
+//            let encoded = fcParamsData.base64EncodedString()
+//            
+//            let regResponse = RegResponse(header: (regRequest?.header)!, fcparams: encoded)
+//            regResponse.assertions = [Assertions(fcParams: fcParams, username: username, environment: environment)]
+//            let jsonResponse = regResponse.toJSONArray()
+//            
+//            RegisterDevice.sharedInstance.postRegRequest(json: jsonResponse as! [[String : AnyObject]]) { (postSuccessful, regOutcome) in
+//               guard (postSuccessful) else {
+//                print(MessageString.Requests.postFail)
+//                return
+//                }
+//                if (regOutcome.status == Status.SUCCESS && regOutcome.attestVerifiedStatus == AttestationStatus.VALID) {
+//                    print(MessageString.Info.regSuccess)
+//
+//                    let registration = Registration(appID: (regRequest?.header?.appId)!, keyTag: (regResponse.assertions?[0].privKeyTag)!, url: Constants.domain, env: environment, username: username, keyID: (regResponse.assertions?[0].keyID)!)
+//                    
+//                    ValidRegistrations.addRegistration(registrationToAdd: registration)
+//                    RegisterDevice.sharedInstance.saveRegistrations()
+//                    return
+//                }
+//            }
 //        }
-    }
+//    }
     
     private func getRegRequest(username: String, taskCallback: @escaping (Bool, GetRequest?) -> ()) {
         let requestBuilder = RequestBuilder(url: Constants.domain + "/v1/public/regRequest/" + username, method: "GET")
@@ -103,13 +99,13 @@ class RegisterDevice {
         }
     }
     
-    private func saveRegistrations() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
-        if (isSuccessfulSave) {
-            print(MessageString.Info.regSavedSuccess)
-        }
-        else {
-            print(MessageString.Info.regSavedFail)
-        }
-    }
+//    private func saveRegistrations() {
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ValidRegistrations.registrations, toFile: Registration.ArchiveURL.path)
+//        if (isSuccessfulSave) {
+//            print(MessageString.Info.regSavedSuccess)
+//        }
+//        else {
+//            print(MessageString.Info.regSavedFail)
+//        }
+//    }
 }

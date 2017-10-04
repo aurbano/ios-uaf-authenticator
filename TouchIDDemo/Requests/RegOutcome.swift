@@ -10,21 +10,22 @@ import Foundation
 import Gloss
 import CryptoSwift
 
-class RegOutcome: Decodable {
+class RegOutcome: Gloss.Decodable {
     var authenticatorVersion: String?
     var publicKey: String?
     var signCounter: String?
     var attestCert: String?
     var attestDataToSign: String?
     var attestSignature: String?
-    var attestVerifiedStatus: AttestationStatus?
+    var attestVerifiedStatus: AttestationStatus!
     var authenticator: Authenticator?
     var deviceID: String?
-    var status: Status?
+    var status: Status!
     var tcDisplayPNGCharacteristics: String?
     var timestamp: Int64?
     var userID: String?
     var username: String?
+    var registrationId: String!
     
     required init?(json: JSON) {
         self.authenticatorVersion = "AuthenticatorVersion" <~~ json
@@ -41,6 +42,7 @@ class RegOutcome: Decodable {
         self.timestamp = "timeStamp" <~~ json
         self.userID = "userId" <~~ json
         self.username = "username" <~~ json
+        self.registrationId = "registrationId" <~~ json
     }
 }
 
@@ -55,7 +57,7 @@ enum Status: String {
     case ASSERTIONS_CHECK_FAILED = "ASSERTIONS_CHECK_FAILED"
 }
 
-class Authenticator: Decodable {
+class Authenticator: Gloss.Decodable {
     var aaid: String?
     var keyID: String?
     var deviceID: String?

@@ -1,0 +1,11 @@
+framework module Registrations {
+  umbrella header "Registrations.h"
+
+  export *
+  module * { export * }
+}
+
+module Registrations.Swift {
+    header "Registrations-Swift.h"
+    requires objc
+}

@@ -69,11 +69,28 @@ class Utils {
     }
     
     static func parseScannedData(data: String) -> (challenge: String, serverData: String, url: String)? {
-        let lines = data.components(separatedBy: .whitespacesAndNewlines)
-        let challenge = lines[1]
-        let serverData = lines[3]
-        let url = lines[5]
+        let stripped = data.replacingOccurrences(of: "\"", with: "")
+        let lines = stripped.components(separatedBy: ",")
+        let challenge = lines[0]
+        let serverData = lines[1]
+        let url = lines[2]
         
         return (challenge, serverData, url)
+    }
+    
+    static func parseRegURL(url: String) -> String {
+        var params = [String: String]()
+        let index = url.index(url.startIndex, offsetBy: 7)
+        let query = url.substring(from: index)
+
+        let pairs = query.components(separatedBy: "&")
+        
+        for pair in pairs {
+            let split = pair.components(separatedBy: "=")
+            params[split[0]] = split[1]
+        }
+        
+        let string = params["challenge"]! + "," + params["serverData"]! + "," + params["url"]!
+        return string
     }
 }

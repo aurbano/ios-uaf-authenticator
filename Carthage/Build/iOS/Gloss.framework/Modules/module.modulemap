@@ -7,4 +7,5 @@ framework module Gloss {
 
 module Gloss.Swift {
     header "Gloss-Swift.h"
+    requires objc
 }

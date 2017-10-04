@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-class GetRequest: Decodable {
+class GetRequest: Gloss.Decodable {
     var header: Header?
     var challenge: String?
     var username: String?
@@ -26,7 +26,7 @@ class GetRequest: Decodable {
     }
 }
 
-class Policy: Decodable {
+class Policy: Gloss.Decodable {
     var accepted: [AcceptedPolicies]?
     
     required init?(json: JSON) {
@@ -34,7 +34,7 @@ class Policy: Decodable {
     }
 }
 
-class AcceptedPolicies: Decodable {
+class AcceptedPolicies: Gloss.Decodable {
     var aaid: [String]?
     var vendorID: [String]?
     var keyIDs: [String]?

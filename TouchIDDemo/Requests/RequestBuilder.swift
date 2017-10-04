@@ -31,9 +31,15 @@ class RequestBuilder {
     }
     
     func addBody(body: Data) {
-        if (self.request.httpMethod == "POST") {
+        if (self.request.httpMethod == "PUT" || self.request.httpMethod == "POST") {
             self.request.httpBody = body
         }
+    }
+    
+    func addBody(body: [[String: Any]]) {
+        let json = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)        
+        self.addBody(body: json!)
+
     }
     
     func getRequest() -> URLRequest {

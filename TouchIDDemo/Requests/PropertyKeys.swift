@@ -14,4 +14,5 @@ struct PropertyKey {
     static let env = "environment"
     static let username = "username"
     static let keyID = "keyID"
+    static let registrationId = "registrationId"
 }

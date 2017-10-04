@@ -1,3 +1,14 @@
+0.7.2
+- Adds Padding enum (.pkcs5, .pkcs7, .noPadding, .zeroPadding)
+- Removes Generics from the public API.
+- Slightly improves SHA1, SHA2, SHA3 performance.
+
+0.7.1
+- Swift 4.0 compatibility release
+
+0.7.0
+- Swift 3.2 compatibility release
+
 0.6.9
 - Fixed padding issue where padding was not properly added in CTR mode.
 - Fixed thrown error on decrypting empty string,

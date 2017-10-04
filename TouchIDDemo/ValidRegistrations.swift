@@ -7,27 +7,30 @@
 //
 
 import Foundation
+import Registrations
 
 class ValidRegistrations {
-    static var registrations = [Registration]()
-    
+    static var pendingRegistration: String? = ""
+    static var registrations = [Registrations.Registration]()
+    static let userDefaults = UserDefaults(suiteName: "group.com.ms.auth.iva")
+    static let oldUserDefaults = UserDefaults(suiteName: "authApps")
+
     private init() { }
         
-    static func addRegistration(registrationToAdd: Registration) {
+    static func addRegistration(registrationToAdd: Registrations.Registration) {
         if (!registrations.contains(registrationToAdd)) {
             registrations += [registrationToAdd]
         }
     }
     
-    static func deleteRegistration(registrationToDelete: Registration) -> Bool {
-        var removed = false
+    static func deleteRegistration(registrationToDelete: Registrations.Registration) -> Bool {
         for (index, reg) in registrations.enumerated() {
             if reg == registrationToDelete {
                 registrations.remove(at: index)
-                removed = true
+                return true
             }
         }
-        return removed
+        return false
     }
     
     static func deleteRegistration(atIndex: Int) -> Bool {
@@ -45,5 +48,21 @@ class ValidRegistrations {
     
     static func items() -> Int {
         return registrations.count
+    }
+
+    static func getRegistrationFrom(registrationId: String) -> Registrations.Registration? {
+        for reg in registrations {
+            if (reg.registrationId == registrationId) {
+                return reg
+            }
+        }
+        return nil
+    }
+    
+    static func saveRegistrations() {
+        NSKeyedArchiver.setClassName("Registration", for: Registration.self)
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: ValidRegistrations.registrations)
+        ValidRegistrations.userDefaults?.set(encodedData, forKey: "registrations")
+        ValidRegistrations.userDefaults?.synchronize()
     }
 }

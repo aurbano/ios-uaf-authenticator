@@ -65,23 +65,22 @@ class KeysManipulation {
             
             var error: Unmanaged<CFError>?
             guard let privateKey = SecKeyCreateRandomKey(attributes as CFDictionary, &error) else {
-                print(error)
+                print(error as Any)
                 print(MessageString.Keys.KeyPairNotGenerated)
                 throw error!.takeRetainedValue() as Error
             }
             
-            guard let data = SecKeyCopyExternalRepresentation(privateKey, &error) else {
-                print(error)
-                return (nil, nil)
-            }
-            let str = String(data: data as Data, encoding: .utf8)
+//            guard let data = SecKeyCopyExternalRepresentation(privateKey, &error) else {
+//                print(error)
+//                return (nil, nil)
+//            }
             
             let publicKey = getPublicKeybyPrivate(privateKey: privateKey)
             return (privateKey, publicKey)
         }
     }
     
-    func getKeyPair(tag: String) -> (SecKey?, SecKey?) {
+    func getKeyPair(tag: String) -> (privateKey: SecKey?, publicKey: SecKey?) {
         let getquery: [String: Any] = [ kSecClass              as String:  kSecClassKey,
                                         kSecAttrApplicationTag as String:  tag,
                                         kSecAttrKeyType        as String:  kSecAttrKeyTypeECSECPrimeRandom,
@@ -107,18 +106,18 @@ class KeysManipulation {
         return publicKey
     }
 
-    func signData(dataForSigning: Array<UInt8>, key: SecKey, algorithm: SecKeyAlgorithm) -> Array<UInt8>? {
+    func signData(dataForSigning: Array<UInt8>, key: SecKey, algorithm: SecKeyAlgorithm) -> Array<UInt8> {
         guard SecKeyIsAlgorithmSupported(key, .sign, algorithm) else {
             print(MessageString.Keys.algoNotSupported)
-            return nil
+            return Array<UInt8>()
         }
         
         var signingError: Unmanaged<CFError>?
         let signedDataValueAsData = CFDataCreate(nil, dataForSigning, dataForSigning.count)
         guard let signature = SecKeyCreateSignature(key, algorithm, signedDataValueAsData!, &signingError) else {
-            print(signingError)
+            print(signingError as Any)
             print(MessageString.Keys.usuccessfulSign)
-            return nil
+            return Array<UInt8>()
         }
         
         let publicKey = getPublicKeybyPrivate(privateKey: key)
@@ -128,7 +127,7 @@ class KeysManipulation {
         let byteptr = UnsafeMutablePointer<UInt8>.allocate(capacity: range.length)
         CFDataGetBytes(signature, range, byteptr)
         
-        let byteout = Array(UnsafeBufferPointer(start: byteptr, count: range.length))
+        let byteout = Array<UInt8>(UnsafeBufferPointer(start: byteptr, count: range.length))
         
         return byteout
 
