@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if (pairs.count == 1) {
             let split = pairs[0].components(separatedBy: "=")
-            PendingTransactions.switched = split[1]
+            PendingTransactions.switchedTxChallenge = split[1]
             
             let initialController: UITabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
 

@@ -24,7 +24,7 @@ class TransactionsPageViewController: UIPageViewController, UIPageViewController
         appearance.currentPageIndicatorTintColor = UIColor.red
 
         self.dataSource = self
-        self.setViewControllers([getViewControllerAtIndex(index: 0)] as [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        self.setViewControllers([getViewControllerAtIndex(index: page)] as [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
 
         // Do any additional setup after loading the view.
     }
@@ -43,7 +43,7 @@ class TransactionsPageViewController: UIPageViewController, UIPageViewController
     {
         let pageContent: AlertViewController = viewController as! AlertViewController
         var index = pageContent.pageIndex
-        if ((index == 0) || (index == NSNotFound))
+        if (index == 0 || index == NSNotFound)
         {
             return nil
         }

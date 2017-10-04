@@ -11,12 +11,13 @@ import MapKit
 import Gloss
 
 class PendingTransactions {
-    static var switched = String()
+    static var switchedTxChallenge = String()
     private static var transactions = [Transaction]()
     private init() {}
     
     static func addTransaction(t: Transaction) {
         transactions.append(t)
+        print("added")
     }
     
     static func removeTransaction(t: Transaction) {
@@ -41,6 +42,15 @@ class PendingTransactions {
     
     static func items() -> Int {
         return transactions.count
+    }
+    
+    static func getTransactionIndexBy(challenge: String) -> Int {
+        for (index, tx) in transactions.enumerated() {
+            if (tx.challenge == challenge) {
+                return index
+            }
+        }
+        return -1
     }
     
     static func clear() {
