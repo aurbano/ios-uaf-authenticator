@@ -29,6 +29,7 @@ class AuthenticateDevice {
                     }
                     callback(false)
                 case .success(let responseObject):
+                    print(responseObject)
                     let json = responseObject as! [[String: Any]]
                     var txRequests = [TransactionRequest]()
                     if (json.count != 0) {
@@ -40,9 +41,9 @@ class AuthenticateDevice {
                                 
                                 let transaction = Transaction(data: tx.content!, registrationId: reg.registrationId, challenge: request.challenge!)
                                 PendingTransactions.addTransaction(t: transaction)
-                                callback(true)
                             }
                         }
+                        callback(true)
                     }
                     callback(false)
                 }

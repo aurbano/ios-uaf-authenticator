@@ -109,24 +109,44 @@ class AlertViewController: ViewController {
 
             if (success) {
                 PendingTransactions.removeTransaction(atIndex: index)
-                self.dismiss(animated: true, completion: nil)
 
-                if(PendingTransactions.switched == tx.challenge) {
-                    if (self.openCustomURLScheme(customURLScheme: self.kCustomURLScheme)) {
-                        PendingTransactions.switched = String()
+                if(PendingTransactions.switchedTxChallenge == tx.challenge) {
+                    if (self.openCustomURLScheme(customURLScheme: self.kCustomURLScheme + "challenge=" + tx.challenge! + "&" + "registrationId=" + reg.registrationId)) {
+                        PendingTransactions.switchedTxChallenge = String()
+                        self.dismiss(animated: true, completion: nil)
                         print("app opened successfully")
                     }
                     else {
-                        PendingTransactions.switched = String()
+                        // tx success, can't open another app
+                        PendingTransactions.switchedTxChallenge = String()
+                        let alert = UIAlertController(title: MessageString.Info.txSuccess, message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                            NSLog(MessageString.Info.txSuccess)
+                            self.performSegue(withIdentifier: "returnFromTxPage", sender: self)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+
                         print("unable to open another app")
                     }
                 }
                 else {
-                    self.presentAlert(message: MessageString.Info.txSuccess)
+                    // tx success, no context-switch
+                    let alert = UIAlertController(title: MessageString.Info.txSuccess, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                        NSLog(MessageString.Info.txSuccess)
+                        self.performSegue(withIdentifier: "returnFromTxPage", sender: self)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             else {
-                self.presentAlert(message: MessageString.Info.txFail)
+                // tx fail
+                let alert = UIAlertController(title: MessageString.Info.txFail, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                    NSLog(MessageString.Info.txFail)
+                    self.performSegue(withIdentifier: "returnFromTxPage", sender: self)
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -159,34 +179,53 @@ class AlertViewController: ViewController {
             overlay.removeFromSuperview()
             if (success) {
                 PendingTransactions.removeTransaction(atIndex: index)
-                self.dismiss(animated: true, completion: nil)
 
-                if(PendingTransactions.switched == tx.challenge) {
-                    if (self.openCustomURLScheme(customURLScheme: self.kCustomURLScheme)) {
-                        PendingTransactions.switched = String()
+                if(PendingTransactions.switchedTxChallenge == tx.challenge) {
+                    if (self.openCustomURLScheme(customURLScheme: self.kCustomURLScheme + "challenge=" + tx.challenge! + "&" + "registrationId=" + reg.registrationId)) {
+                        PendingTransactions.switchedTxChallenge = String()
+                        self.dismiss(animated: true, completion: nil)
                         print("app opened successfully")
                     }
                     else {
-                        PendingTransactions.switched = String()
+                        PendingTransactions.switchedTxChallenge = String()
+                        
+                        // successsful tx, can't open the other app
+                        let alert = UIAlertController(title: MessageString.Info.txSuccess, message: "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                            NSLog(MessageString.Info.txSuccess)
+                            self.performSegue(withIdentifier: "returnFromTxPage", sender: self)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
                         print("unable to open another app")
                     }
                 }
                 else {
-                    self.presentAlert(message: MessageString.Info.txSuccess)
+                    // tx  success, no context-switch
+                    let alert = UIAlertController(title: MessageString.Info.txSuccess, message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                        NSLog(MessageString.Info.txSuccess)
+                        self.performSegue(withIdentifier: "returnFromTxPage", sender: self)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             else {
-                self.presentAlert(message: MessageString.Info.txFail)
+                // tx fail
+                let alert = UIAlertController(title: MessageString.Info.txFail, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                    NSLog(MessageString.Info.txFail)
+                    self.performSegue(withIdentifier: "returnFromTxPage", sender: self)
+                }))
+                self.present(alert, animated: true, completion: nil)
+
             }
         }
     }
     
-    func presentAlert(message: String) {
-        let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
-            NSLog(message)
-        }))
-        self.present(alert, animated: true, completion: nil)
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        if touch?.view != alertView {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

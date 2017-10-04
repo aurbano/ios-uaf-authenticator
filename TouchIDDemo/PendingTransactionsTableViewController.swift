@@ -14,6 +14,18 @@ class PendingTransactionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.queryTransactions {
+            done in
+            if (done) {
+                if (PendingTransactions.switchedTxChallenge != "") {
+                    print(PendingTransactions.items())
+                    self.performSegue(withIdentifier: "openPageView", sender: self)
+                }
+                self.tableView.reloadData()
+            }
+        }
+
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -21,22 +33,21 @@ class PendingTransactionsTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(PendingTransactionsTableViewController.refresh), for: UIControlEvents.valueChanged)
 
         tableView.addSubview(refreshControl!)
-    }
-    
-    func loadList() {
-        self.tableView.reloadData()
+        
     }
     
     func refresh() {
-        queryTransactions()
-        refreshControl?.endRefreshing()
+        queryTransactions { done in
+            self.refreshControl?.endRefreshing()
+
+            if(done) {
+                self.tableView.reloadData()
+            }
+            else {
+                //TODO: present alert - refresh unsuccessful
+            }
+        }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        queryTransactions()
-        self.tableView.reloadData()
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,11 +82,12 @@ class PendingTransactionsTableViewController: UITableViewController {
         
         return cell
     }
-    
+    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        let cell = tableView.cellForRow(at: indexPath)
         //        self.performSegue(withIdentifier: "QRScanner", sender: cell)
     }
+ */
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -133,9 +145,14 @@ class PendingTransactionsTableViewController: UITableViewController {
                 }
                 index = indexPath.row
             }
+            else if (PendingTransactions.switchedTxChallenge != "") {
+                index = PendingTransactions.getTransactionIndexBy(challenge: PendingTransactions.switchedTxChallenge)
+            }
             else if PendingTransactions.items() == 1 {
                 index = 0
             }
+
+
             if (index != -1) {
                 pageViewController.page = index
             }
@@ -154,23 +171,15 @@ class PendingTransactionsTableViewController: UITableViewController {
             fatalError("Unexpected segue indentifier: \(String(describing: segue.identifier))")
         }
     }
-    
-//    @IBAction func unwindFromPageViewDecline(segue: UIStoryboardSegue) {
-//        print("decline")
-//        self.tableView.reloadData()
-//    }
-//
-//    @IBAction func unwindFromPageViewSign(segue: UIStoryboardSegue) {
-//        print("sign")
-//        self.tableView.reloadData()
-//    }
+        
+    @IBAction func unwindFromTxPageView(segue: UIStoryboardSegue) {
+        self.tableView.reloadData()
+    }
  
-    func queryTransactions() {
+    func queryTransactions(callback: @escaping(Bool) -> ()) {
         PendingTransactions.clear()
         AuthenticateDevice.sharedInstance.getPendingTransactions() { success in
-            if (success) {
-                self.tableView.reloadData()
-            }
+            callback(success)
         }
     }
 }
