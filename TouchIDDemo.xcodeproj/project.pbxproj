@@ -280,8 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				AAE7882E1F432B9500CE446D /* RegisteredAccountTableViewCell.swift */,
-				AAF013191F72631500B07E93 /* PendingTransactionsTableViewCell.swift */,
 				AAE788311F432E4500CE446D /* RegisteredAccountTableViewController.swift */,
+				AAF013191F72631500B07E93 /* PendingTransactionsTableViewCell.swift */,
 				AAF013171F72623B00B07E93 /* PendingTransactionsTableViewController.swift */,
 			);
 			name = TableViews;

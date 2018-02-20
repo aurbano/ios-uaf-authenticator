@@ -41,6 +41,7 @@ struct MessageString {
         static let authSuccess = "Logged in"
         static let txFail = "Transaction signing failed"
         static let txSuccess = "Transaction signing successful"
+        static let refreshFail = "Retrieving pending transactions failed. \nTry again later"
     }
     
     struct Labels {

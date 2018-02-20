@@ -44,7 +44,11 @@ class PendingTransactionsTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
             else {
-                //TODO: present alert - refresh unsuccessful
+                let alert = UIAlertController(title: MessageString.Info.refreshFail, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
+                    NSLog(MessageString.Info.refreshFail)
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -131,7 +135,7 @@ class PendingTransactionsTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        var index = -1
+        var index = 1
 
         switch(segue.identifier ?? "") {
         case "openPageView":
@@ -152,21 +156,14 @@ class PendingTransactionsTableViewController: UITableViewController {
                 index = 0
             }
 
-
-            if (index != -1) {
-                pageViewController.page = index
-            }
-            else {
-                fatalError("Unexpected sender cell")
-            }
-            
-//        case "openPageViewSingleTx":
-//            guard let pageViewController = segue.destination as? TransactionsPageViewController else {
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
+            pageViewController.page = index
+//            if (index != -1) {
 //
-//            pageViewController.page = 0
-
+//            }
+//            else {
+//                fatalError("Unexpected sender cell")
+//            }
+            
         default:
             fatalError("Unexpected segue indentifier: \(String(describing: segue.identifier))")
         }

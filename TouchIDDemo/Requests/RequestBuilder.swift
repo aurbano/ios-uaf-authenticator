@@ -22,6 +22,15 @@ class RequestBuilder {
         self.request.httpMethod = method
         self.timeout = 10
     }
+    
+    init(url: String, method: String, timeout: Double) {
+        self.url = URL(string: url)!
+        self.headers = [String() : String()]
+        self.request = URLRequest(url: self.url)
+        self.request.httpMethod = method
+        self.timeout = timeout
+    }
+
 
     
     func addHeaders(headers: [String : String]) {

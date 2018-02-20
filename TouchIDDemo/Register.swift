@@ -16,7 +16,7 @@ class Register {
     
     func completeRegistration(with scannedData: String, callback: @escaping (Bool) -> ()) {
         let environment = "dev"
-        let username = "alex"
+        let username = "alice"
 
         guard let data = Utils.parseScannedData(data: scannedData) else {
             print("QR not formatted properly")

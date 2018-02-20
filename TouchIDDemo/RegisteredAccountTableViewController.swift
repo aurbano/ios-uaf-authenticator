@@ -16,6 +16,7 @@ class RegisteredAccountTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadRegistrations()
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -102,7 +103,7 @@ class RegisteredAccountTableViewController: UITableViewController {
         
         let registration = ValidRegistrations.registrations[indexPath.row]
 
-        cell.environment.text = ("Environment: " + registration.environment)
+        cell.environment.text = ("Domain: " + registration.environment)
         cell.username.text = ("Username: " + registration.username)
         cell.index = indexPath.row
 
@@ -185,16 +186,6 @@ class RegisteredAccountTableViewController: UITableViewController {
         self.completeReg(withData: scannedData)
     }
     
-//    @objc private func regObserver(_ notification: NSNotification) {
-//        let challenge = notification.userInfo?["challenge"] as? String
-//        let serverData = notification.userInfo?["serverData"] as? String
-//        let url = notification.userInfo?["url"] as? String
-//
-//        let string = challenge! + "," + serverData! + "," + url!
-//
-//        self.completeReg(withData: string)
-//    }
-    
     private func completeReg(withData: String) {
         var overlay = UIView()
         let activityIndicator = UIActivityIndicatorView()
@@ -206,19 +197,21 @@ class RegisteredAccountTableViewController: UITableViewController {
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
         overlay.layer.zPosition = 0
+        self.tabBarController?.tabBar.layer.zPosition = -1
         self.view.addSubview(overlay)
         overlay.addSubview(activityIndicator)
         
         activityIndicator.startAnimating()
         Register.sharedInstance.completeRegistration(with: withData) { success in
+            
             if (success) {
-                
                 let alert = UIAlertController(title: MessageString.Info.regSuccess, message: "", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {(alert: UIAlertAction!) in
                     NSLog(MessageString.Info.regSuccess)
                 }))
                 activityIndicator.stopAnimating()
                 overlay.removeFromSuperview()
+                self.tabBarController?.tabBar.layer.zPosition = 0
                 
                 self.present(alert, animated: true, completion: nil)
                 
@@ -232,10 +225,29 @@ class RegisteredAccountTableViewController: UITableViewController {
                 }))
                 activityIndicator.stopAnimating()
                 overlay.removeFromSuperview()
-                
+                self.tabBarController?.tabBar.layer.zPosition = 0
+
                 self.present(alert, animated: true, completion: nil)
                 
             }
         }
+    }
+    
+    private func loadRegistrations() {
+        ValidRegistrations.reset()
+        if let savedRegistrations = getSavedRegistrations() {
+            for reg in savedRegistrations {
+                ValidRegistrations.addRegistration(registrationToAdd: reg)
+            }
+        }
+    }
+    private func getSavedRegistrations() -> [Registrations.Registration]? {
+        //        let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
+        //        return savedRegs as? [Registration]
+        NSKeyedUnarchiver.setClass(Registration.self, forClassName: "Registration")
+        let decoded = ValidRegistrations.userDefaults?.object(forKey: "registrations") as! Data
+        let decodedRegs = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Registrations.Registration]
+        return decodedRegs
+        
     }
 }
