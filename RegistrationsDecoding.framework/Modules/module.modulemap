@@ -1,0 +1,11 @@
+framework module RegistrationsDecoding {
+  umbrella header "RegistrationsDecoding.h"
+
+  export *
+  module * { export * }
+}
+
+module RegistrationsDecoding.Swift {
+    header "RegistrationsDecoding-Swift.h"
+    requires objc
+}
