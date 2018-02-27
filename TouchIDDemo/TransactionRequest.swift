@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-class TransactionRequest: Equatable, Gloss.Decodable {
+class TransactionRequest: Equatable, Gloss.JSONDecodable {
     
     var header: Header? = nil
     var challenge: String? = nil
@@ -31,7 +31,7 @@ class TransactionRequest: Equatable, Gloss.Decodable {
 
 }
 
-class TransactionContent: Gloss.Decodable {
+class TransactionContent: Gloss.JSONDecodable {
     var contentType: String? = nil
     var content: String? = nil
     var id: Int64?

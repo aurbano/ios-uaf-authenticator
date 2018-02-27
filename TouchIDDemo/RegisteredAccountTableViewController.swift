@@ -18,7 +18,7 @@ class RegisteredAccountTableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
 
         
         self.refreshControl?.addTarget(self, action:
@@ -48,7 +48,7 @@ class RegisteredAccountTableViewController: UITableViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    func refresh() {
+    @objc func refresh() {
         self.tableView.reloadData()
         refreshControl?.endRefreshing()
     }

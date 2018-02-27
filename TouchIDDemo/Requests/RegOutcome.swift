@@ -10,7 +10,7 @@ import Foundation
 import Gloss
 import CryptoSwift
 
-class RegOutcome: Gloss.Decodable {
+class RegOutcome: Gloss.JSONDecodable {
     var authenticatorVersion: String?
     var publicKey: String?
     var signCounter: String?
@@ -57,7 +57,7 @@ enum Status: String {
     case ASSERTIONS_CHECK_FAILED = "ASSERTIONS_CHECK_FAILED"
 }
 
-class Authenticator: Gloss.Decodable {
+class Authenticator: Gloss.JSONDecodable {
     var aaid: String?
     var keyID: String?
     var deviceID: String?

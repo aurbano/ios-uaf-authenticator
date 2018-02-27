@@ -59,7 +59,7 @@ class PendingTransactions {
 
 }
 
-class Transaction: Equatable, Gloss.Decodable {
+class Transaction: Equatable, Gloss.JSONDecodable {
     var currency: Currency?
     var value: Int?
     var date: String?

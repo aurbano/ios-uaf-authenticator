@@ -23,7 +23,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
 
         
 //                let url = URL(string: "https://www.morganstanley.com/")

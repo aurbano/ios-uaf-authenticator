@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.ms.auth.iva</string>
+		<string>group.com.auth.iva</string>
 	</array>
 </dict>
 </plist>

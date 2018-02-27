@@ -11,7 +11,6 @@ import AVFoundation
 import MapKit
 import CoreLocation
 
-
 class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
@@ -23,26 +22,26 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
         self.tabBarController?.tabBar.isHidden = true
 
         self.navigationController?.navigationBar.tintColor = UIColor.white
         captureSession = AVCaptureSession()
-        let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let videoCaptureDevice = AVCaptureDevice.default(for: .video)
         
         do {
-            let input = try AVCaptureDeviceInput(device: videoCaptureDevice)
+            let input = try AVCaptureDeviceInput(device: videoCaptureDevice!)
             captureSession.addInput(input)
             
             let output = AVCaptureMetadataOutput()
             captureSession.addOutput(output)
             
             output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+            output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
             
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer.frame = view.layer.bounds
             
             view.layer.addSublayer(videoPreviewLayer)
@@ -66,8 +65,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
-        
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView.frame = CGRect.zero
             return
@@ -75,12 +73,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
-        if metadataObj.type == AVMetadataObjectTypeQRCode {
+        if metadataObj.type == AVMetadataObject.ObjectType.qr {
             let barCodeObj = videoPreviewLayer.transformedMetadataObject(for: metadataObj)
-            qrCodeFrameView.frame = (barCodeObj!.bounds)
+            qrCodeFrameView.frame = barCodeObj!.bounds
             
             if metadataObj.stringValue != nil {
-                dataCaptured = metadataObj.stringValue
+                dataCaptured = metadataObj.stringValue!
                 self.performSegue(withIdentifier: "unwindToRegistrationsTableView", sender: self)
             }
         }
