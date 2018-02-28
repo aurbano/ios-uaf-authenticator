@@ -32,6 +32,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
         // Do any additional setup after loading the view, typically from a nib.
         loadRegistrations()
+        print(ValidRegistrations.instance.items())
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,19 +41,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     private func loadRegistrations() {
-        ValidRegistrations.reset()
+        ValidRegistrations.instance.reset()
         if let savedRegistrations = getSavedRegistrations() {
             for reg in savedRegistrations {
-                ValidRegistrations.addRegistration(registrationToAdd: reg)
+                ValidRegistrations.instance.addRegistration(registrationToAdd: reg)
             }
         }
     }
     
     private func getSavedRegistrations() -> [Registrations.Registration]? {
-//        let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
-//        return savedRegs as? [Registration]
+        //        let savedRegs = NSKeyedUnarchiver.unarchiveObject(withFile: Registration.ArchiveURL.path)
+        //        return savedRegs as? [Registration]
         NSKeyedUnarchiver.setClass(Registration.self, forClassName: "Registration")
-        let decoded = ValidRegistrations.userDefaults?.object(forKey: "registrations") as! Data
+        if(ValidRegistrations.instance.userDefaults?.object(forKey: "registrations") == nil) {
+            print("rr" + ValidRegistrations.instance.random)
+            return nil
+        }
+        let decoded = ValidRegistrations.instance.userDefaults?.object(forKey: "registrations") as! Data
         let decodedRegs = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Registrations.Registration]
         return decodedRegs
         

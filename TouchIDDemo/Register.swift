@@ -55,7 +55,8 @@ class Register {
                 let regOutcome = RegOutcome(json: json[0])!
                 if(regOutcome.status == Status.SUCCESS && regOutcome.attestVerifiedStatus == AttestationStatus.VALID) {
                     print(MessageString.Info.regSuccess)
-                    
+                    print("before reg: " + String(describing: ValidRegistrations.instance.items()))
+
                     let registration = Registrations.Registration(
                         registrationId: regOutcome.registrationId,
                         appID: (regResponse.header?.appId)!,
@@ -66,8 +67,9 @@ class Register {
                         keyID: (regResponse.assertions?[0].keyID)!
                     )
                     
-                    ValidRegistrations.addRegistration(registrationToAdd: registration)
-                    ValidRegistrations.saveRegistrations()
+                    ValidRegistrations.instance.addRegistration(registrationToAdd: registration)
+                    print("after reg:" + String(describing: ValidRegistrations.instance.items()))
+                    ValidRegistrations.instance.saveRegistrations()
                     callback(true)
                 }
                 else {

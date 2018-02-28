@@ -83,7 +83,7 @@ class AlertViewController: ViewController {
     @IBAction func declineButtonClick(_ sender: UIButton) {
         let index = self.pageIndex
         let tx = PendingTransactions.getTransaction(atIndex: index)
-        guard let reg = ValidRegistrations.getRegistrationFrom(registrationId: tx.registrationId!) else {
+        guard let reg = ValidRegistrations.instance.getRegistrationFrom(registrationId: tx.registrationId!) else {
             return
         }
         
@@ -154,7 +154,7 @@ class AlertViewController: ViewController {
     @IBAction func signButtonClick(_ sender: UIButton) {
         let index = self.pageIndex
         let tx = PendingTransactions.getTransaction(atIndex: index)
-        guard let reg = ValidRegistrations.getRegistrationFrom(registrationId: tx.registrationId!) else {
+        guard let reg = ValidRegistrations.instance.getRegistrationFrom(registrationId: tx.registrationId!) else {
             return
         }
         

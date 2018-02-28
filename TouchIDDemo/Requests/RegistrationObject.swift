@@ -12,7 +12,7 @@ class Registration: NSObject, NSCoding {
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("registrations")
-
+    
     let appID: String
     let keyTag: String
     let url: String

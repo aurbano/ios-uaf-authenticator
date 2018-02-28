@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let string = url.absoluteString
         
         var params = [String: String]()
-        let index = string.index(string.startIndex, offsetBy: 7)
+        let index = string.index(string.startIndex, offsetBy: 25)
         let query = string.substring(from: index)
         
         let pairs = query.components(separatedBy: "&")
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         else if (pairs.count == 3) {
             let data = Utils.parseRegURL(url: string)
-            ValidRegistrations.pendingRegistration = data
+            ValidRegistrations.instance.pendingRegistration = data
             
             let navigationController : UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegistrationsNavigationController") as! UINavigationController
 

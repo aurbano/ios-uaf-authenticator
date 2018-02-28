@@ -11,6 +11,7 @@ import UIKit
 class RegisteredAccountTableViewCell: UITableViewCell {
 
     var index: Int = -1
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

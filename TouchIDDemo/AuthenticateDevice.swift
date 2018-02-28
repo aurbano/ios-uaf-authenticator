@@ -16,7 +16,7 @@ class AuthenticateDevice {
     private init() { }
     
     func getPendingTransactions(callback: @escaping (Bool) -> ()) {
-        for reg in ValidRegistrations.registrations {
+        for reg in ValidRegistrations.instance.registrations {
             let url = reg.url + "/v1/public/authRequest/" + reg.registrationId
             let requestBuilder = RequestBuilder(url: url, method: "GET")
             
