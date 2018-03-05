@@ -25,11 +25,13 @@ class PendingTransactionsTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
+        
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 44.0/255.0, green: 152.0/255.0, blue: 128.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-
+        self.tableView.tableFooterView = UIView()
+        
         self.refreshControl?.addTarget(self, action: #selector(PendingTransactionsTableViewController.refresh), for: UIControlEvents.valueChanged)
 
         tableView.addSubview(refreshControl!)

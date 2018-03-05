@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Darwin
 
-class AlertViewController: ViewController {
+class AlertViewController: UIViewController {
 
     var pageIndex: Int = 0
     var coordinates = CLLocationCoordinate2D()
@@ -19,7 +19,7 @@ class AlertViewController: ViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var alertView: UIView!
-//    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var companyLabel: UILabel!
     
     
@@ -64,7 +64,7 @@ class AlertViewController: ViewController {
     }
     */
     
-    let kCustomURLScheme = "tests://"
+    let kCustomURLScheme = "tradingAppCustomUrlScheme://"
     
     func openCustomURLScheme(customURLScheme: String) -> Bool {
         let customURL = URL(string: customURLScheme)!

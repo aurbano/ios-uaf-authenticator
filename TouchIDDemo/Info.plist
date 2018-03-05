@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>MS Auth</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -16,11 +18,22 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.iva.authapp</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>authappCustomUrlScheme</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>tests</string>
+		<string>tradingAppCustomUrlScheme</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -38,17 +51,6 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
-	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>authappCustomUrlScheme</string>
-			</array>
-			<key>CFBundleURLName</key>
-			<string>com.iva.authapp</string>
-		</dict>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

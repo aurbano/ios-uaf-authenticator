@@ -15,8 +15,8 @@ class Register {
     private init() {}
     
     func completeRegistration(with scannedData: String, callback: @escaping (Bool) -> ()) {
-        let environment = "dev"
-        let username = "alex"
+        let environment = "prod"
+        let username = "iva"
 
         guard let data = Utils.parseScannedData(data: scannedData) else {
             print("QR not formatted properly")
@@ -50,6 +50,7 @@ class Register {
                     callback(false)
                 }
             case .success(let responseObject):
+                print("THIS !!!!!!!!!!!!!!!")
                 print(responseObject)
                 let json = responseObject as! [[String:AnyObject]]
                 let regOutcome = RegOutcome(json: json[0])!
@@ -63,7 +64,7 @@ class Register {
                         keyTag: (regResponse.assertions?[0].privKeyTag)!,
                         url: data.url,
                         env: environment,
-                        username: username,
+                        username: regOutcome.username!,
                         keyID: (regResponse.assertions?[0].keyID)!
                     )
                     

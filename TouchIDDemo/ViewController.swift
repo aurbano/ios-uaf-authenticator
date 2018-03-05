@@ -13,15 +13,17 @@ import MapKit
 import CoreLocation
 import Registrations
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class InitialViewController: UIViewController, UINavigationControllerDelegate {
     
     var scannedData: String = ""
 
-    @IBOutlet var webView: UIWebView!
+    @IBOutlet weak var msauthLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 15.0/255.0, green: 142.0/255.0, blue: 199.0/255.0, alpha: 1)
+        self.view.backgroundColor = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 44.0/255.0, green: 152.0/255.0, blue: 128.0/255.0, alpha: 1)
+        msauthLabel.textColor = UIColor(red: 44.0/255.0, green: 152.0/255.0, blue: 128.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
 
@@ -33,6 +35,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         loadRegistrations()
         print(ValidRegistrations.instance.items())
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute  : {
+            self.performSegue(withIdentifier: "openViews", sender: self)
+        })
     }
     
     override func didReceiveMemoryWarning() {

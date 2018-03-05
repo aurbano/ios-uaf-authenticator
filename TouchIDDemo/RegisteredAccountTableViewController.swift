@@ -16,11 +16,10 @@ class RegisteredAccountTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 45.0/255.0, green: 45.0/255.0, blue: 55.0/255.0, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 44.0/255.0, green: 152.0/255.0, blue: 128.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.tableView.backgroundColor = UIColor(red: 17.0/255.0, green: 17.0/255.0, blue: 22.0/255.0, alpha: 1)
-        
+        self.tableView.tableFooterView = UIView()
         self.refreshControl?.addTarget(self, action:
             #selector(RegisteredAccountTableViewController.refresh), for: UIControlEvents.valueChanged)
         navigationItem.leftBarButtonItem = editButtonItem
@@ -99,12 +98,12 @@ class RegisteredAccountTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RegisteredAccountTableViewCell else {
             fatalError("The dequeued cell is not an instance of RegisteredAccountTableViewCell.")
         }
-        cell.backgroundColor = UIColor(red: 29.0/255.0, green: 29.0/255.0, blue: 36.0/255.0, alpha: 1)
-        cell.username.textColor = UIColor.white
-        cell.environment.textColor = UIColor.white
+        cell.backgroundColor = UIColor(red: 220.0/255.0, green: 220.0/255.0, blue: 220.0/255.0, alpha: 1)
+        cell.username.textColor = UIColor.black
+        cell.environment.textColor = UIColor.black
         let registration = ValidRegistrations.instance.registrations[indexPath.row]
 
-        cell.environment.text = ("Environment: " + registration.environment)
+        cell.environment.text = ("Domain: " + registration.environment)
         cell.username.text = ("Username: " + registration.username)
         cell.index = indexPath.row
 

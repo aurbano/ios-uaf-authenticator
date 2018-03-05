@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LaS-N6-VhJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--MS Auth-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="InitialViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,25 +21,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IfC-nA-oAX">
-                                <rect key="frame" x="16" y="72" width="343" height="538"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vts-Tz-rwO">
+                                <rect key="frame" x="70" y="278" width="235" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
+                                <attributedString key="attributedText">
+                                    <fragment content="MSAuth">
+                                        <attributes>
+                                            <font key="NSFont" size="65" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Yl4-6q-zPQ"/>
                     <navigationItem key="navigationItem" title="MS Auth" id="cz9-w4-hVK"/>
                     <connections>
-                        <outlet property="webView" destination="IfC-nA-oAX" id="6Ls-sq-QSN"/>
+                        <outlet property="msauthLabel" destination="vts-Tz-rwO" id="5Q0-m0-MUF"/>
+                        <segue destination="LaS-N6-VhJ" kind="modal" identifier="openViews" modalTransitionStyle="crossDissolve" id="PHU-sj-uTT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3356" y="-629.2353823088456"/>
+            <point key="canvasLocation" x="446" y="-629"/>
         </scene>
-        <!--Pending Transactions-->
+        <!--Pending Requests-->
         <scene sceneID="JEk-Qx-9LP">
             <objects>
                 <tableViewController id="v2k-Th-xmM" customClass="PendingTransactionsTableViewController" customModule="Violet_Anteater" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,7 +92,7 @@
                             <outlet property="delegate" destination="v2k-Th-xmM" id="0gb-et-z1j"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pending Transactions" id="Ocb-Fp-9JR"/>
+                    <navigationItem key="navigationItem" title="Pending Requests" id="Ocb-Fp-9JR"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Dzs-XR-i56">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -254,7 +263,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Sign"/>
+                                        <state key="normal" title="Accept"/>
                                         <connections>
                                             <action selector="signButtonClick:" destination="Qwz-rf-SUh" eventType="touchUpInside" id="fEV-FP-IhI"/>
                                         </connections>
@@ -298,11 +307,11 @@
             </objects>
             <point key="canvasLocation" x="1510" y="890"/>
         </scene>
-        <!--Transactions-->
+        <!--Requests-->
         <scene sceneID="C7U-qc-QCP">
             <objects>
                 <navigationController storyboardIdentifier="PendingTransactions" automaticallyAdjustsScrollViewInsets="NO" id="n1w-eR-Kpv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Transactions" id="BXT-Xz-VDA"/>
+                    <tabBarItem key="tabBarItem" title="Requests" id="BXT-Xz-VDA"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="iWE-DG-cea"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b7H-Rb-f90">
@@ -317,25 +326,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JBS-ym-MTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="732" y="133.5832083958021"/>
-        </scene>
-        <!--Home-->
-        <scene sceneID="tTg-2q-4g8">
-            <objects>
-                <navigationController storyboardIdentifier="RegisterDeviceVC" automaticallyAdjustsScrollViewInsets="NO" id="bJ4-LD-0On" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="HK8-5Q-wrM"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5N7-kl-2sy">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="s8I-l7-L9f"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="poE-3s-YUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2343.1999999999998" y="-629.2353823088456"/>
         </scene>
         <!--Registrations-->
         <scene sceneID="hZS-8b-3AV">
@@ -361,13 +351,22 @@
             <objects>
                 <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="LaS-N6-VhJ" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="glA-jN-ybM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Qcs-2z-pvh">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.91127676483029751" green="0.91127676483029751" blue="0.91127676483029751" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.17254901960784313" green="0.59607843137254901" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" red="0.50425888946949338" green="0.50425888946949338" blue="0.50425888946949338" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="bJ4-LD-0On" kind="relationship" relationship="viewControllers" id="J0u-HB-tsq"/>
                         <segue destination="n1w-eR-Kpv" kind="relationship" relationship="viewControllers" id="gFz-1t-oiD"/>
                         <segue destination="VIC-WM-Gat" kind="relationship" relationship="viewControllers" id="3HK-0M-pn6"/>
                     </connections>
