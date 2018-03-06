@@ -1,0 +1,84 @@
+//
+//  MemStore.swift
+//  TouchIDDemo
+//
+//  Created by Iva on 14/08/2017.
+//  Copyright © 2017 Iva. All rights reserved.
+//
+
+import Foundation
+
+public class Registration: NSObject, NSCoding {
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    public static let ArchiveURL = DocumentsDirectory.appendingPathComponent("registrations")
+    
+    public let appID: String
+    public let keyTag: String
+    public let url: String
+    public let environment: String
+    public let username: String
+    public let keyID: Array<UInt8>
+    public let registrationId: String
+    
+    public init(registrationId: String,
+         appID: String,
+         keyTag: String,
+         url: String,
+         env: String,
+         username: String,
+         keyID: Array<UInt8>) {
+        
+        self.appID = appID
+        self.keyTag = keyTag
+        self.url = url
+        self.environment = env
+        self.username = username
+        self.keyID = keyID
+        self.registrationId = registrationId
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(appID, forKey: PropertyKey.appID)
+        aCoder.encode(keyTag, forKey: PropertyKey.keyTag)
+        aCoder.encode(url, forKey: PropertyKey.url)
+        aCoder.encode(environment, forKey: PropertyKey.env)
+        aCoder.encode(username, forKey: PropertyKey.username)
+        let keyIDStr = String(bytes: keyID, encoding: .utf8)
+        aCoder.encode(keyIDStr, forKey: PropertyKey.keyID)
+        aCoder.encode(registrationId, forKey: PropertyKey.registrationId)
+    }
+    
+    required convenience public init?(coder aDecoder: NSCoder) {
+        
+        func decodeObject(key: String, aDecoder: NSCoder) -> String {
+            guard let property = aDecoder.decodeObject(forKey: key) as? String else {
+                print("Unable to decode value for key " + key)
+                return String()
+            }
+            return property
+        }
+        
+        
+        let appID = decodeObject(key: PropertyKey.appID, aDecoder: aDecoder)
+        let keyTag = decodeObject(key: PropertyKey.keyTag, aDecoder: aDecoder)
+        let url = decodeObject(key: PropertyKey.url, aDecoder: aDecoder)
+        let environment = decodeObject(key: PropertyKey.env, aDecoder: aDecoder)
+        let username = decodeObject(key: PropertyKey.username, aDecoder: aDecoder)
+        let keyIDStr = decodeObject(key: PropertyKey.keyID, aDecoder: aDecoder)
+        let keyID = Array<UInt8>(keyIDStr.utf8)
+        let registrationId = decodeObject(key: PropertyKey.registrationId, aDecoder: aDecoder)
+        
+        self.init(registrationId: registrationId,
+                  appID: appID,
+                  keyTag: keyTag,
+                  url: url,
+                  env: environment,
+                  username: username,
+                  keyID: keyID)
+    }
+    
+}
+
+
+
